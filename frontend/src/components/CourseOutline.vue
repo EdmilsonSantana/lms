@@ -184,7 +184,7 @@ const deleteLesson = createResource({
 	},
 	onSuccess() {
 		outline.reload()
-		showToast('Success', 'Lesson deleted successfully', 'check')
+		showToast('Sucesso', 'Aula removida com sucesso', 'check')
 	},
 })
 

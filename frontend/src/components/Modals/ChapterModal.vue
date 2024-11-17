@@ -17,7 +17,7 @@
 		<template #body-content>
 			<FormControl
 				ref="chapterInput"
-				label="Title"
+				:label="__('Title')"
 				v-model="chapter.title"
 				class="mb-4"
 			/>
@@ -138,7 +138,7 @@ const editChapter = (close) => {
 			onSuccess() {
 				outline.value.reload()
 				createToast({
-					text: 'Chapter updated successfully',
+					text: 'Capítulo atualizado com sucesso',
 					icon: 'check',
 					iconClasses: 'bg-green-600 text-white rounded-md p-px',
 				})

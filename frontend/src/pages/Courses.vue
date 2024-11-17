@@ -20,7 +20,7 @@
 				<div class="w-28 md:w-36">
 					<FormControl
 						type="text"
-						placeholder="Search"
+						:placeholder="__('Search')"
 						v-model="searchQuery"
 						@input="courses.reload()"
 					>

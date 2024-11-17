@@ -12,11 +12,11 @@
 				</header>
 				<div class="py-5">
 					<div class="w-5/6 mx-auto">
-						<FormControl v-model="lesson.title" label="Title" class="mb-4" />
+						<FormControl v-model="lesson.title" :label="__('Title')" class="mb-4" />
 						<FormControl
 							v-model="lesson.include_in_preview"
 							type="checkbox"
-							label="Include in Preview"
+							:label="__('Include in Preview')"
 						/>
 					</div>
 					<div class="border-t mt-4">
@@ -119,6 +119,54 @@ const renderEditor = (holder) => {
 		holder: holder,
 		tools: getEditorTools(true),
 		autofocus: true,
+		i18n: {
+			messages: {
+				ui: {
+					blockTunes: {
+						toggler: {
+							"Click to tune": __("Click to tune")
+						}
+					},
+					inlineToolbar: {
+						converter: {
+							"Convert to": __("Convert to")
+						}
+					},
+					toolbar: {
+						toolbox: {
+							"Add": __("Add"),
+							"Filter": __("Filter")
+						}
+					},
+					popover: {
+						"Filter": "Filtro",
+						"Nothing found": "Nada Encontrado"
+					}
+				},
+				toolNames: {
+					"Text": __("Texto"),
+					"Heading": __("Cabeçalho"),
+					"List": __("Lista")
+				},
+				tools: {
+					list: {
+						"Ordered": "Ordenado",
+						"Unordered": "Não ordenado"
+					}
+				},
+				blockTunes: {
+					delete: {
+						"Delete": __("Delete")
+					},
+					moveUp: {
+						"Move up": __("Move up")
+					},
+					moveDown: {
+						"Move down": __("Move down")
+					}
+				}
+			}
+		}
 	})
 }
 
@@ -365,7 +413,7 @@ const createNewLesson = () => {
 					{
 						onSuccess() {
 							capture('lesson_created')
-							showToast('Success', 'Lesson created successfully', 'check')
+							showToast('Sucesso', 'Aula criada com sucesso', 'check')
 							lessonDetails.reload()
 						},
 					}

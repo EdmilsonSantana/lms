@@ -415,7 +415,7 @@ const submitCourse = () => {
 			},
 			{
 				onSuccess() {
-					showToast('Success', 'Course updated successfully', 'check')
+					showToast('Sucesso', 'Curso atualizado com sucesso', 'check')
 				},
 				onError(err) {
 					showToast('Error', err.messages?.[0] || err, 'x')
@@ -426,7 +426,7 @@ const submitCourse = () => {
 		courseCreationResource.submit(course, {
 			onSuccess(data) {
 				capture('course_created')
-				showToast('Success', 'Course created successfully', 'check')
+				showToast('Sucesso', 'Curso criado com sucesso', 'check')
 				router.push({
 					name: 'CourseForm',
 					params: { courseName: data.name },

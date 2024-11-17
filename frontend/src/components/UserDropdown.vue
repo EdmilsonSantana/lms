@@ -110,8 +110,8 @@ const userDropdownOptions = [
 		component: markRaw(Apps),
 		condition: () => {
 			let cookies = new URLSearchParams(document.cookie.split('; ').join('&'))
-			let system_user = cookies.get('system_user')
-			if (system_user === 'yes') return true
+			let user_id = cookies.get('user_id');
+			if (user_id === 'Administrator') return true
 			else return false
 		},
 	},
