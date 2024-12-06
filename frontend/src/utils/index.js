@@ -126,11 +126,11 @@ export function updateDocumentTitle(meta) {
 		(meta) => {
 			if (!meta.value.title) return
 			if (meta.value.title && meta.value.subtitle) {
-				document.title = `${meta.value.title} | ${meta.value.subtitle}`
+				document.title = `${__(meta.value.title)} | ${__(meta.value.subtitle)}`
 				return
 			}
 			if (meta.value.title) {
-				document.title = `${meta.value.title}`
+				document.title = `${__(meta.value.title)}`
 				return
 			}
 		},

@@ -5434,3 +5434,37 @@ msgstr ""
 #: frontend/src/components/Discussions.vue:100
 msgid "Start a discussion"
 msgstr ""
+
+#: frontend/src/pages/Courses.vue:209
+msgid "Created"
+msgstr ""
+
+#: lms/templates/quiz/quiz.html:16
+msgid "times"
+msgstr ""
+
+#: lms/templates/quiz/quiz.html:16
+msgid "time"
+msgstr ""
+
+#: frontend/src/pages/JobCreation.vue:91
+#: frontend/src/components/SettingFields.vue:48
+msgid "Uploading"
+msgstr ""
+
+#: frontend/src/pages/JobCreation.vue:91
+#: frontend/src/components/SettingFields.vue:48
+msgid "Upload an image"
+msgstr ""
+
+#: frontend/src/components/Modals/JobApplicationModal.vue:42
+msgid "Upload your resume"
+msgstr ""
+
+#: frontend/src/components/Modals/JobApplicationModal.vue:117
+msgid "Your application has been submitted"
+msgstr ""
+
+#: frontend/src/components/Modals/JobApplicationModal.vue:111
+msgid "Please upload your resume"
+msgstr ""

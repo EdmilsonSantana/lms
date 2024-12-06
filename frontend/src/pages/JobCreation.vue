@@ -88,7 +88,7 @@
 								<div class="mb-4">
 									<Button @click="openFileSelector" :loading="uploading">
 										{{
-											uploading ? `Uploading ${progress}%` : 'Upload an image'
+											uploading ? `${__('Uploading')} ${progress}%` : __('Upload an image')
 										}}
 									</Button>
 								</div>
@@ -297,11 +297,11 @@ const jobStatuses = computed(() => {
 const breadcrumbs = computed(() => {
 	let crumbs = [
 		{
-			label: 'Jobs',
+			label: __('Jobs'),
 			route: { name: 'Jobs' },
 		},
 		{
-			label: props.jobName == 'new' ? 'New Job' : 'Edit Job',
+			label: props.jobName == 'new' ? __('New Job') : __('Edit Job'),
 			route: { name: 'JobCreation' },
 		},
 	]
