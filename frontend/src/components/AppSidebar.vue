@@ -203,7 +203,7 @@ const deletePage = (link) => {
 }
 
 const getSidebarFromStorage = () => {
-	return useStorage('sidebar_is_collapsed', false)
+	return useStorage('sidebar_is_collapsed', true)
 }
 
 watch(userResource, () => {

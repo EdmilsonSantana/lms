@@ -116,7 +116,7 @@ scheduler_events = {
 	"daily": ["lms.job.doctype.job_opportunity.job_opportunity.update_job_openings"],
 }
 
-fixtures = ["Custom Field", "Function", "Industry", "LMS Category"]
+fixtures = ["Custom Field", "Function", "Industry"]
 
 # Testing
 # -------
@@ -170,6 +170,7 @@ website_redirects = [
 		"match_with_query_string": True,
 	},
 	{"source": "/statistics", "target": "/lms/statistics"},
+    {"source": "/", "target": "/lms"},
 ]
 
 update_website_context = [

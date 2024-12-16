@@ -5468,3 +5468,28 @@ msgstr ""
 #: frontend/src/components/Modals/JobApplicationModal.vue:111
 msgid "Please upload your resume"
 msgstr ""
+
+#: www/update-password.html:79
+msgid "Success! You are good to go 👍"
+msgstr ""
+
+
+#: frontend/src/pages/Courses.vue:146
+msgid "No courses found"
+msgstr ""
+
+#: frontend/src/pages/Courses.vue:151
+msgid "There are no courses available at the moment. Keep an eye out, fresh learning experiences are on the way soon!"
+msgstr ""
+
+#: frontend/src/components/UserDropdown.vue:101
+msgid "My Profile"
+msgstr ""
+
+#: frontend/src/components/UserDropdown.vue:142
+msgid "Log in"
+msgstr ""
+
+#: frontend/src/components/UserDropdown.vue:130
+msgid "Log out"
+msgstr ""

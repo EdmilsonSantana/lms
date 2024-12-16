@@ -5,10 +5,9 @@ import { sessionStore } from './stores/session'
 let defaultRoute = '/courses'
 const routes = [
 	{
-		path: '/',
-		redirect: {
-			name: 'Courses',
-		},
+		path: "/",
+		name: "Home",
+		component: () => import('@/pages/Home.vue'),
 	},
 	{
 		path: '/courses',

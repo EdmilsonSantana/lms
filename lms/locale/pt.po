@@ -2310,7 +2310,7 @@ msgstr ""
 #. Name of a DocType
 #: lms/job/doctype/job_opportunity/job_opportunity.json
 msgid "Job Opportunity"
-msgstr "Oportunidad de empleo"
+msgstr "Oportunidade de Emprego"
 
 #. Name of a DocType
 #: lms/job/doctype/job_settings/job_settings.json
@@ -2865,7 +2865,7 @@ msgstr "Tipo de miembro"
 #. Group in LMS Batch Old's connections
 #: lms/lms/doctype/lms_batch_old/lms_batch_old.json
 msgid "Members"
-msgstr "Miembros"
+msgstr "Usuários"
 
 #. Label of the membership (Select) field in DocType 'LMS Batch Old'
 #: lms/lms/doctype/lms_batch_old/lms_batch_old.json
@@ -3083,11 +3083,11 @@ msgstr "No hay cursos en revisión"
 
 #: frontend/src/pages/ProfileAbout.vue:12
 msgid "No introduction"
-msgstr "No hay introducción"
+msgstr "Esse usuário ainda não adicionou uma introdução."
 
 #: frontend/src/pages/Jobs.vue:45
 msgid "No jobs posted"
-msgstr "No hay trabajos publicados"
+msgstr "Nenhuma vaga publicada"
 
 #: frontend/src/components/LiveClass.vue:59
 msgid "No live classes scheduled"
@@ -3382,7 +3382,7 @@ msgstr "Detalles de pago"
 #: lms/fixtures/custom_field.json
 #: lms/lms/doctype/lms_settings/lms_settings.json
 msgid "Payment Gateway"
-msgstr "Pasarela de Pago"
+msgstr "Plataforma de Pagamento"
 
 #. Label of the payment_id (Data) field in DocType 'LMS Payment'
 #: lms/lms/doctype/lms_payment/lms_payment.json
@@ -3511,7 +3511,7 @@ msgstr "Inicie sesión para acceder al cuestionario."
 
 #: frontend/src/components/NoPermission.vue:25 frontend/src/pages/Batch.vue:142
 msgid "Please login to access this page."
-msgstr "Por favor inicie sesión para acceder a esta página."
+msgstr "Por favor, faça login para acessar esta página."
 
 #: lms/lms/api.py:182
 msgid "Please login to continue with payment."
@@ -3964,7 +3964,7 @@ msgstr ""
 #. Label of the route (Data) field in DocType 'LMS Sidebar Item'
 #: lms/lms/doctype/lms_sidebar_item/lms_sidebar_item.json
 msgid "Route"
-msgstr "Ruta"
+msgstr "Rota"
 
 #: lms/lms/doctype/lms_batch/lms_batch.py:172
 msgid "Row #{0} Date cannot be outside the batch duration."
@@ -5465,3 +5465,27 @@ msgstr "Sua inscrição foi submetida"
 #: frontend/src/components/Modals/JobApplicationModal.vue:111
 msgid "Please upload your resume"
 msgstr "Por favor, carregue seu currículo"
+
+#: www/update-password.html:79
+msgid "Success! You are good to go 👍"
+msgstr "Tudo certo! Você pode prosseguir 👍"
+
+#: frontend/src/pages/Courses.vue:146
+msgid "No courses found"
+msgstr "Nenhum curso encontrado"
+
+#: frontend/src/pages/Courses.vue:151
+msgid "There are no courses available at the moment. Keep an eye out, fresh learning experiences are on the way soon!"
+msgstr "No momento, não há cursos disponíveis. Fique de olho, novas experiências de aprendizado chegarão em breve!"
+
+#: frontend/src/components/UserDropdown.vue:101
+msgid "My Profile"
+msgstr "Meu Perfil"
+
+#: frontend/src/components/UserDropdown.vue:142
+msgid "Log in"
+msgstr "Entrar"
+
+#: frontend/src/components/UserDropdown.vue:130
+msgid "Log out"
+msgstr "Sair"

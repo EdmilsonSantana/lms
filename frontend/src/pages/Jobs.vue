@@ -7,7 +7,7 @@
 				class="h-7"
 				:items="[{ label: __('Jobs'), route: { name: 'Jobs' } }]"
 			/>
-			<div class="flex">
+			<div class="flex" v-if="user.data?.is_moderator">
 				<router-link
 					v-if="user.data?.name"
 					:to="{

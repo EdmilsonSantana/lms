@@ -6,7 +6,7 @@ import frappeui from 'frappe-ui/vite'
 // https://vitejs.dev/config/
 export default defineConfig({
 	plugins: [
-		frappeui(),
+		frappeui({port: 9001}),
 		vue({
 			script: {
 				defineModel: true,
@@ -14,6 +14,12 @@ export default defineConfig({
 			},
 		}),
 	],
+	server: {
+		port: 9001,
+		watch: {
+			usePolling: true
+		}
+	},
 	resolve: {
 		alias: {
 			'@': path.resolve(__dirname, 'src'),
