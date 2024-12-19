@@ -426,7 +426,7 @@ export function getTimezones() {
 	]
 }
 
-export function getSidebarLinks() {
+export function getDefaultSidebarLinks() {
 	return [
 		{
 			label: 'Courses',

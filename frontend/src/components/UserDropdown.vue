@@ -71,7 +71,7 @@ import { useRouter } from 'vue-router'
 import { convertToTitleCase } from '../utils'
 import { usersStore } from '@/stores/user'
 import { useSettings } from '@/stores/settings'
-import { markRaw, watch, ref } from 'vue'
+import { markRaw, watch, ref, onMounted } from 'vue'
 import SettingsModal from '@/components/Modals/Settings.vue'
 
 const router = useRouter()
@@ -80,6 +80,7 @@ let { userResource } = usersStore()
 const settingsStore = useSettings()
 let { isLoggedIn } = sessionStore()
 const showSettingsModal = ref(false)
+const userDropdownOptions = ref([])
 
 const props = defineProps({
 	isCollapsed: {
@@ -95,57 +96,59 @@ watch(
 	}
 )
 
-const userDropdownOptions = [
-	{
-		icon: User,
-		label: __('My Profile'),
-		onClick: () => {
-			router.push(`/user/${userResource.data?.username}`)
+onMounted(() => {
+	userDropdownOptions.value = [
+		{
+			icon: User,
+			label: __('My Profile'),
+			onClick: () => {
+				router.push(`/user/${userResource.data?.username}`)
+			},
+			condition: () => {
+				return isLoggedIn
+			},
 		},
-		condition: () => {
-			return isLoggedIn
+		{
+			component: markRaw(Apps),
+			condition: () => {
+				let cookies = new URLSearchParams(document.cookie.split('; ').join('&'))
+				let user_id = cookies.get('user_id');
+				if (user_id === 'Administrator') return true
+				else return false
+			},
 		},
-	},
-	{
-		component: markRaw(Apps),
-		condition: () => {
-			let cookies = new URLSearchParams(document.cookie.split('; ').join('&'))
-			let user_id = cookies.get('user_id');
-			if (user_id === 'Administrator') return true
-			else return false
+		{
+			icon: Settings,
+			label: __('Settings'),
+			onClick: () => {
+				settingsStore.isSettingsOpen = true
+			},
+			condition: () => {
+				return userResource.data?.is_moderator
+			},
 		},
-	},
-	{
-		icon: Settings,
-		label: __('Settings'),
-		onClick: () => {
-			settingsStore.isSettingsOpen = true
+		{
+			icon: LogOut,
+			label: __('Log out'),
+			onClick: () => {
+				logout.submit().then(() => {
+					isLoggedIn = false
+				})
+			},
+			condition: () => {
+				return isLoggedIn
+			},
 		},
-		condition: () => {
-			return userResource.data?.is_moderator
+		{
+			icon: LogIn,
+			label: __('Log in'),
+			onClick: () => {
+				window.location.href = '/login'
+			},
+			condition: () => {
+				return !isLoggedIn
+			},
 		},
-	},
-	{
-		icon: LogOut,
-		label: __('Log out'),
-		onClick: () => {
-			logout.submit().then(() => {
-				isLoggedIn = false
-			})
-		},
-		condition: () => {
-			return isLoggedIn
-		},
-	},
-	{
-		icon: LogIn,
-		label: __('Log in'),
-		onClick: () => {
-			window.location.href = '/login'
-		},
-		condition: () => {
-			return !isLoggedIn
-		},
-	},
-]
+	]
+})
 </script>

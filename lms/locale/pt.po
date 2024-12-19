@@ -1114,7 +1114,7 @@ msgstr "Contenido del curso"
 #: lms/lms/doctype/lms_question/lms_question.json
 #: lms/lms/doctype/lms_quiz/lms_quiz.json
 msgid "Course Creator"
-msgstr "Criador do Curso"
+msgstr "Criador de Cursos"
 
 #. Label of a Card Break in the LMS Workspace
 #: lms/lms/workspace/lms/lms.json
@@ -1128,7 +1128,7 @@ msgstr "Descrição do Curso"
 #. Name of a DocType
 #: lms/lms/doctype/course_evaluator/course_evaluator.json
 msgid "Course Evaluator"
-msgstr "Evaluador del curso"
+msgstr "Avaliador de Cursos"
 
 #: frontend/src/pages/CourseForm.vue:64
 msgid "Course Image"
@@ -1950,11 +1950,11 @@ msgstr "¿Tiene una cuenta? Iniciar sesión"
 #: frontend/src/components/Modals/EditProfile.vue:69
 #: lms/fixtures/custom_field.json
 msgid "Headline"
-msgstr "Titular"
+msgstr "Título"
 
 #: lms/lms/widgets/HelloWorld.html:13
 msgid "Hello"
-msgstr "Hola"
+msgstr "Olá"
 
 #. Label of the help_section (Section Break) field in DocType 'Course Lesson'
 #: lms/lms/doctype/course_lesson/course_lesson.json
@@ -2556,7 +2556,7 @@ msgstr "Etiqueta"
 
 #: frontend/src/components/Modals/EditProfile.vue:64
 msgid "Last Name"
-msgstr "Apellido"
+msgstr "Último Nome"
 
 #. Label of the latest_submission (Link) field in DocType 'Exercise Latest
 #. Submission'
@@ -4378,18 +4378,18 @@ msgstr "Estado/Puntuación"
 #: lms/lms/doctype/lms_enrollment/lms_enrollment.json
 #: lms/templates/signup-form.html:26
 msgid "Student"
-msgstr "Estudiante"
+msgstr "Estudante"
 
 #. Label of the student_details_section (Section Break) field in DocType 'Batch
 #. Student'
 #: lms/lms/doctype/batch_student/batch_student.json
 msgid "Student Details"
-msgstr "Detalles del Estudiante"
+msgstr "Detalhes do Estudante"
 
 #. Label of the student_name (Data) field in DocType 'Batch Student'
 #: lms/lms/doctype/batch_student/batch_student.json
 msgid "Student Name"
-msgstr "Nombre del Estudiante"
+msgstr "Nome do Estudante"
 
 #: frontend/src/components/CourseReviews.vue:11
 msgid "Student Reviews"

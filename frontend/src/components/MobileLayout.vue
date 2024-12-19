@@ -14,7 +14,7 @@
 		>
 			<button
 				v-for="tab in sidebarLinks"
-				:key="tab.label"
+				:key="__(tab.label)"
 				:class="isVisible(tab) ? 'block' : 'hidden'"
 				class="flex flex-col items-center justify-center py-3 transition active:scale-95"
 				@click="handleClick(tab)"
@@ -40,7 +40,7 @@
 					<div class="text-base p-5 space-y-4">
 						<div
 							v-for="link in otherLinks"
-							:key="link.label"
+							:key="__(link.label)"
 							class="flex items-center space-x-2"
 							@click="handleClick(link)"
 						>
@@ -49,7 +49,7 @@
 								class="h-4 w-4 stroke-1.5 text-gray-600"
 							/>
 							<div>
-								{{ link.label }}
+								{{ __(link.label) }}
 							</div>
 						</div>
 					</div>
@@ -59,7 +59,7 @@
 	</div>
 </template>
 <script setup>
-import { getSidebarLinks } from '../utils'
+import { getDefaultSidebarLinks } from '../utils'
 import { useRouter } from 'vue-router'
 import { watch, ref, onMounted } from 'vue'
 import { sessionStore } from '@/stores/session'
@@ -71,7 +71,7 @@ const { logout, user, sidebarSettings } = sessionStore()
 let { isLoggedIn } = sessionStore()
 const router = useRouter()
 let { userResource } = usersStore()
-const sidebarLinks = ref(getSidebarLinks())
+const sidebarLinks = ref(getDefaultSidebarLinks())
 const otherLinks = ref([])
 
 onMounted(() => {
@@ -101,7 +101,7 @@ const addOtherLinks = () => {
 			to: 'Notifications',
 		})
 		otherLinks.value.push({
-			label: 'Profile',
+			label: 'My Profile',
 			icon: 'UserRound',
 		})
 		otherLinks.value.push({

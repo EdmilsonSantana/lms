@@ -93,7 +93,7 @@ import CollapseSidebar from '@/components/Icons/CollapseSidebar.vue'
 import SidebarLink from '@/components/SidebarLink.vue'
 import { useStorage } from '@vueuse/core'
 import { ref, onMounted, inject, watch } from 'vue'
-import { getSidebarLinks } from '../utils'
+import { getDefaultSidebarLinks } from '../utils'
 import { usersStore } from '@/stores/user'
 import { sessionStore } from '@/stores/session'
 import { ChevronRight, Plus } from 'lucide-vue-next'
@@ -104,7 +104,7 @@ const { user, sidebarSettings } = sessionStore()
 const { userResource } = usersStore()
 const socket = inject('$socket')
 const unreadCount = ref(0)
-const sidebarLinks = ref(getSidebarLinks())
+const sidebarLinks = ref([])
 const showPageModal = ref(false)
 const isModerator = ref(false)
 const isInstructor = ref(false)
@@ -115,21 +115,19 @@ onMounted(() => {
 	socket.on('publish_lms_notifications', (data) => {
 		unreadNotifications.reload()
 	})
-	addNotifications()
 	sidebarSettings.reload(
 		{},
 		{
 			onSuccess(data) {
-				Object.keys(data).forEach((key) => {
-					if (!parseInt(data[key])) {
-						sidebarLinks.value = sidebarLinks.value.filter(
-							(link) => link.label.toLowerCase().split(' ').join('_') !== key
-						)
+				getDefaultSidebarLinks().forEach((link) => {
+					if (data[link.label.toLowerCase().split(' ').join('_')]) {
+						sidebarLinks.value.push(link)
 					}
 				})
 			},
 		}
 	)
+	addNotifications()
 })
 
 const unreadNotifications = createResource({
@@ -213,6 +211,10 @@ watch(userResource, () => {
 		addQuizzes()
 	}
 })
+
+watch(sidebarLinks, () => {
+	sidebarLinks.value.sort((a, b) => __(a.label).localeCompare(__(b.label)))
+}, { deep: true })
 
 let isSidebarCollapsed = ref(getSidebarFromStorage())
 </script>

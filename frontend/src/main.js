@@ -8,33 +8,36 @@ import dayjs from '@/utils/dayjs'
 import { createDialog } from '@/utils/dialogs'
 import translationPlugin from './translation'
 import { usersStore } from './stores/user'
-import { sessionStore } from './stores/session'
 import { initSocket } from './socket'
 import {
 	FrappeUI,
 	setConfig,
 	frappeRequest,
-	resourcesPlugin,
 	pageMetaPlugin,
 } from 'frappe-ui'
 
-let pinia = createPinia()
-let app = createApp(App)
-setConfig('resourceFetcher', frappeRequest)
+async function initApp() {
+	let pinia = createPinia()
+	let app = createApp(App)
+	setConfig('resourceFetcher', frappeRequest)
 
-app.use(FrappeUI)
-app.use(pinia)
-app.use(router)
-app.use(translationPlugin)
-app.use(pageMetaPlugin)
-app.provide('$dayjs', dayjs)
-app.provide('$socket', initSocket())
-app.mount('#app')
+	await translationPlugin(app)
+	app.use(FrappeUI)
+	app.use(pinia)
+	app.use(router)
+	app.use(pageMetaPlugin)
+	app.provide('$dayjs', dayjs)
+	app.provide('$socket', initSocket())
+	app.mount('#app')
 
-const { userResource, allUsers } = usersStore()
-let { isLoggedIn } = sessionStore()
+	const { userResource, allUsers } = usersStore()
 
-app.provide('$user', userResource)
-app.provide('$allUsers', allUsers)
-app.config.globalProperties.$user = userResource
-app.config.globalProperties.$dialog = createDialog
+	app.provide('$user', userResource)
+	app.provide('$allUsers', allUsers)
+	app.config.globalProperties.$user = userResource
+	app.config.globalProperties.$dialog = createDialog
+
+	return app;
+}
+
+initApp()
