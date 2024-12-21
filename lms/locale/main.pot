@@ -982,22 +982,6 @@ msgstr ""
 msgid "Completion Certificate"
 msgstr ""
 
-#: frontend/src/pages/CourseForm.vue:33
-msgid "A one line introduction to the course that appears on the course card"
-msgstr "
-
-#: frontend/src/pages/CourseForm.vue:33
-msgid "Keywords for the course"
-msgstr ""
-
-#: frontend/src/pages/CourseForm.vue:76
-msgid "Appears on the course card in the course list"
-msgstr ""
-
-#: frontend/src/pages/CourseForm.vue:91
-msgid "Remove"
-msgstr ""
-
 #: frontend/src/pages/Statistics.vue:58
 msgid "Completions"
 msgstr ""
@@ -1051,10 +1035,6 @@ msgstr ""
 
 #: frontend/src/components/LessonHelp.vue:53
 msgid "Copy the URL of the video from YouTube and paste it in the editor."
-msgstr ""
-
-#: frontend/src/components/LessonHelp.vue:69
-msgid "If Include in Preview is enabled for a lesson then the lesson will also be accessible to non logged in users."
 msgstr ""
 
 #. Option for the 'Company Type' (Select) field in DocType 'User'
