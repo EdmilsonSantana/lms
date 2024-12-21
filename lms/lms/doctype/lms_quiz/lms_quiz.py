@@ -57,14 +57,15 @@ class LMSQuiz(Document):
 		types = [question.type for question in self.questions]
 		types = set(types)
 
-		if "Open Ended" in types and len(types) > 1:
-			frappe.throw(
-				_(
-					"If you want open ended questions then make sure each question in the quiz is of open ended type."
+		if "Open Ended" in types:
+			if len(types) > 1:
+				frappe.throw(
+					_(
+						"If you want open ended questions then make sure each question in the quiz is of open ended type."
+					)
 				)
-			)
-		else:
-			self.show_answers = 0
+			else:
+				self.show_answers = 0
 
 	def autoname(self):
 		if not self.name:
@@ -133,7 +134,6 @@ def quiz_summary(quiz, results):
 			result["marks"] = marks
 			score += marks
 
-			del result["question_name"]
 		else:
 			result["is_correct"] = 0
 			is_open_ended = True

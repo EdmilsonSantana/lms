@@ -48,6 +48,7 @@
 						? __('Title')
 						: __('Enter a title and save the quiz to proceed')
 				"
+				:required="true"
 			/>
 			<div v-if="quizDetails.data?.name">
 				<div class="grid grid-cols-2 gap-5 mt-4 mb-8">
@@ -141,6 +142,7 @@
 								v-slot="{ idx, column, item }"
 								v-for="row in quiz.questions"
 								@click="openQuestionModal(row)"
+								class="cursor-pointer"
 							>
 								<ListRowItem :item="item">
 									<div
@@ -204,7 +206,6 @@ import {
 	inject,
 	onBeforeUnmount,
 	watch,
-	isReactive,
 } from 'vue'
 import { Plus, Trash2 } from 'lucide-vue-next'
 import Question from '@/components/Modals/Question.vue'

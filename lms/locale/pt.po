@@ -85,11 +85,13 @@ msgstr "Ativo"
 
 #: frontend/src/components/Assessments.vue:11
 #: frontend/src/components/BatchCourses.vue:11
-#: frontend/src/components/BatchStudents.vue:6
+#: frontend/src/components/BatchStudents.vue:10
 #: frontend/src/components/Categories.vue:26
 #: frontend/src/components/LiveClass.vue:11
 #: frontend/src/components/Members.vue:43
-#: frontend/src/pages/LessonForm.vue:137
+#: frontend/src/pages/LessonForm.vue:150
+#: frontend/src/components/Members.vue:43 frontend/src/pages/ProgramForm.vue:30
+#: frontend/src/pages/ProgramForm.vue:92 frontend/src/pages/ProgramForm.vue:137
 msgid "Add"
 msgstr "Adicionar"
 
@@ -3611,7 +3613,7 @@ msgstr "Vídeo de Pré-visualização"
 msgid "Paste the youtube link of a short video introducing the course"
 msgstr "Cole o link do YouTube de um vídeo curto introduzindo o curso"
 
-#: frontend/src/pages/Lesson.vue:54
+#: frontend/src/pages/Lesson.vue:49
 msgid "Previous"
 msgstr "Anterior"
 

@@ -10,13 +10,13 @@
 			:style="{ backgroundImage: 'url(\'' + encodeURI(course.image) + '\')' }"
 		>
 			<div
-				class="flex items-center flex-wrap space-y-1 space-x-1 relative top-4 px-2 w-fit"
+				class="flex items-center flex-wrap space-x-1 relative top-4 px-2 w-fit"
 			>
 				<Badge v-if="course.featured" variant="subtle" theme="green" size="md">
 					{{ __('Featured') }}
 				</Badge>
 				<Badge
-					variant="outline"
+					variant="subtle"
 					theme="gray"
 					size="md"
 					v-for="tag in course.tags"
@@ -59,7 +59,7 @@
 
 				<div v-if="course.status != 'Approved'">
 					<Badge
-						variant="solid"
+						variant="subtle"
 						:theme="course.status === 'Under Review' ? 'orange' : 'blue'"
 						size="sm"
 					>

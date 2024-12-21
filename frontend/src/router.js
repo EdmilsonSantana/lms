@@ -2,12 +2,17 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { usersStore } from './stores/user'
 import { sessionStore } from './stores/session'
 
-let defaultRoute = '/courses'
 const routes = [
 	{
 		path: "/",
 		name: "Home",
 		component: () => import('@/pages/Home.vue'),
+	},
+	{
+		path: '/',
+		redirect: {
+			name: 'Courses',
+		},
 	},
 	{
 		path: '/courses',
@@ -24,6 +29,12 @@ const routes = [
 		path: '/courses/:courseName/learn/:chapterNumber-:lessonNumber',
 		name: 'Lesson',
 		component: () => import('@/pages/Lesson.vue'),
+		props: true,
+	},
+	{
+		path: '/courses/:courseName/learn/:chapterName',
+		name: 'SCORMChapter',
+		component: () => import('@/pages/SCORMChapter.vue'),
 		props: true,
 	},
 	{
@@ -174,6 +185,17 @@ const routes = [
 		name: 'QuizSubmission',
 		component: () => import('@/pages/QuizSubmission.vue'),
 		props: true,
+	},
+	{
+		path: '/programs/:programName',
+		name: 'ProgramForm',
+		component: () => import('@/pages/ProgramForm.vue'),
+		props: true,
+	},
+	{
+		path: '/programs',
+		name: 'Programs',
+		component: () => import('@/pages/Programs.vue'),
 	},
 ]
 

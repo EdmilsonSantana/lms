@@ -2,6 +2,7 @@ import { toast } from 'frappe-ui'
 import { useTimeAgo } from '@vueuse/core'
 import { Quiz } from '@/utils/quiz'
 import { Upload } from '@/utils/upload'
+import { Markdown } from '@/utils/markdownParser'
 import Header from '@editorjs/header'
 import Paragraph from '@editorjs/paragraph'
 import { CodeBox } from '@/utils/code'
@@ -11,6 +12,7 @@ import { watch } from 'vue'
 import dayjs from '@/utils/dayjs'
 import Embed from '@editorjs/embed'
 import SimpleImage from '@editorjs/simple-image'
+import Table from '@editorjs/table'
 
 export function createToast(options) {
 	toast({
@@ -93,7 +95,7 @@ export function showToast(title, text, icon, iconClasses = null) {
 	if (!iconClasses) {
 		if (icon == 'check') {
 			iconClasses = 'bg-green-600 text-white rounded-md p-px'
-		} else if (icon == 'circle-warn') {
+		} else if (icon == 'alert-circle') {
 			iconClasses = 'bg-yellow-600 text-white rounded-md p-px'
 		} else {
 			iconClasses = 'bg-red-600 text-white rounded-md p-px'
@@ -146,10 +148,17 @@ export function htmlToText(html) {
 
 export function getEditorTools() {
 	return {
-		header: Header,
+		header: {
+			class: Header,
+			config: {
+				placeholder: 'Header',
+			},
+		},
 		quiz: Quiz,
 		upload: Upload,
+		markdown: Markdown,
 		image: SimpleImage,
+		table: Table,
 		paragraph: {
 			class: Paragraph,
 			inlineToolbar: true,

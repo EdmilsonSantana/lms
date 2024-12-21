@@ -226,6 +226,7 @@ page_renderer = [
 	"lms.page_renderers.ProfileRedirectPage",
 	"lms.page_renderers.ProfilePage",
 	"lms.page_renderers.CoursePage",
+	"lms.page_renderers.SCORMRenderer",
 ]
 
 # set this to "/" to have profiles on the top-level
