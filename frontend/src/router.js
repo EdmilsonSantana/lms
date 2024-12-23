@@ -7,12 +7,9 @@ const routes = [
 		path: "/",
 		name: "Home",
 		component: () => import('@/pages/Home.vue'),
-	},
-	{
-		path: '/',
-		redirect: {
-			name: 'Courses',
-		},
+		meta: {
+			isHome: true
+		}
 	},
 	{
 		path: '/courses',
