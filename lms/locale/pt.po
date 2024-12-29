@@ -3230,7 +3230,7 @@ msgstr "Nuevo lote"
 
 #: lms/www/lms.py:37
 msgid "New Course"
-msgstr "Nuevo curso"
+msgstr "Novo Curso"
 
 #: frontend/src/pages/Jobs.vue:39
 msgid "New Job"
