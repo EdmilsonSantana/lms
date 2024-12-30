@@ -18,7 +18,7 @@ const props = defineProps({
 })
 
 const svgIcon = computed(() => {
-    return feather.toSvg(props.icon);
+    return feather.icons[props.icon].toSvg();
 });
 
 const iconLabel = computed(() => {

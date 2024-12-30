@@ -17,7 +17,7 @@
 
 	<!-- Hero Section with Background Image + Overlay -->
 	<section class="relative min-h-screen flex items-center justify-center text-white text-center 
-               bg-[url('/assets/lms/frontend/home-banner.jpg')] bg-cover bg-center bg-no-repeat">
+			   bg-[url('/assets/lms/frontend/home-banner.jpg')] bg-cover bg-center bg-no-repeat">
 		<!-- Optional overlay to make text more readable -->
 		<div class="absolute inset-0 bg-blue-900/60"></div>
 
@@ -27,10 +27,10 @@
 				destacar sua empresa no setor automotivo.
 			</h1>
 			<div class="flex flex-wrap gap-4 justify-center">
-				<button
+				<a :href="whatsAppUrl" target="_blank" rel="noopener noreferrer"
 					class="bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded transition-colors">
 					Inscreva-se Agora
-				</button>
+				</a>
 				<a href="#features"
 					class="bg-white hover:bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded transition-colors">
 					Saiba Mais
@@ -142,9 +142,9 @@
 				Matricule-se em nossos laboratórios presenciais ou workshops online e
 				comece a conquistar novas oportunidades na engenharia mecânica.
 			</p>
-			<button class="bg-black text-white font-bold py-3 px-6 rounded hover:text-white transition-colors">
+			<a :href="whatsAppUrl" target="_blank" rel="noopener noreferrer" class="bg-black text-white font-bold py-3 px-6 rounded hover:text-white transition-colors">
 				Garanta sua Vaga
-			</button>
+			</a>
 		</div>
 	</section>
 
@@ -162,8 +162,8 @@
 		</div>
 
 		<!-- Social Links (With Icons) -->
-		<div class="max-w-7xl mx-auto mt-6 flex space-x-4 justify-center md:justify-end">
-			<a v-for="social in socials" :key="social.name" :href="`#${social.name}`"
+		<div v-if="socials?.length" class="max-w-7xl mx-auto mt-6 flex space-x-4 justify-center md:justify-end">
+			<a v-for="social in socials" :key="social.name" :href="social.url"
 				class="hover:text-white flex items-center space-x-1" target="_blank" rel="noopener noreferrer">
 				<!-- Icon Component -->
 				<FeatherIcon :icon="social.icon" :label="social.name" />
@@ -173,28 +173,37 @@
 </template>
 
 <script setup>
-import FeatherIcon from '@/components/Icons/FeatherIcon.vue';
-import { sessionStore } from '@/stores/session'
 
-const { branding } = sessionStore()
+import { createResource } from 'frappe-ui'
+import { ref } from 'vue';
+import FeatherIcon from '@/components/Icons/FeatherIcon.vue'
 
-const socials = [
-	{ name: 'LinkedIn', icon: 'linkedin' },
-	{ name: 'Facebook', icon: 'facebook' },
-	{ name: 'YouTube', icon: 'youtube' },
-	{ name: 'WhatsApp', icon: 'message-circle' },
-];
+const socials = ref(false);
+
+const whatsAppUrl = ref('');
+
+const icons = {
+	'Instagram': 'instagram',
+	'Facebook': 'facebook',
+	'YouTube': 'youtube',
+	'WhatsApp': 'message-circle'
+};
+
+createResource({
+	url: 'lms.lms.branding.get_social_media',
+	auto: true,
+	transform(data) {
+		socials.value = data.map((d) => ({
+			name: d.name,
+			icon: icons[d.name],
+			url: d.url,
+		}));
+		whatsAppUrl.value = socials.value.find((s) => s.name === 'WhatsApp').url;
+	},
+});
 
 </script>
 
 <style scoped>
 @import '@fontsource/montserrat/index.css';
-
-html {
-	scroll-behavior: smooth;
-}
-
-.text-shadow {
-	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-}
 </style>

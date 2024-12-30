@@ -128,10 +128,11 @@ onMounted(() => {
 					if (data[link.label.toLowerCase().split(' ').join('_')]) {
 						sidebarLinks.value.push(link)
 					}
-				})
+				});
 			},
 		}
-	)
+	);
+	addModeratorAndInstructorLinks();
 	addNotifications()
 })
 
@@ -173,12 +174,12 @@ const addNotifications = () => {
 
 const addQuizzes = () => {
 	if (isInstructor.value || isModerator.value) {
-		sidebarLinks.value.push({
+		addLinkIfNotExists({
 			label: 'Quizzes',
 			icon: 'CircleHelp',
 			to: 'Quizzes',
 			activeFor: ['Quizzes', 'QuizForm'],
-		})
+		});
 	}
 }
 
@@ -213,6 +214,12 @@ const addPrograms = () => {
 	}
 }
 
+const addLinkIfNotExists = (link) => {
+	if (!sidebarLinks.value.find((l) => l.label === link.label)) {
+		sidebarLinks.value.push(link)
+	}
+}
+
 const openPageModal = (link) => {
 	showPageModal.value = true
 	pageToEdit.value = link
@@ -237,13 +244,17 @@ const deletePage = (link) => {
 }
 
 watch(userResource, () => {
-	if (userResource.data) {
-		isModerator.value = userResource.data.is_moderator
-		isInstructor.value = userResource.data.is_instructor
-		addQuizzes()
-		addPrograms()
-	}
+	addModeratorAndInstructorLinks();
 })
+
+const addModeratorAndInstructorLinks = () => {
+	if (userResource.data) {
+		isModerator.value = userResource.data.is_moderator;
+		isInstructor.value = userResource.data.is_instructor;
+		addQuizzes();
+		//addPrograms()
+	}
+}
 
 watch(sidebarLinks, () => {
 	sidebarLinks.value.sort((a, b) => __(a.label).localeCompare(__(b.label)))

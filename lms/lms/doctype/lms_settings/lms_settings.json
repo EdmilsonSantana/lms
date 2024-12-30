@@ -274,13 +274,13 @@
    "label": "Courses"
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "batches",
    "fieldtype": "Check",
    "label": "Batches"
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "certified_participants",
    "fieldtype": "Check",
    "label": "Certified Participants"
@@ -292,7 +292,7 @@
    "label": "Jobs"
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "statistics",
    "fieldtype": "Check",
    "label": "Statistics"
@@ -356,7 +356,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-11-20 11:55:05.358421",
+ "modified": "2024-12-30 12:22:45.420416",
  "modified_by": "Administrator",
  "module": "LMS",
  "name": "LMS Settings",
