@@ -1,5 +1,5 @@
 <template>
-	<Layout>
+	<Layout :showSidebar="showSidebar">
 		<router-view />
 	</Layout>
 	<Dialogs />
@@ -8,11 +8,10 @@
 <script setup>
 import { Toasts } from 'frappe-ui'
 import { Dialogs } from '@/utils/dialogs'
-import { computed, onMounted, onUnmounted } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useScreenSize } from './utils/composables'
 import DesktopLayout from './components/DesktopLayout.vue'
 import MobileLayout from './components/MobileLayout.vue'
-import HomeLayout from './components/HomeLayout.vue'
 import { stopSession } from '@/telemetry'
 import { init as initTelemetry } from '@/telemetry'
 import { usersStore } from '@/stores/user'
@@ -22,12 +21,14 @@ const screenSize = useScreenSize()
 let { userResource } = usersStore()
 const route = useRoute();
 
+const showSidebar = ref(false);
+
 const Layout = computed(() => {
-	if (screenSize.width < 640) {
-		return MobileLayout
-	}
-	const isHome = route.meta?.isHome ?? false;
-	return isHome ? HomeLayout : DesktopLayout;
+	return screenSize.width < 640 && showSidebar.value ? MobileLayout : DesktopLayout;
+})
+
+watch(route, () => {
+	showSidebar.value = route.meta.showSidebar ?? true
 })
 
 onMounted(async () => {

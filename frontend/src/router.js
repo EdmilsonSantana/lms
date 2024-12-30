@@ -4,17 +4,23 @@ import { sessionStore } from './stores/session'
 
 const routes = [
 	{
-		path: "/",
+		path: '/',
+		redirect: {
+			name: 'Courses',
+		},
+	},
+	{
+		path: "/home",
 		name: "Home",
 		component: () => import('@/pages/Home.vue'),
 		meta: {
-			isHome: true
+			showSidebar: false
 		}
 	},
 	{
 		path: '/courses',
 		name: 'Courses',
-		component: () => import('@/pages/Courses.vue'),
+		component: () => import('@/pages/Courses.vue')
 	},
 	{
 		path: '/courses/:courseName',
