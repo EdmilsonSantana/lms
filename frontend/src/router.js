@@ -200,6 +200,22 @@ const routes = [
 		name: 'Programs',
 		component: () => import('@/pages/Programs.vue'),
 	},
+	{
+		path: '/terms-and-conditions',
+		name: 'Terms',
+		component: () => import('@/pages/Terms.vue'),
+		meta: {
+			showSidebar: false
+		}
+	},
+	{
+		path: '/privacy-policy',
+		name: 'Policy',
+		component: () => import('@/pages/Policy.vue'),
+		meta: {
+			showSidebar: false
+		}
+	}
 ]
 
 let router = createRouter({

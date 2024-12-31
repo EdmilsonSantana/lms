@@ -8,7 +8,7 @@
 			<!-- Navigation Menu -->
 			<nav class="flex space-x-4">
 				<router-link :to="{ name: 'Courses' }" class="hover:text-gray flex items-center space-x-1">
-					<span>Explorar cursos</span>
+					<span>Explorar Cursos</span>
 					<FeatherIcon icon="arrow-right" label="Explorar Cursos" />
 				</router-link>
 			</nav>
@@ -19,12 +19,12 @@
 	<section class="relative min-h-screen flex items-center justify-center text-white text-center 
 			   bg-[url('/assets/lms/frontend/home-banner.jpg')] bg-cover bg-center bg-no-repeat">
 		<!-- Optional overlay to make text more readable -->
-		<div class="absolute inset-0 bg-blue-900/60"></div>
+		<div class="absolute inset-0 bg-black bg-opacity-80"></div>
 
-		<div class="relative max-w-xl p-4">
-			<h1 class="text-lg md:text-xl mb-8 leading-relaxed">
+		<div class="relative z-10 max-w-xl p-4">
+			<h1 class="text-lg md:text-xl mb-8 leading-relaxed drop-shadow-lg">
 				Cursos e consultorias em vendas e pós-vendas para
-				destacar sua empresa no setor automotivo.
+				destacar sua empresa no setor automotivo
 			</h1>
 			<div class="flex flex-wrap gap-4 justify-center">
 				<a :href="whatsAppUrl" target="_blank" rel="noopener noreferrer"
@@ -43,7 +43,7 @@
 	<!-- Features Section -->
 	<section id="features" class="py-12 px-4 bg-white">
 		<div class="max-w-7xl mx-auto text-center">
-			<h2 class="text-3xl font-bold mb-6">Por que Escolher Nossos Cursos?</h2>
+			<h2 class="text-3xl font-bold mb-6">Por que escolher nossos Cursos?</h2>
 			<p class="text-gray-600 mb-10">
 				Dos laboratórios práticos às aulas online interativas, aprenda com veteranos do setor e conquiste
 				uma
@@ -55,14 +55,12 @@
 					<div class="mb-4">
 						<div
 							class="w-16 h-16 bg-red-100 text-red-500 rounded-full mx-auto flex items-center justify-center text-2xl">
-							<span class="font-bold">CAD</span>
+							<PlugZap />
 						</div>
 					</div>
-					<h3 class="text-xl font-semibold mb-2">Treinamento Prático em CAD</h3>
+					<h3 class="text-xl font-semibold mb-2">Formação para Eletricista Automotivo</h3>
 					<p class="text-gray-600">
-						Domine as mais recentes ferramentas de Design Assistido por
-						Computador usadas pelas principais empresas de engenharia ao redor
-						do mundo.
+						Preparar os participantes para realizarem diagnóstico e reparação de instalações elétricas veiculares, incluso sistemas de gerenciamento motor.
 					</p>
 				</div>
 				<!-- Feature 2 -->
@@ -70,13 +68,12 @@
 					<div class="mb-4">
 						<div
 							class="w-16 h-16 bg-green-100 text-green-500 rounded-full mx-auto flex items-center justify-center text-2xl">
-							<span class="font-bold">Lab</span>
+							<SquareActivity />
 						</div>
 					</div>
-					<h3 class="text-xl font-semibold mb-2">Laboratórios Presenciais</h3>
+					<h3 class="text-xl font-semibold mb-2">Diagnóstico de Sistemas Arla Diesel - Euro 5 e 6</h3>
 					<p class="text-gray-600">
-						Obtenha experiência real com equipamentos de nível industrial em
-						nossas instalações de última geração.
+						Desenvolver a capacidade de realizar análises e reparo em sistemas de pós-tratamento de veículos Diesel Pesados, atendendo as normas Euro 05 e Euro 06.
 					</p>
 				</div>
 				<!-- Feature 3 -->
@@ -84,13 +81,12 @@
 					<div class="mb-4">
 						<div
 							class="w-16 h-16 bg-blue-100 text-blue-500 rounded-full mx-auto flex items-center justify-center text-2xl">
-							<span class="font-bold">Live</span>
+							<Droplets />
 						</div>
 					</div>
-					<h3 class="text-xl font-semibold mb-2">Aulas Remotas ao Vivo</h3>
+					<h3 class="text-xl font-semibold mb-2">Injeção Eletrônica Ciclo Otto Indireta e Direta</h3>
 					<p class="text-gray-600">
-						Não pode comparecer presencialmente? Participe de nossas transmissões
-						ao vivo e sessões virtuais interativas de qualquer lugar do mundo.
+						Capacitar para promover reparos em sistema de gerenciamento motor de veículos Ciclo Otto de Injeção Eletrônica indireta e direta.
 					</p>
 				</div>
 			</div>
@@ -100,7 +96,7 @@
 	<!-- Testimonials Section -->
 	<section class="py-12 px-4 bg-gray-50">
 		<div class="max-w-7xl mx-auto">
-			<h2 class="text-3xl font-bold text-center mb-8">O que Nossos Alunos Dizem</h2>
+			<h2 class="text-3xl font-bold text-center mb-8">O que nossos Alunos dizem</h2>
 			<div class="grid gap-8 md:grid-cols-3">
 				<!-- Testimonial 1 -->
 				<div class="bg-white shadow rounded p-6 text-center">
@@ -156,8 +152,8 @@
 
 			<!-- Footer Navigation -->
 			<nav class="flex space-x-4">
-				<a href="#" class="hover:text-white">Política de Privacidade</a>
-				<a href="#" class="hover:text-white">Termos de Serviço</a>
+				<a href="/lms/privacy-policy" target="_blank" rel="noopener noreferrer" class="hover:text-white">Política de Privacidade</a>
+				<a href="/lms/terms-and-conditions" target="_blank" rel="noopener noreferrer" class="hover:text-white">Termos de Serviço</a>
 			</nav>
 		</div>
 
@@ -177,6 +173,7 @@
 import { createResource } from 'frappe-ui'
 import { ref } from 'vue';
 import FeatherIcon from '@/components/Icons/FeatherIcon.vue'
+import { PlugZap, SquareActivity, Droplets } from 'lucide-vue-next';
 
 const socials = ref(false);
 

@@ -9,3 +9,8 @@ def get_social_media():
                 "url": branding.get(social, default='')
             }
             for social in socials]
+
+@frappe.whitelist(allow_guest=True)
+def get_contact_email():
+    branding = frappe.get_single("LMS Branding")
+    return {'contact_email': branding.get('contact_email', default='')}
