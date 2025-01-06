@@ -5217,7 +5217,7 @@ msgstr "Data Final"
 
 #: lms/lms/utils.py:1606
 msgid "To join this batch, please contact the Administrator."
-msgstr "Para ingressar neste grupo, entre em contato com o Administrador."
+msgstr "Para ingressar nesta turma, entre em contato com o Administrador."
 
 #: frontend/src/components/LessonHelp.vue:34
 msgid ""
@@ -5467,7 +5467,7 @@ msgstr "Visibilidade"
 
 #: frontend/src/components/BatchOverlay.vue:54
 msgid "Visit Batch"
-msgstr "Visitar Grupo"
+msgstr "Visitar Turma"
 
 #: lms/templates/emails/batch_confirmation.html:29
 msgid "Visit the following link to view your "
@@ -5480,7 +5480,7 @@ msgstr "Voluntariado ou Estágio"
 
 #: lms/templates/emails/batch_confirmation.html:6
 msgid "We are pleased to inform you that you have been enrolled in our upcoming batch. Congratulations!"
-msgstr "Temos o prazer de informar que você foi matriculado em nosso próximo grupo. Parabéns!"
+msgstr "Temos o prazer de informar que você foi matriculado em nossa próxima turma. Parabéns!"
 
 #: frontend/src/components/Modals/PageModal.vue:23
 #: lms/lms/doctype/lms_sidebar_item/lms_sidebar_item.json
@@ -5565,7 +5565,7 @@ msgstr "Você já tem uma avaliação em {0} às {1} para o curso {2}."
 
 #: lms/lms/api.py:215
 msgid "You are already enrolled for this batch."
-msgstr "Você já está matriculado neste grupo."
+msgstr "Você já está matriculado nesta turma."
 
 #: lms/lms/api.py:207
 msgid "You are already enrolled for this course."
@@ -5651,7 +5651,7 @@ msgstr "Você já revisou este curso"
 
 #: frontend/src/components/BatchOverlay.vue:136
 msgid "You have been enrolled in this batch"
-msgstr "Você foi matriculado neste grupo"
+msgstr "Você foi matriculado nesta turma"
 
 #: frontend/src/components/CourseCardOverlay.vue:162
 msgid "You have been enrolled in this course"
@@ -5892,3 +5892,17 @@ msgstr "{} Aprovado(s)"
 #. Count format of shortcut in the LMS Workspace
 msgid "{} Published"
 msgstr "{} Publicado(s)"
+
+#: frontend/src/pages/Batches.vue:232
+#: frontend/src/pages/BatchDetail.vue:140
+msgid "All Batches"
+msgstr "Turmas"
+
+#. Name of a role
+#: website/doctype/help_article/help_article.json
+msgid "Knowledge Base Contributor"
+msgstr "Instrutor"
+
+#: frontend/src/pages/BatchForm.vue:476
+msgid "Edit Batch"
+msgstr "Editar Turma"

@@ -5880,3 +5880,17 @@ msgstr ""
 #: frontend/src/components/UserDropdown.vue:130
 msgid "Log out"
 msgstr ""
+
+#: frontend/src/pages/Batches.vue:232
+#: frontend/src/pages/BatchDetail.vue:140
+msgid "All Batches"
+msgstr ""
+
+#. Name of a role
+#: website/doctype/help_article/help_article.json
+msgid "Knowledge Base Contributor"
+msgstr ""
+
+#: frontend/src/pages/BatchForm.vue:476
+msgid "Edit Batch"
+msgstr ""

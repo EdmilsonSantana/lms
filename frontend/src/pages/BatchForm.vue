@@ -473,7 +473,7 @@ const breadcrumbs = computed(() => {
 		})
 	}
 	crumbs.push({
-		label: props.batchName == 'new' ? 'New Batch' : 'Edit Batch',
+		label: props.batchName == 'new' ? __('New Batch') : __('Edit Batch'),
 		route: { name: 'BatchForm', params: { batchName: props.batchName } },
 	})
 	return crumbs

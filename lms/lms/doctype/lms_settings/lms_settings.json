@@ -274,7 +274,7 @@
    "label": "Courses"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "batches",
    "fieldtype": "Check",
    "label": "Batches"
@@ -356,7 +356,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-12-30 12:22:45.420416",
+ "modified": "2024-12-31 21:36:04.085672",
  "modified_by": "Administrator",
  "module": "LMS",
  "name": "LMS Settings",
