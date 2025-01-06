@@ -93,9 +93,8 @@
 import UserDropdown from '@/components/UserDropdown.vue'
 import CollapseSidebar from '@/components/Icons/CollapseSidebar.vue'
 import SidebarLink from '@/components/SidebarLink.vue'
-import { useStorage } from '@vueuse/core'
 import { ref, onMounted, inject, watch } from 'vue'
-import { getSidebarLinks } from '../utils'
+import { getDefaultSidebarLinks } from '../utils'
 import { usersStore } from '@/stores/user'
 import { sessionStore } from '@/stores/session'
 import { useSidebar } from '@/stores/sidebar'
@@ -109,7 +108,7 @@ const { userResource } = usersStore()
 let sidebarStore = useSidebar()
 const socket = inject('$socket')
 const unreadCount = ref(0)
-const sidebarLinks = ref(getSidebarLinks())
+const sidebarLinks = ref([])
 const showPageModal = ref(false)
 const isModerator = ref(false)
 const isInstructor = ref(false)
@@ -121,21 +120,20 @@ onMounted(() => {
 	socket.on('publish_lms_notifications', (data) => {
 		unreadNotifications.reload()
 	})
-	addNotifications()
 	sidebarSettings.reload(
 		{},
 		{
 			onSuccess(data) {
-				Object.keys(data).forEach((key) => {
-					if (!parseInt(data[key])) {
-						sidebarLinks.value = sidebarLinks.value.filter(
-							(link) => link.label.toLowerCase().split(' ').join('_') !== key
-						)
+				getDefaultSidebarLinks().forEach((link) => {
+					if (data[link.label.toLowerCase().split(' ').join('_')]) {
+						sidebarLinks.value.push(link)
 					}
-				})
+				});
 			},
 		}
-	)
+	);
+	addModeratorAndInstructorLinks();
+	addNotifications()
 })
 
 const unreadNotifications = createResource({
@@ -176,12 +174,12 @@ const addNotifications = () => {
 
 const addQuizzes = () => {
 	if (isInstructor.value || isModerator.value) {
-		sidebarLinks.value.push({
+		addLinkIfNotExists({
 			label: 'Quizzes',
 			icon: 'CircleHelp',
 			to: 'Quizzes',
 			activeFor: ['Quizzes', 'QuizForm'],
-		})
+		});
 	}
 }
 
@@ -216,6 +214,12 @@ const addPrograms = () => {
 	}
 }
 
+const addLinkIfNotExists = (link) => {
+	if (!sidebarLinks.value.find((l) => l.label === link.label)) {
+		sidebarLinks.value.push(link)
+	}
+}
+
 const openPageModal = (link) => {
 	showPageModal.value = true
 	pageToEdit.value = link
@@ -239,18 +243,22 @@ const deletePage = (link) => {
 	)
 }
 
-const getSidebarFromStorage = () => {
-	return useStorage('sidebar_is_collapsed', false)
+watch(userResource, () => {
+	addModeratorAndInstructorLinks();
+})
+
+const addModeratorAndInstructorLinks = () => {
+	if (userResource.data) {
+		isModerator.value = userResource.data.is_moderator;
+		isInstructor.value = userResource.data.is_instructor;
+		addQuizzes();
+		//addPrograms()
+	}
 }
 
-watch(userResource, () => {
-	if (userResource.data) {
-		isModerator.value = userResource.data.is_moderator
-		isInstructor.value = userResource.data.is_instructor
-		addQuizzes()
-		addPrograms()
-	}
-})
+watch(sidebarLinks, () => {
+	sidebarLinks.value.sort((a, b) => __(a.label).localeCompare(__(b.label)))
+}, { deep: true })
 
 const toggleSidebar = () => {
 	sidebarStore.isSidebarCollapsed = !sidebarStore.isSidebarCollapsed

@@ -15,7 +15,7 @@
 		{% if quiz.max_attempts %}
 			{% set suffix = "times" if quiz.max_attempts > 1 else "time" %}
 			<li>
-				{{ _("You can attempt this quiz only {0} {1}").format(quiz.max_attempts, suffix) }}
+				{{ _("You can attempt this quiz only {0} {1}").format(quiz.max_attempts, _(suffix)) }}
 			</li>
 		{% endif %}
 

@@ -7,7 +7,7 @@
 				class="h-7"
 				:items="[{ label: __('Jobs'), route: { name: 'Jobs' } }]"
 			/>
-			<div class="flex space-x-2">
+			<div class="flex space-x-2" v-if="user.data?.is_moderator">
 				<div class="w-40 md:w-44">
 					<FormControl
 						v-model="jobType"
@@ -17,7 +17,7 @@
 					/>
 				</div>
 				<div class="w-28 md:w-36">
-					<FormControl type="text" placeholder="Search" v-model="searchQuery">
+					<FormControl type="text" :placeholder="__('Search')" v-model="searchQuery">
 						<template #prefix>
 							<Search class="w-4 h-4 stroke-1.5 text-gray-600" name="search" />
 						</template>

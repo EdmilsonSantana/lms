@@ -1,9 +1,12 @@
 import { createResource } from 'frappe-ui'
 
-export default function translationPlugin(app) {
+export default async function translationPlugin(app) {
+	if (!window.translatedMessages) {
+        await fetchTranslations()
+    }
+	
 	app.config.globalProperties.__ = translate
-	window.__ = translate
-	if (!window.translatedMessages) fetchTranslations()
+	window.__ = translate;
 }
 
 function translate(message) {
@@ -28,13 +31,18 @@ function translate(message) {
 	}
 }
 
-function fetchTranslations(lang) {
-	createResource({
+function fetchTranslations() {
+	const translations = createResource({
 		url: 'lms.lms.api.get_translations',
 		cache: 'translations',
-		auto: true,
+		cache: 'translations',
+		auto: false,
 		transform: (data) => {
 			window.translatedMessages = data
 		},
-	})
+	});
+
+	translations.fetch();
+
+	return translations.promise;
 }

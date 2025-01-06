@@ -6,7 +6,7 @@
 		<div>
 			<FormControl
 				type="text"
-				placeholder="Search"
+				:placeholder="__('Search')"
 				v-model="searchQuery"
 				@input="participants.reload()"
 				class="w-40"

@@ -8,6 +8,9 @@ module.exports = {
 	],
 	theme: {
 		extend: {
+			fontFamily: {
+				'montserrat': ['Montserrat'],
+			},
 			strokeWidth: {
 				1.5: '1.5',
 			},

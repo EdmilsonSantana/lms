@@ -57,16 +57,30 @@
 						{{ profile.data.headline }}
 					</div>
 				</div>
-				<Button
-					v-if="isSessionUser()"
-					class="mt-3 sm:mt-0 md:ml-auto"
-					@click="editProfile()"
-				>
-					<template #prefix>
-						<Edit class="w-4 h-4 stroke-1.5 text-gray-700" />
-					</template>
-					{{ __('Edit Profile') }}
-				</Button>
+
+				<div class="mt-3 sm:mt-0 md:ml-auto flex flex-col md:flex-row items-center">
+					<Button
+						v-if="isSessionUser()"
+						class="mt-2 md:mr-1"
+						disabled={{true}}
+					>
+						<template #prefix>
+							<Lock class="w-4 h-4 stroke-1.5 text-gray-700" />
+						</template>
+						{{ __('Reset Password') }}
+					</Button>
+
+					<Button
+						v-if="isSessionUser()"
+						class="mt-2 md:ml-auto"
+						@click="editProfile()"
+					>
+						<template #prefix>
+							<Edit class="w-4 h-4 stroke-1.5 text-gray-700" />
+						</template>
+						{{ __('Edit Profile') }}
+					</Button>
+				</div>
 			</div>
 
 			<div class="mb-4 mt-6">
@@ -89,7 +103,7 @@
 import { Breadcrumbs, createResource, Button, TabButtons } from 'frappe-ui'
 import { computed, inject, watch, ref, onMounted, watchEffect } from 'vue'
 import { sessionStore } from '@/stores/session'
-import { Edit } from 'lucide-vue-next'
+import { Edit, Lock } from 'lucide-vue-next'
 import UserAvatar from '@/components/UserAvatar.vue'
 import { useRoute, useRouter } from 'vue-router'
 import NoPermission from '@/components/NoPermission.vue'

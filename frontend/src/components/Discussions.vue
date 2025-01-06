@@ -56,7 +56,7 @@
 	</div>
 	<DiscussionModal
 		v-model="showTopicModal"
-		:title="__('New {0}').format(title)"
+		:title="__('New {0}').format(__(title))"
 		:doctype="props.doctype"
 		:docname="props.docname"
 		v-model:reloadTopics="topics"
