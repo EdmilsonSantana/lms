@@ -94,43 +94,6 @@
 		</div>
 	</section>
 
-	<!-- Testimonials Section -->
-	<section class="py-12 px-4 bg-gray-50">
-		<div class="max-w-7xl mx-auto">
-			<h2 class="text-3xl font-bold text-center mb-8">O que nossos Alunos dizem</h2>
-			<div class="grid gap-8 md:grid-cols-3">
-				<!-- Testimonial 1 -->
-				<div class="bg-white shadow rounded p-6 text-center">
-					<p class="italic text-gray-600 mb-4">
-						“Consegui um estágio em uma grande empresa após concluir as sessões
-						de laboratório. Os instrutores são realmente especialistas!”
-					</p>
-					<h3 class="font-semibold">Alice Zhang</h3>
-					<span class="text-gray-500 text-sm">Estudante de Engenharia Mecânica</span>
-				</div>
-				<!-- Testimonial 2 -->
-				<div class="bg-white shadow rounded p-6 text-center">
-					<p class="italic text-gray-600 mb-4">
-						“Aprender princípios de design através de exemplos reais foi um
-						divisor de águas. Recomendo muito os cursos remotos!”
-					</p>
-					<h3 class="font-semibold">Carlos Mendoza</h3>
-					<span class="text-gray-500 text-sm">Engenheiro Júnior, TechCorp</span>
-				</div>
-				<!-- Testimonial 3 -->
-				<div class="bg-white shadow rounded p-6 text-center">
-					<p class="italic text-gray-600 mb-4">
-						“O treinamento em CAD elevou minhas habilidades de design a outro
-						patamar. O melhor de tudo? Flexibilidade para profissionais que
-						trabalham, como eu.”
-					</p>
-					<h3 class="font-semibold">Rebecca White</h3>
-					<span class="text-gray-500 text-sm">Engenheira Sênior, Innovative Solutions</span>
-				</div>
-			</div>
-		</div>
-	</section>
-
 	<!-- CTA Section -->
 	<section class="py-12 px-4 bg-green-600 text-white text-center">
 		<div class="max-w-3xl mx-auto">
@@ -174,9 +137,10 @@
 <script setup>
 
 import { createResource } from 'frappe-ui'
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import FeatherIcon from '@/components/Icons/FeatherIcon.vue'
 import { PlugZap, SquareActivity, Droplets } from 'lucide-vue-next';
+import { updateDocumentTitle } from '@/utils'
 
 const socials = ref(false);
 
@@ -198,6 +162,15 @@ createResource({
 		}));
 	},
 });
+
+const pageMeta = computed(() => {
+	return {
+		title: 'Home',
+		description: 'Universidade do Automóvel Home page',
+	}
+})
+
+updateDocumentTitle(pageMeta)
 
 </script>
 

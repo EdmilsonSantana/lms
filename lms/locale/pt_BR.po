@@ -5918,3 +5918,7 @@ msgstr "Arquivada"
 #: frontend/src/components/BatchOverlay.vue:120
 msgid "Hi, I want to enroll in the batch '{0}'."
 msgstr "Olá, quero me inscrever na turma '{0}'."
+
+#: frappe/www/login.html
+msgid "Login to {0}"
+msgstr "Entrar em {0}"

@@ -5906,3 +5906,7 @@ msgstr ""
 #: frontend/src/components/BatchOverlay.vue:120
 msgid "Hi, I want to enroll in the batch '{0}'."
 msgstr ""
+
+#: frappe/www/login.html
+msgid "Login to {0}"
+msgstr ""
