@@ -170,7 +170,7 @@ website_redirects = [
 		"match_with_query_string": True,
 	},
 	{"source": "/statistics", "target": "/lms/statistics"},
-    {"source": "/", "target": "/lms/courses"},
+    {"source": "/", "target": "/lms"},
 ]
 
 update_website_context = [

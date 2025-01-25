@@ -5894,3 +5894,15 @@ msgstr ""
 #: frontend/src/pages/BatchForm.vue:476
 msgid "Edit Batch"
 msgstr ""
+
+#: frontend/src/pages/Batch.vue:42
+msgid "Announcements"
+msgstr ""
+
+#: frontend/src/pages/Batches.vue:198
+msgid "Archived"
+msgstr ""
+
+#: frontend/src/components/BatchOverlay.vue:120
+msgid "Hi, I want to enroll in the batch '{0}'."
+msgstr ""

@@ -32,11 +32,9 @@ export function formatTime(timeString) {
 	// Create a Date object with dummy values for day, month, and year
 	const dummyDate = new Date(0, 0, 0, hour, minute)
 
-	// Use Intl.DateTimeFormat to format the time in 12-hour format
-	const formattedTime = new Intl.DateTimeFormat('en-US', {
+	const formattedTime = new Intl.DateTimeFormat('pt-BR', {
 		hour: 'numeric',
 		minute: 'numeric',
-		hour12: true,
 	}).format(dummyDate)
 
 	return formattedTime

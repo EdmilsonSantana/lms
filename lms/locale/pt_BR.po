@@ -6,7 +6,7 @@ msgstr ""
 "PO-Revision-Date: 2024-12-30 06:24-0300\n"
 "Last-Translator: gpt-po v1.2.1\n"
 "Language-Team: jannat@frappe.io\n"
-"Language: pt_BR\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2994,16 +2994,16 @@ msgstr "Máximas Tentativas"
 #: lms/public/js/common_functions.js:309
 #. Label of the medium (Select) field in DocType 'LMS Batch'
 msgid "Medium"
-msgstr "Médio"
+msgstr "Formato"
 
 #: lms/fixtures/custom_field.json
 #. Label of the medium (Data) field in DocType 'User'
 msgid "Medium ID"
-msgstr "ID do Médio"
+msgstr "ID do Formato"
 
 #: lms/templates/emails/batch_confirmation.html:21
 msgid "Medium:"
-msgstr "Médio:"
+msgstr "Formato:"
 
 #: frontend/src/pages/QuizSubmission.vue:31
 #: frontend/src/pages/QuizSubmissionList.vue:77
@@ -3151,7 +3151,7 @@ msgstr "Mentores"
 #: lms/public/js/common_functions.js:362
 #. Label of the meta_image (Attach Image) field in DocType 'LMS Batch'
 msgid "Meta Image"
-msgstr "Imagem Meta"
+msgstr "Imagem Promocional"
 
 #: lms/lms/doctype/lms_batch_timetable/lms_batch_timetable.json
 #. Label of the milestone (Check) field in DocType 'LMS Batch Timetable'
@@ -3444,7 +3444,7 @@ msgstr "Notifique-me quando estiver disponível"
 
 #: frontend/src/pages/BatchForm.vue:174
 msgid "Number of seats available"
-msgstr "Número de assentos disponíveis"
+msgstr "Número de vagas disponíveis"
 
 #: lms/lms/doctype/zoom_settings/zoom_settings.json
 #. Label of the sb_00 (Section Break) field in DocType 'Zoom Settings'
@@ -3459,7 +3459,7 @@ msgstr "Escritório perto de Casa"
 #: lms/lms/doctype/lms_batch/lms_batch.json
 #. Option for the 'Medium' (Select) field in DocType 'LMS Batch'
 msgid "Offline"
-msgstr "Desconectado"
+msgstr "Offline"
 
 #: lms/templates/emails/certification.html:16
 msgid "Once again, congratulations on this significant accomplishment."
@@ -4432,7 +4432,7 @@ msgstr "Pesquisar um ícone"
 #: lms/public/js/common_functions.js:327
 #. Label of the seat_count (Int) field in DocType 'LMS Batch'
 msgid "Seat Count"
-msgstr "Contagem de Assentos"
+msgstr "Contagem de Vagas"
 
 #: frontend/src/components/BatchCard.vue:16
 #: frontend/src/components/BatchOverlay.vue:9
@@ -4442,7 +4442,7 @@ msgstr "Assento Restante"
 #: frontend/src/components/BatchCard.vue:15
 #: frontend/src/components/BatchOverlay.vue:8
 msgid "Seats Left"
-msgstr "Assentos Restantes"
+msgstr "Vagas Restantes"
 
 #: frontend/src/components/Modals/Question.vue:94
 msgid "Select a question"
@@ -5339,7 +5339,7 @@ msgstr "Papel Não Estruturado"
 #. Option for the 'Status' (Select) field in DocType 'Cohort'
 #. Label of the upcoming (Check) field in DocType 'LMS Course'
 msgid "Upcoming"
-msgstr "Em Breve"
+msgstr "Disponível"
 
 #: frontend/src/pages/Batch.vue:166
 msgid "Upcoming Batches"
@@ -5906,3 +5906,15 @@ msgstr "Instrutor"
 #: frontend/src/pages/BatchForm.vue:476
 msgid "Edit Batch"
 msgstr "Editar Turma"
+
+#: frontend/src/pages/Batch.vue:42
+msgid "Announcements"
+msgstr "Anúncios"
+
+#: frontend/src/pages/Batches.vue:198
+msgid "Archived"
+msgstr "Arquivada"
+
+#: frontend/src/components/BatchOverlay.vue:120
+msgid "Hi, I want to enroll in the batch '{0}'."
+msgstr "Olá, quero me inscrever na turma '{0}'."

@@ -149,14 +149,6 @@
 							class="mb-4"
 							:required="true"
 						/>
-						<FormControl
-							v-model="batch.timezone"
-							:label="__('Timezone')"
-							type="text"
-							:placeholder="__('Example: IST (+5:30)')"
-							class="mb-4"
-							:required="true"
-						/>
 					</div>
 				</div>
 			</div>
@@ -205,31 +197,6 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="">
-				<div class="text-lg font-semibold mb-4">
-					{{ __('Payment') }}
-				</div>
-				<div>
-					<FormControl
-						v-model="batch.paid_batch"
-						type="checkbox"
-						:label="__('Paid Batch')"
-					/>
-					<FormControl
-						v-model="batch.amount"
-						:label="__('Amount')"
-						type="number"
-						class="my-4"
-					/>
-					<Link
-						doctype="Currency"
-						v-model="batch.currency"
-						:filters="{ enabled: 1 }"
-						:label="__('Currency')"
-					/>
-				</div>
-			</div>
 		</div>
 	</div>
 </template>
@@ -269,7 +236,7 @@ const props = defineProps({
 
 const batch = reactive({
 	title: '',
-	published: false,
+	published: true,
 	description: '',
 	batch_details: '',
 	start_date: '',
@@ -281,7 +248,7 @@ const batch = reactive({
 	seat_count: '',
 	medium: '',
 	category: '',
-	allow_self_enrollment: false,
+	allow_self_enrollment: true,
 	image: null,
 	paid_batch: false,
 	currency: '',
@@ -455,7 +422,7 @@ const validateFile = (file) => {
 const breadcrumbs = computed(() => {
 	let crumbs = [
 		{
-			label: 'Batches',
+			label: __('Batches'),
 			route: {
 				name: 'Batches',
 			},

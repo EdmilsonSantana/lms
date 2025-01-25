@@ -7,9 +7,9 @@
 
 			<!-- Navigation Menu -->
 			<nav class="flex space-x-4">
-				<router-link :to="{ name: 'Courses' }" class="hover:text-gray flex items-center space-x-1">
-					<span>Explorar Cursos</span>
-					<FeatherIcon icon="arrow-right" label="Explorar Cursos" />
+				<router-link :to="{ name: 'Batches' }" class="hover:text-gray flex items-center space-x-1">
+					<span>Acesso à Plataforma</span>
+					<FeatherIcon icon="arrow-right" label="Conheça nossas Turmas" />
 				</router-link>
 			</nav>
 		</div>
@@ -27,10 +27,10 @@
 				destacar sua empresa no setor automotivo
 			</h1>
 			<div class="flex flex-wrap gap-4 justify-center">
-				<a :href="whatsAppUrl" target="_blank" rel="noopener noreferrer"
+				<router-link :to="{ name: 'Batches' }"
 					class="bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded transition-colors">
 					Inscreva-se Agora
-				</a>
+				</router-link>
 				<a href="#features"
 					class="bg-white hover:bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded transition-colors">
 					Saiba Mais
@@ -45,9 +45,7 @@
 		<div class="max-w-7xl mx-auto text-center">
 			<h2 class="text-3xl font-bold mb-6">Por que escolher nossos Cursos?</h2>
 			<p class="text-gray-600 mb-10">
-				Dos laboratórios práticos às aulas online interativas, aprenda com veteranos do setor e conquiste
-				uma
-				vantagem competitiva na engenharia mecânica.
+				Aprenda com especialistas do setor, unindo aulas online dinâmicas e práticas de laboratório para conquistar uma vantagem competitiva na área automotiva
 			</p>
 			<div class="grid gap-8 md:grid-cols-3">
 				<!-- Feature 1 -->
@@ -60,7 +58,8 @@
 					</div>
 					<h3 class="text-xl font-semibold mb-2">Formação para Eletricista Automotivo</h3>
 					<p class="text-gray-600">
-						Preparar os participantes para realizarem diagnóstico e reparação de instalações elétricas veiculares, incluso sistemas de gerenciamento motor.
+						Preparar os participantes para realizarem diagnóstico e reparação de instalações elétricas
+						veiculares, incluso sistemas de gerenciamento motor.
 					</p>
 				</div>
 				<!-- Feature 2 -->
@@ -73,7 +72,8 @@
 					</div>
 					<h3 class="text-xl font-semibold mb-2">Diagnóstico de Sistemas Arla Diesel - Euro 5 e 6</h3>
 					<p class="text-gray-600">
-						Desenvolver a capacidade de realizar análises e reparo em sistemas de pós-tratamento de veículos Diesel Pesados, atendendo as normas Euro 05 e Euro 06.
+						Desenvolver a capacidade de realizar análises e reparo em sistemas de pós-tratamento de veículos
+						Diesel Pesados, atendendo as normas Euro 05 e Euro 06.
 					</p>
 				</div>
 				<!-- Feature 3 -->
@@ -86,7 +86,8 @@
 					</div>
 					<h3 class="text-xl font-semibold mb-2">Injeção Eletrônica Ciclo Otto Indireta e Direta</h3>
 					<p class="text-gray-600">
-						Capacitar para promover reparos em sistema de gerenciamento motor de veículos Ciclo Otto de Injeção Eletrônica indireta e direta.
+						Capacitar para promover reparos em sistema de gerenciamento motor de veículos Ciclo Otto de
+						Injeção Eletrônica indireta e direta.
 					</p>
 				</div>
 			</div>
@@ -135,12 +136,12 @@
 		<div class="max-w-3xl mx-auto">
 			<h2 class="text-3xl font-bold mb-4">Pronto para Transformar Sua Carreira?</h2>
 			<p class="mb-8 text-green-100">
-				Matricule-se em nossos laboratórios presenciais ou workshops online e
-				comece a conquistar novas oportunidades na engenharia mecânica.
+				Participe de nossos laboratórios presenciais ou workshops online e abra as portas para novas oportunidades na área automotiva.
 			</p>
-			<a :href="whatsAppUrl" target="_blank" rel="noopener noreferrer" class="bg-black text-white font-bold py-3 px-6 rounded hover:text-white transition-colors">
+			<router-link :to="{ name: 'Batches' }"
+				class="bg-black text-white font-bold py-3 px-6 rounded hover:text-white transition-colors">
 				Garanta sua Vaga
-			</a>
+			</router-link>
 		</div>
 	</section>
 
@@ -152,8 +153,10 @@
 
 			<!-- Footer Navigation -->
 			<nav class="flex space-x-4">
-				<a href="/lms/privacy-policy" target="_blank" rel="noopener noreferrer" class="hover:text-white">Política de Privacidade</a>
-				<a href="/lms/terms-and-conditions" target="_blank" rel="noopener noreferrer" class="hover:text-white">Termos de Serviço</a>
+				<a href="/lms/privacy-policy" target="_blank" rel="noopener noreferrer"
+					class="hover:text-white">Política de Privacidade</a>
+				<a href="/lms/terms-and-conditions" target="_blank" rel="noopener noreferrer"
+					class="hover:text-white">Termos de Serviço</a>
 			</nav>
 		</div>
 
@@ -177,8 +180,6 @@ import { PlugZap, SquareActivity, Droplets } from 'lucide-vue-next';
 
 const socials = ref(false);
 
-const whatsAppUrl = ref('');
-
 const icons = {
 	'Instagram': 'instagram',
 	'Facebook': 'facebook',
@@ -195,7 +196,6 @@ createResource({
 			icon: icons[d.name],
 			url: d.url,
 		}));
-		whatsAppUrl.value = socials.value.find((s) => s.name === 'WhatsApp').url;
 	},
 });
 

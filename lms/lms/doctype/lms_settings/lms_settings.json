@@ -268,7 +268,7 @@
    "label": "Sidebar"
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "courses",
    "fieldtype": "Check",
    "label": "Courses"
@@ -356,7 +356,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-12-31 21:36:04.085672",
+ "modified": "2025-01-25 06:06:48.460290",
  "modified_by": "Administrator",
  "module": "LMS",
  "name": "LMS Settings",

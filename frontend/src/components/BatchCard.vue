@@ -40,15 +40,6 @@
 					{{ formatTime(batch.start_time) }} - {{ formatTime(batch.end_time) }}
 				</span>
 			</div>
-			<div
-				v-if="batch.timezone"
-				class="flex items-center text-sm text-gray-700"
-			>
-				<Globe class="h-4 w-4 stroke-1.5 mr-2 text-gray-600" />
-				<span>
-					{{ batch.timezone }}
-				</span>
-			</div>
 		</div>
 		<div
 			v-if="batch.instructors?.length"
