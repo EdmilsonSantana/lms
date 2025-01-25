@@ -27,7 +27,7 @@
 						<template #prefix>
 							<Plus class="h-4 w-4 stroke-1.5" />
 						</template>
-						{{ __('New') }}
+						{{ __('New Batch') }}
 					</Button>
 				</router-link>
 			</div>
@@ -81,7 +81,7 @@
 						</router-link>
 					</div>
 					<div v-else class="p-5 italic text-gray-500">
-						{{ __('No {0} batches').format(tab.label.toLowerCase()) }}
+						{{ __('No {0} batches').format(__(tab.label).toLowerCase()) }}
 					</div>
 				</template>
 			</Tabs>

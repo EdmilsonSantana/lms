@@ -69,7 +69,7 @@ export class CodeBox {
 		app.mount(div);
 
 		return {
-			title: 'CodeBox',
+			title: "Código-Fonte",
 			icon: div.innerHTML
 		};
 	}

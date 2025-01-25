@@ -313,8 +313,7 @@
   {
    "fieldname": "timezone",
    "fieldtype": "Data",
-   "label": "Timezone",
-   "reqd": 1
+   "label": "Timezone"
   },
   {
    "fieldname": "instructors",
@@ -330,7 +329,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-18 16:28:41.336928",
+ "modified": "2025-01-24 07:29:22.129236",
  "modified_by": "Administrator",
  "module": "LMS",
  "name": "LMS Batch",

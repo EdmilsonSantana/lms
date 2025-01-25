@@ -2,18 +2,25 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { usersStore } from './stores/user'
 import { sessionStore } from './stores/session'
 
-let defaultRoute = '/courses'
 const routes = [
 	{
 		path: '/',
 		redirect: {
-			name: 'Courses',
+			name: 'Home',
 		},
+	},
+	{
+		path: "/home",
+		name: "Home",
+		component: () => import('@/pages/Home.vue'),
+		meta: {
+			showSidebar: false
+		}
 	},
 	{
 		path: '/courses',
 		name: 'Courses',
-		component: () => import('@/pages/Courses.vue'),
+		component: () => import('@/pages/Courses.vue')
 	},
 	{
 		path: '/courses/:courseName',
@@ -193,6 +200,22 @@ const routes = [
 		name: 'Programs',
 		component: () => import('@/pages/Programs.vue'),
 	},
+	{
+		path: '/terms-and-conditions',
+		name: 'Terms',
+		component: () => import('@/pages/Terms.vue'),
+		meta: {
+			showSidebar: false
+		}
+	},
+	{
+		path: '/privacy-policy',
+		name: 'Policy',
+		component: () => import('@/pages/Policy.vue'),
+		meta: {
+			showSidebar: false
+		}
+	}
 ]
 
 let router = createRouter({

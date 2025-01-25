@@ -32,11 +32,9 @@ export function formatTime(timeString) {
 	// Create a Date object with dummy values for day, month, and year
 	const dummyDate = new Date(0, 0, 0, hour, minute)
 
-	// Use Intl.DateTimeFormat to format the time in 12-hour format
-	const formattedTime = new Intl.DateTimeFormat('en-US', {
+	const formattedTime = new Intl.DateTimeFormat('pt-BR', {
 		hour: 'numeric',
 		minute: 'numeric',
-		hour12: true,
 	}).format(dummyDate)
 
 	return formattedTime
@@ -128,11 +126,11 @@ export function updateDocumentTitle(meta) {
 		(meta) => {
 			if (!meta.value.title) return
 			if (meta.value.title && meta.value.subtitle) {
-				document.title = `${meta.value.title} | ${meta.value.subtitle}`
+				document.title = `${__(meta.value.title)} | ${__(meta.value.subtitle)}`
 				return
 			}
 			if (meta.value.title) {
-				document.title = `${meta.value.title}`
+				document.title = `${__(meta.value.title)}`
 				return
 			}
 		},
@@ -435,7 +433,7 @@ export function getTimezones() {
 	]
 }
 
-export function getSidebarLinks() {
+export function getDefaultSidebarLinks() {
 	return [
 		{
 			label: 'Courses',

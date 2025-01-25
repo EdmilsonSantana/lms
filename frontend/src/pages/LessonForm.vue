@@ -18,14 +18,14 @@
 					<div class="w-5/6 mx-auto">
 						<FormControl
 							v-model="lesson.title"
-							label="Title"
+							:label="__('Title')"
 							class="mb-4"
 							:required="true"
 						/>
 						<FormControl
 							v-model="lesson.include_in_preview"
 							type="checkbox"
-							label="Include in Preview"
+							:label="__('Include in Preview')"
 						/>
 					</div>
 					<div class="border-t mt-4">
@@ -132,6 +132,54 @@ const renderEditor = (holder) => {
 		holder: holder,
 		tools: getEditorTools(true),
 		autofocus: true,
+		i18n: {
+			messages: {
+				ui: {
+					blockTunes: {
+						toggler: {
+							"Click to tune": __("Click to tune")
+						}
+					},
+					inlineToolbar: {
+						converter: {
+							"Convert to": __("Convert to")
+						}
+					},
+					toolbar: {
+						toolbox: {
+							"Add": __("Add"),
+							"Filter": __("Filter")
+						}
+					},
+					popover: {
+						"Filter": "Filtro",
+						"Nothing found": "Nada Encontrado"
+					}
+				},
+				toolNames: {
+					"Text": __("Texto"),
+					"Heading": __("Cabeçalho"),
+					"List": __("Lista")
+				},
+				tools: {
+					list: {
+						"Ordered": "Ordenado",
+						"Unordered": "Não ordenado"
+					}
+				},
+				blockTunes: {
+					delete: {
+						"Delete": __("Delete")
+					},
+					moveUp: {
+						"Move up": __("Move up")
+					},
+					moveDown: {
+						"Move down": __("Move down")
+					}
+				}
+			}
+		},
 		defaultBlock: 'markdown',
 	})
 }
@@ -395,7 +443,7 @@ const createNewLesson = () => {
 					{
 						onSuccess() {
 							capture('lesson_created')
-							showToast('Success', 'Lesson created successfully', 'check')
+							showToast('Success', __('Lesson created successfully'), 'check')
 							if (!settingsStore.onboardingDetails.data?.is_onboarded) {
 								settingsStore.onboardingDetails.reload()
 							}
@@ -422,7 +470,7 @@ const editCurrentLesson = () => {
 			},
 			onSuccess() {
 				showSuccessMessage
-					? showToast('Success', 'Lesson updated successfully', 'check')
+					? showToast('Success', __('Lesson updated successfully'), 'check')
 					: ''
 			},
 			onError(err) {
@@ -434,10 +482,10 @@ const editCurrentLesson = () => {
 
 const validateLesson = () => {
 	if (!lesson.title) {
-		return 'Title is required'
+		return __('Title is required')
 	}
 	if (!lesson.content) {
-		return 'Content is required'
+		return __('Content is required')
 	}
 }
 

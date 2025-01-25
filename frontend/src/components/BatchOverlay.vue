@@ -34,12 +34,6 @@
 				{{ formatTime(batch.data.end_time) }}
 			</span>
 		</div>
-		<div v-if="batch.data.timezone" class="flex items-center">
-			<Globe class="h-4 w-4 stroke-1.5 mr-2 text-gray-700" />
-			<span>
-				{{ batch.data.timezone }}
-			</span>
-		</div>
 		<router-link
 			v-if="isModerator || isStudent"
 			:to="{
@@ -97,14 +91,13 @@
 	</div>
 </template>
 <script setup>
-import { inject, computed } from 'vue'
+import { inject, computed, ref } from 'vue'
 import { Badge, Button, createResource } from 'frappe-ui'
-import { BookOpen, Clock, Globe } from 'lucide-vue-next'
-import { formatNumberIntoCurrency, formatTime, showToast } from '@/utils'
+import { BookOpen, Clock } from 'lucide-vue-next'
+import { formatNumberIntoCurrency, formatTime } from '@/utils'
 import DateRange from '@/components/Common/DateRange.vue'
-import { useRouter } from 'vue-router'
 
-const router = useRouter()
+const whatsAppUrl = ref('');
 const user = inject('$user')
 
 const props = defineProps({
@@ -114,37 +107,21 @@ const props = defineProps({
 	},
 })
 
-const enroll = createResource({
-	url: 'lms.lms.utils.enroll_in_batch',
-	makeParams(values) {
-		return {
-			batch: props.batch.data.name,
-		}
+createResource({
+	url: 'lms.lms.branding.get_social_media',
+	auto: true,
+	transform(data) {
+		whatsAppUrl.value = data.find((s) => s.name === 'WhatsApp').url;
 	},
-})
+});
 
 const enrollInBatch = () => {
-	if (!user.data) {
-		window.location.href = `/login?redirect-to=/batches/details/${props.batch.data.name}`
-	}
-	enroll.submit(
-		{},
-		{
-			onSuccess(data) {
-				showToast(
-					__('Success'),
-					__('You have been enrolled in this batch'),
-					'check'
-				)
-				router.push({
-					name: 'Batch',
-					params: {
-						batchName: props.batch.data.name,
-					},
-				})
-			},
-		}
-	)
+	const url = new URL(whatsAppUrl.value);
+	const message = __("Hi, I want to enroll in the batch '{0}'.").format(props.batch.data.title);
+
+	url.searchParams.set('text', message);
+
+	window.open(url.href, '_blank');
 }
 
 const seats_left = computed(() => {

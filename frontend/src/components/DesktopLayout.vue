@@ -5,7 +5,7 @@
 				<div
 					class="relative block min-h-0 flex-shrink-0 overflow-hidden hover:overflow-auto"
 				>
-					<AppSidebar />
+					<AppSidebar v-if="props.showSidebar" />
 				</div>
 				<div class="w-full overflow-auto" id="scrollContainer">
 					<slot />
@@ -16,4 +16,12 @@
 </template>
 <script setup>
 import AppSidebar from './AppSidebar.vue'
+
+const props = defineProps({
+	showSidebar: {
+		type: Boolean,
+		default: false
+	},
+});
+
 </script>

@@ -120,12 +120,6 @@
 						{{ formatTime(batch.data.end_time) }}
 					</span>
 				</div>
-				<div v-if="batch.data.timezone" class="flex items-center mb-4">
-					<Globe class="h-4 w-4 stroke-1.5 mr-2 text-gray-700" />
-					<span>
-						{{ batch.data.timezone }}
-					</span>
-				</div>
 			</div>
 			<AnnouncementModal
 				v-model="showAnnouncementModal"
@@ -229,10 +223,10 @@ const batch = createResource({
 })
 
 const breadcrumbs = computed(() => {
-	let crumbs = [{ label: 'All Batches', route: { name: 'Batches' } }]
+	let crumbs = [{ label: __('All Batches'), route: { name: 'Batches' } }]
 	if (!isStudent.value) {
 		crumbs.push({
-			label: 'Details',
+			label: __('Details'),
 			route: {
 				name: 'BatchDetail',
 				params: {

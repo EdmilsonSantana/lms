@@ -268,7 +268,7 @@
    "label": "Sidebar"
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "courses",
    "fieldtype": "Check",
    "label": "Courses"
@@ -280,7 +280,7 @@
    "label": "Batches"
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "certified_participants",
    "fieldtype": "Check",
    "label": "Certified Participants"
@@ -292,7 +292,7 @@
    "label": "Jobs"
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "statistics",
    "fieldtype": "Check",
    "label": "Statistics"
@@ -356,7 +356,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-11-20 11:55:05.358421",
+ "modified": "2025-01-25 06:06:48.460290",
  "modified_by": "Administrator",
  "module": "LMS",
  "name": "LMS Settings",
