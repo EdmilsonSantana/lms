@@ -1215,7 +1215,7 @@ def get_batches():
 	batches = []
 	filters = {}
 	if frappe.session.user == "Guest":
-		filters.update({"start_date": [">=", getdate()], "published": 1})
+		filters.update({"end_date": [">=", getdate()], "published": 1})
 	batch_list = frappe.get_all("LMS Batch", filters)
 
 	for batch in batch_list:
@@ -1280,10 +1280,10 @@ def categorize_batches(batches):
 	for batch in batches:
 		if not batch.published:
 			private.append(batch)
-		elif getdate(batch.start_date) < getdate():
+		elif getdate(batch.end_date) < getdate():
 			archived.append(batch)
 		elif (
-			getdate(batch.start_date) == getdate() and get_time_str(batch.start_time) < nowtime()
+			getdate(batch.end_date) == getdate() and get_time_str(batch.end_time) < nowtime()
 		):
 			archived.append(batch)
 		else:

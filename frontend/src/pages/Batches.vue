@@ -81,7 +81,7 @@
 						</router-link>
 					</div>
 					<div v-else class="p-5 italic text-gray-500">
-						{{ __('No {0} batches').format(__(tab.label).toLowerCase()) }}
+						{{ __('No batches found') }}
 					</div>
 				</template>
 			</Tabs>

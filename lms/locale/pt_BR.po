@@ -5913,7 +5913,7 @@ msgstr "Anúncios"
 
 #: frontend/src/pages/Batches.vue:198
 msgid "Archived"
-msgstr "Arquivada"
+msgstr "Arquivado"
 
 #: frontend/src/components/BatchOverlay.vue:120
 msgid "Hi, I want to enroll in the batch '{0}'."
