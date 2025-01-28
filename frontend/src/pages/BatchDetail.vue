@@ -12,15 +12,17 @@
 					{{ batch.data.description }}
 				</div>
 				<div
-					class="flex flex-col gap-2 lg:gap-0 lg:flex-row lg:items-center justify-between lg:w-1/2"
+					class="flex flex-col gap-2 lg:gap-0 lg:flex-row lg:items-center justify-between lg:w-1/4"
 				>
-					<div class="flex items-center">
-						<BookOpen class="h-4 w-4 text-gray-700 mr-2" />
-						<span> {{ batch.data?.courses?.length }} {{ __('Courses') }} </span>
+					<div v-if="batch.data?.courses?.length">
+						<div class="flex items-center">
+							<BookOpen class="h-4 w-4 text-gray-700 mr-2" />
+							<span> {{ batch.data?.courses?.length }} {{ __('Courses') }} </span>
+						</div>
+						<span class="hidden lg:block" v-if="batch.data.courses"
+							>&middot;</span
+						>
 					</div>
-					<span class="hidden lg:block" v-if="batch.data.courses"
-						>&middot;</span
-					>
 					<DateRange
 						:startDate="batch.data.start_date"
 						:endDate="batch.data.end_date"

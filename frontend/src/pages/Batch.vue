@@ -274,10 +274,6 @@ const tabs = computed(() => {
 		icon: Laptop,
 	})
 	batchTabs.push({
-		label: 'Courses',
-		icon: BookOpen,
-	})
-	batchTabs.push({
 		label: 'Announcements',
 		icon: Mail,
 	})

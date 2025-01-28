@@ -1184,7 +1184,7 @@ msgstr "Imagem do Curso"
 #: lms/lms/doctype/course_instructor/course_instructor.json
 #. Name of a DocType
 msgid "Course Instructor"
-msgstr "Instrutor do Curso"
+msgstr "Professor do Curso"
 
 #: lms/lms/doctype/course_lesson/course_lesson.json
 #. Name of a DocType
@@ -2335,19 +2335,19 @@ msgstr "Nome da Instituição"
 #. Label of the instructor (Link) field in DocType 'Cohort'
 #. Label of the instructor (Link) field in DocType 'Course Instructor'
 msgid "Instructor"
-msgstr "Instrutor"
+msgstr "Professor"
 
 #: lms/lms/doctype/course_lesson/course_lesson.json
 #. Label of the instructor_content (Text) field in DocType 'Course Lesson'
 msgid "Instructor Content"
-msgstr "Conteúdo do Instrutor"
+msgstr "Conteúdo do Professor"
 
 #: frontend/src/pages/Lesson.vue:128 frontend/src/pages/LessonForm.vue:42
 #: lms/lms/doctype/course_lesson/course_lesson.json
 #. Label of the instructor_notes (Markdown Editor) field in DocType 'Course
 #. Lesson'
 msgid "Instructor Notes"
-msgstr "Notas do Instrutor"
+msgstr "Notas do Professor"
 
 #: frontend/src/pages/BatchForm.vue:89 frontend/src/pages/CourseForm.vue:154
 #: lms/lms/doctype/lms_batch/lms_batch.json
@@ -2355,11 +2355,11 @@ msgstr "Notas do Instrutor"
 #. Label of the instructors (Table MultiSelect) field in DocType 'LMS Batch'
 #. Label of the instructors (Table MultiSelect) field in DocType 'LMS Course'
 msgid "Instructors"
-msgstr "Instrutores"
+msgstr "Professores"
 
 #: lms/templates/assignment.html:17
 msgid "Instructors Comments"
-msgstr "Comentários dos Instrutores"
+msgstr "Comentários dos Professores"
 
 #: lms/lms/workspace/lms/lms.json
 #. Label of a Link in the LMS Workspace
@@ -5083,7 +5083,7 @@ msgstr "Este é um capítulo no curso {0}"
 
 #: lms/lms/widgets/CourseOutline.html:62
 msgid "This lesson is not available for preview. As you are the Instructor of the course only you can see it."
-msgstr "Esta lição não está disponível para visualização. Como você é o Instrutor do curso, apenas você pode vê-la."
+msgstr "Esta lição não está disponível para visualização. Como você é o professor do curso, apenas você pode vê-la."
 
 #: frontend/src/pages/Lesson.vue:15
 msgid "This lesson is not available for preview. Please enroll in the course to access it."
@@ -5610,7 +5610,7 @@ msgstr "Você pode encontrar o currículo deles anexado a este email."
 
 #: frontend/src/pages/Batches.vue:113
 msgid "You can link courses and assessments to it."
-msgstr "Você pode vincular cursos e avaliações a isso."
+msgstr "Você pode vincular cursos e avaliações às turmas."
 
 #: lms/lms/doctype/lms_certificate_request/lms_certificate_request.py:115
 msgid "You cannot schedule evaluations after {0}."
@@ -5739,7 +5739,7 @@ msgid ""
 "Your submission has been successfully saved. The instructor will review and grade it shortly, and you'll be notified of "
 "your final result."
 msgstr ""
-"Sua submissão foi salva com sucesso. O instrutor irá revisar e avaliar em breve, e você será notificado do seu "
+"Sua submissão foi salva com sucesso. O professor irá revisar e avaliar em breve, e você será notificado do seu "
 "resultado final."
 
 #: lms/lms/doctype/zoom_settings/zoom_settings.json
@@ -5901,7 +5901,7 @@ msgstr "Turmas"
 #. Name of a role
 #: website/doctype/help_article/help_article.json
 msgid "Knowledge Base Contributor"
-msgstr "Instrutor"
+msgstr "Professor"
 
 #: frontend/src/pages/BatchForm.vue:476
 msgid "Edit Batch"
