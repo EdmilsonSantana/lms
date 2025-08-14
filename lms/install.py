@@ -8,9 +8,17 @@ def after_install():
 	create_batch_source()
 	give_dicussions_permission()
 
+def enable_default_currency():
+	try:
+		if frappe.db.exists("Currency", "BRL"):
+			frappe.db.set_value("Currency", "BRL", "enabled", 1)
+	except Exception:
+		frappe.log_error(frappe.get_traceback(), "Enable BRL Currency Failed")
+
 
 def after_sync():
 	create_lms_roles()
+	enable_default_currency()
 	set_default_certificate_print_format()
 	add_all_roles_to("Administrator")
 

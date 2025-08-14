@@ -268,7 +268,7 @@
    "label": "Sidebar"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "courses",
    "fieldtype": "Check",
    "label": "Courses"

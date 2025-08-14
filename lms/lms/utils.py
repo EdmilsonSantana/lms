@@ -1030,6 +1030,8 @@ def get_course_details(course):
 	course_details.tags = course_details.tags.split(",") if course_details.tags else []
 
 	course_details.instructors = get_instructors(course_details.name)
+	course_details.batches = len(filter_batches(course_details.name))
+
 	if course_details.paid_course:
 		"""course_details.course_price, course_details.currency = check_multicurrency(
 		        course_details.course_price, course_details.currency, None, course_details.amount_usd
@@ -1209,21 +1211,29 @@ def get_neighbour_lesson(course, chapter, lesson):
 		"next": sorted_numbers[index + 1] if index + 1 < len(sorted_numbers) else None,
 	}
 
+def filter_batches(course_name: str|None):
+	filters = []
+	if frappe.session.user == "Guest":
+		filters += [
+            ["LMS Batch", "end_date", ">=", getdate()],
+            ["LMS Batch", "published", "=", 1],
+        ]
+
+	if (course_name):
+		filters.append(["Batch Course", "course", "in", [course_name]])
+
+	return frappe.get_all("LMS Batch", filters)
 
 @frappe.whitelist(allow_guest=True)
-def get_batches():
+def get_batches(course_name: str|None = None):
 	batches = []
-	filters = {}
-	if frappe.session.user == "Guest":
-		filters.update({"end_date": [">=", getdate()], "published": 1})
-	batch_list = frappe.get_all("LMS Batch", filters)
+	batch_list = filter_batches(course_name)
 
 	for batch in batch_list:
 		batches.append(get_batch_details(batch.name))
 
 	batches = categorize_batches(batches)
 	return batches
-
 
 @frappe.whitelist(allow_guest=True)
 def get_batch_details(batch):
@@ -1262,7 +1272,7 @@ def get_batch_details(batch):
 	batch_details.students = frappe.get_all(
 		"Batch Student", {"parent": batch}, pluck="student"
 	)
-	if batch_details.paid_batch and batch_details.start_date >= getdate():
+	if batch_details.paid_batch:
 		batch_details.amount, batch_details.currency = check_multicurrency(
 			batch_details.amount, batch_details.currency, None, batch_details.amount_usd
 		)

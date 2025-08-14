@@ -114,7 +114,7 @@
    "options": "HTML"
   },
   {
-   "default": "0",
+   "default": "1",
    "description": "Students will be enrolled in a paid batch once they complete the payment",
    "fieldname": "paid_batch",
    "fieldtype": "Check",
@@ -197,6 +197,7 @@
    "mandatory_depends_on": "paid_batch"
   },
   {
+   "default": "BRL",
    "depends_on": "paid_batch",
    "fieldname": "currency",
    "fieldtype": "Link",
@@ -329,7 +330,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-24 07:29:22.129236",
+ "modified": "2025-08-14 19:08:53.585959",
  "modified_by": "Administrator",
  "module": "LMS",
  "name": "LMS Batch",

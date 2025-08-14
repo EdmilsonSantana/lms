@@ -18,8 +18,8 @@ class LMSCourse(Document):
 		self.validate_instructors()
 		self.validate_video_link()
 		self.validate_status()
-		self.validate_payments_app()
-		self.validate_amount_and_currency()
+		# self.validate_amount_and_currency()
+		# self.validate_payments_app()
 		self.image = validate_image(self.image)
 
 	def validate_published(self):

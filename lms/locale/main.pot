@@ -1689,6 +1689,10 @@ msgstr ""
 msgid "Enrolled Students"
 msgstr ""
 
+#: frontend/src/components/CourseCardOverlay.vue:103
+msgid "Enrolled Student"
+msgstr ""
+
 #: lms/public/js/common_functions.js:96
 msgid "Enrolled successfully"
 msgstr ""
@@ -5909,4 +5913,8 @@ msgstr ""
 
 #: frappe/www/login.html
 msgid "Login to {0}"
+msgstr ""
+
+#: frontend/src/components/CourseCardOverlay.vue:45
+msgid "Show Batches"
 msgstr ""

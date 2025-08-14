@@ -33,8 +33,8 @@
 				<div v-if="course.lessons">
 					<Tooltip :text="__('Lessons')">
 						<span class="flex items-center">
-							<BookOpen class="h-4 w-4 stroke-1.5 text-gray-700 mr-1" />
-							{{ course.lessons }}
+							<GraduationCap class="h-4 w-4 stroke-1.5 text-gray-700 mr-1" />
+							{{ course.batches }}
 						</span>
 					</Tooltip>
 				</div>
@@ -76,15 +76,6 @@
 				{{ course.short_introduction }}
 			</div>
 
-			<ProgressBar
-				v-if="user && course.membership"
-				:progress="course.membership.progress"
-			/>
-
-			<div v-if="user && course.membership" class="text-sm mb-4">
-				{{ Math.ceil(course.membership.progress) }}% completed
-			</div>
-
 			<div class="flex items-center justify-between mt-auto">
 				<div class="flex avatar-group overlap">
 					<div
@@ -107,14 +98,10 @@
 	</div>
 </template>
 <script setup>
-import { BookOpen, Users, Star } from 'lucide-vue-next'
+import { GraduationCap, Users, Star } from 'lucide-vue-next'
 import UserAvatar from '@/components/UserAvatar.vue'
-import { sessionStore } from '@/stores/session'
 import { Badge, Tooltip } from 'frappe-ui'
 import CourseInstructors from '@/components/CourseInstructors.vue'
-import ProgressBar from '@/components/ProgressBar.vue'
-
-const { user } = sessionStore()
 
 const props = defineProps({
 	course: {

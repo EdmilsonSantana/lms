@@ -197,6 +197,19 @@
 					</div>
 				</div>
 			</div>
+			<div class="">
+				<div class="text-lg font-semibold mb-4">
+					{{ __('Payment') }}
+				</div>
+				<div>
+					<FormControl
+						v-model="batch.amount"
+						:label="__('Amount')"
+						type="number"
+						class="my-4"
+					/>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -250,8 +263,6 @@ const batch = reactive({
 	category: '',
 	allow_self_enrollment: true,
 	image: null,
-	paid_batch: false,
-	currency: '',
 	amount: 0,
 })
 

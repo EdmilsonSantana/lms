@@ -148,7 +148,9 @@ import { BookOpen, Plus } from 'lucide-vue-next'
 import BatchCard from '@/components/BatchCard.vue'
 import { inject, ref, computed, onMounted, watch } from 'vue'
 import { updateDocumentTitle } from '@/utils'
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
 const user = inject('$user')
 const currentCategory = ref(null)
 const hasBatches = ref(false)
@@ -156,15 +158,20 @@ const hasBatches = ref(false)
 onMounted(() => {
 	let queries = new URLSearchParams(location.search)
 	if (queries.has('category')) {
-		currentCategory.value = queries.get('category')
+		currentCategory.value = queries.get('category');
 	}
-})
+});
 
 const batches = createResource({
 	doctype: 'LMS Batch',
 	url: 'lms.lms.utils.get_batches',
+	makeParams() {
+		return {
+			course_name: route.query.courseName ?? null,
+		}
+	},
 	cache: ['batches', user.data?.email],
-	auto: true,
+	auto: true
 })
 
 const categories = createResource({
@@ -225,12 +232,17 @@ const addToTabs = (label) => {
 }
 
 watch(batches, () => {
-	Object.keys(batches.data).forEach((key) => {
-		if (batches.data[key].length) {
+	const data = batches?.data ?? [];
+	Object.keys(data).forEach((key) => {
+		if (data[key].length) {
 			hasBatches.value = true
 		}
 	})
-})
+});
+
+watch(() => route.query.courseName, () => {
+	batches.reload();
+});
 
 watch(
 	() => currentCategory.value,

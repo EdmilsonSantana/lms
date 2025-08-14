@@ -1,8 +1,7 @@
 <template>
 	<div v-if="batch.data" class="shadow rounded-md p-5 lg:w-72">
-		<div v-if="batch.data.courses.length" class="flex items-center mb-3">
-			<BookOpen class="h-4 w-4 stroke-1.5 mr-2 text-gray-700" />
-			<span>{{ batch.data.courses.length }} {{ __('Courses') }} </span>
+		<div v-if="batch.data.amount" class="text-lg font-semibold mb-3">
+			{{ formatNumberIntoCurrency(batch.data.amount, batch.data.currency) }}
 		</div>
 		<DateRange
 			:startDate="batch.data.start_date"
@@ -32,9 +31,6 @@
 		>
 			{{ __('Sold Out') }}
 		</Badge>
-		<div v-if="batch.data.amount" class="text-lg font-semibold mb-3">
-			{{ formatNumberIntoCurrency(batch.data.amount, batch.data.currency) }}
-		</div>
 		<router-link
 			v-if="isModerator || isStudent"
 			:to="{
@@ -47,22 +43,6 @@
 			<Button variant="solid" class="w-full mt-4">
 				<span>
 					{{ isModerator ? __('Manage Batch') : __('Visit Batch') }}
-				</span>
-			</Button>
-		</router-link>
-		<router-link
-			:to="{
-				name: 'Billing',
-				params: {
-					type: 'batch',
-					name: batch.data.name,
-				},
-			}"
-			v-else-if="batch.data.paid_batch && batch.data.seats_left"
-		>
-			<Button v-if="!isStudent" class="w-full mt-4" variant="solid">
-				<span>
-					{{ __('Register Now') }}
 				</span>
 			</Button>
 		</router-link>

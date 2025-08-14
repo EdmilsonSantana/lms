@@ -1719,6 +1719,10 @@ msgstr "Matriculado"
 msgid "Enrolled Students"
 msgstr "Alunos Matriculados"
 
+#: frontend/src/components/CourseCardOverlay.vue:103
+msgid "Enrolled Student"
+msgstr "Aluno Matriculado"
+
 #: lms/public/js/common_functions.js:96
 msgid "Enrolled successfully"
 msgstr "Inscrito com sucesso"
@@ -4437,7 +4441,7 @@ msgstr "Contagem de Vagas"
 #: frontend/src/components/BatchCard.vue:16
 #: frontend/src/components/BatchOverlay.vue:9
 msgid "Seat Left"
-msgstr "Assento Restante"
+msgstr "Vaga Restante"
 
 #: frontend/src/components/BatchCard.vue:15
 #: frontend/src/components/BatchOverlay.vue:8
@@ -5339,7 +5343,7 @@ msgstr "Papel Não Estruturado"
 #. Option for the 'Status' (Select) field in DocType 'Cohort'
 #. Label of the upcoming (Check) field in DocType 'LMS Course'
 msgid "Upcoming"
-msgstr "Disponível"
+msgstr "Em Breve"
 
 #: frontend/src/pages/Batch.vue:166
 msgid "Upcoming Batches"
@@ -5922,3 +5926,7 @@ msgstr "Olá, quero me inscrever na turma '{0}'."
 #: frappe/www/login.html
 msgid "Login to {0}"
 msgstr "Entrar em {0}"
+
+#: frontend/src/components/CourseCardOverlay.vue:45
+msgid "Show Batches"
+msgstr "Ver Turmas"

@@ -181,6 +181,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "default": "BRL",
    "depends_on": "paid_course",
    "fieldname": "currency",
    "fieldtype": "Link",
@@ -189,7 +190,7 @@
    "options": "Currency"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "paid_course",
    "fieldtype": "Check",
    "label": "Paid Course"
@@ -310,7 +311,7 @@
   }
  ],
  "make_attachments_public": 1,
- "modified": "2024-10-30 23:08:31.842860",
+ "modified": "2025-08-14 19:08:24.862918",
  "modified_by": "Administrator",
  "module": "LMS",
  "name": "LMS Course",

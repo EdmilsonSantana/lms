@@ -1,86 +1,21 @@
 <template>
 	<div class="shadow rounded-md min-w-80">
-		<iframe
-			v-if="course.data.video_link"
-			:src="video_link"
-			class="rounded-t-md min-h-56 w-full"
-		/>
+		<iframe v-if="course.data.video_link" :src="video_link" class="rounded-t-md min-h-56 w-full" />
 		<div class="p-5">
-			<div v-if="course.data.price" class="text-2xl font-semibold mb-3">
-				{{ course.data.price }}
-			</div>
-			<router-link
-				v-if="course.data.membership"
-				:to="{
-					name: 'Lesson',
-					params: {
-						courseName: course.name,
-						chapterNumber: course.data.current_lesson
-							? course.data.current_lesson.split('-')[0]
-							: 1,
-						lessonNumber: course.data.current_lesson
-							? course.data.current_lesson.split('-')[1]
-							: 1,
-					},
-				}"
-			>
-				<Button variant="solid" size="md" class="w-full">
-					<span>
-						{{ __('Continue Learning') }}
-					</span>
-				</Button>
-			</router-link>
-			<router-link
-				v-else-if="course.data.paid_course"
-				:to="{
-					name: 'Billing',
-					params: {
-						type: 'course',
-						name: course.data.name,
-					},
-				}"
-			>
-				<Button variant="solid" size="md" class="w-full">
-					<span>
-						{{ __('Buy this course') }}
-					</span>
-				</Button>
-			</router-link>
-			<div
-				v-else-if="course.data.disable_self_learning"
-				class="bg-blue-100 text-blue-900 text-sm rounded-md py-1 px-3"
-			>
-				{{ __('Contact the Administrator to enroll for this course.') }}
-			</div>
-			<Button
-				v-else
-				@click="enrollStudent()"
-				variant="solid"
-				class="w-full"
-				size="md"
-			>
+			<Button @click="showBatches()" :disabled="course.data.batches === 0" variant="solid" class="w-full" size="md">
 				<span>
-					{{ __('Start Learning') }}
+					{{ __('Show Batches') }}
 				</span>
 			</Button>
-			<Button
-				v-if="canGetCertificate"
-				@click="fetchCertificate()"
-				variant="subtle"
-				class="w-full mt-2"
-				size="md"
-			>
+			<Button v-if="canGetCertificate" @click="fetchCertificate()" variant="subtle" class="w-full mt-2" size="md">
 				{{ __('Get Certificate') }}
 			</Button>
-			<router-link
-				v-if="user?.data?.is_moderator || is_instructor()"
-				:to="{
+			<router-link v-if="user?.data?.is_moderator || is_instructor()" :to="{
 					name: 'CourseForm',
 					params: {
 						courseName: course.data.name,
 					},
-				}"
-			>
+				}">
 				<Button variant="subtle" class="w-full mt-2" size="md">
 					<span>
 						{{ __('Edit') }}
@@ -91,16 +26,17 @@
 				{{ __('This course has:') }}
 			</div>
 			<div class="flex items-center mb-3">
-				<BookOpen class="h-5 w-5 stroke-1.5 text-gray-600" />
+				<GraduationCap class="h-5 w-5 stroke-1.5 text-gray-600" />
 				<span class="ml-2">
-					{{ course.data.lessons }} {{ __('Lessons') }}
+					{{ course.data.batches }}
+					{{ Number(course.data.batches) === 1 ? __('Batch') : __('Batches') }}
 				</span>
 			</div>
 			<div class="flex items-center mb-3">
 				<Users class="h-5 w-5 stroke-1.5 text-gray-600" />
 				<span class="ml-2">
 					{{ formatAmount(course.data.enrollments) }}
-					{{ __('Enrolled Students') }}
+					{{ Number(course.data.enrollments) === 1 ? __('Enrolled Student') : __('Enrolled Students') }}
 				</span>
 			</div>
 			<div class="flex items-center">
@@ -111,22 +47,28 @@
 	</div>
 </template>
 <script setup>
-import { BookOpen, Users, Star } from 'lucide-vue-next'
+import { Users, Star, GraduationCap } from 'lucide-vue-next'
 import { computed, inject } from 'vue'
 import { Button, createResource } from 'frappe-ui'
-import { showToast, formatAmount } from '@/utils/'
-import { capture } from '@/telemetry'
+import { formatAmount } from '@/utils/'
 import { useRouter } from 'vue-router'
 
-const router = useRouter()
 const user = inject('$user')
+const router = useRouter()
 
 const props = defineProps({
 	course: {
 		type: Object,
 		default: null,
 	},
-})
+});
+
+const showBatches = () => {
+	router.push({
+        name: 'Batches',
+        query: { courseName: props.course.data.name }
+      })
+}
 
 const video_link = computed(() => {
 	if (props.course.data.video_link) {
@@ -134,47 +76,6 @@ const video_link = computed(() => {
 	}
 	return null
 })
-
-function enrollStudent() {
-	if (!user.data) {
-		showToast(
-			__('Please Login'),
-			__('You need to login first to enroll for this course'),
-			'alert-circle'
-		)
-		setTimeout(() => {
-			window.location.href = `/login?redirect-to=${window.location.pathname}`
-		}, 2000)
-	} else {
-		const enrollStudentResource = createResource({
-			url: 'lms.lms.doctype.lms_enrollment.lms_enrollment.create_membership',
-		})
-		enrollStudentResource
-			.submit({
-				course: props.course.data.name,
-			})
-			.then(() => {
-				capture('enrolled_in_course', {
-					course: props.course.data.name,
-				})
-				showToast(
-					__('Success'),
-					__('You have been enrolled in this course'),
-					'check'
-				)
-				setTimeout(() => {
-					router.push({
-						name: 'Lesson',
-						params: {
-							courseName: props.course.data.name,
-							chapterNumber: 1,
-							lessonNumber: 1,
-						},
-					})
-				}, 2000)
-			})
-	}
-}
 
 const is_instructor = () => {
 	let user_is_instructor = false

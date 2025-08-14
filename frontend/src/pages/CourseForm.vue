@@ -203,29 +203,6 @@
 							</div>
 						</div>
 					</div>
-					<div class="container border-t">
-						<div class="text-lg font-semibold mt-5 mb-4">
-							{{ __('Pricing') }}
-						</div>
-						<div class="mb-4">
-							<FormControl
-								type="checkbox"
-								v-model="course.paid_course"
-								:label="__('Paid Course')"
-							/>
-						</div>
-						<FormControl
-							v-model="course.course_price"
-							:label="__('Course Price')"
-							class="mb-4"
-						/>
-						<Link
-							doctype="Currency"
-							v-model="course.currency"
-							:filters="{ enabled: 1 }"
-							:label="__('Currency')"
-						/>
-					</div>
 				</div>
 			</div>
 			<div class="border-l pt-5">
@@ -295,9 +272,6 @@ const course = reactive({
 	upcoming: false,
 	disable_self_learning: false,
 	enable_certification: false,
-	paid_course: false,
-	course_price: '',
-	currency: '',
 })
 
 onMounted(() => {
