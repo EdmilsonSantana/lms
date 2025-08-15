@@ -210,7 +210,6 @@ let tabs
 
 const makeTabs = computed(() => {
 	tabs = []
-	addToTabs('New')
 	addToTabs('Upcoming')
 
 	if (user.data) {

@@ -5343,7 +5343,7 @@ msgstr "Papel Não Estruturado"
 #. Option for the 'Status' (Select) field in DocType 'Cohort'
 #. Label of the upcoming (Check) field in DocType 'LMS Course'
 msgid "Upcoming"
-msgstr "Em Breve"
+msgstr "Disponível"
 
 #: frontend/src/pages/Batch.vue:166
 msgid "Upcoming Batches"

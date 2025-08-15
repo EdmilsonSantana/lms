@@ -151,11 +151,12 @@ const routes = [
 		name: 'CertifiedParticipants',
 		component: () => import('@/pages/CertifiedParticipants.vue'),
 	},
+	*/
 	{
 		path: '/notifications',
 		name: 'Notifications',
 		component: () => import('@/pages/Notifications.vue'),
-	},
+	},/*
 	{
 		path: '/badges/:badgeName/:email',
 		name: 'Badge',
