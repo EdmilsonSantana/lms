@@ -107,12 +107,15 @@ const enrollInBatch = () => {
 
 const seats_left = computed(() => {
 	if (props.batch.data?.seat_count) {
-		return props.batch.data?.seat_count - props.batch.data?.students?.length
+		return props.batch.data?.seats_left
 	}
 	return null
 })
 
 const isStudent = computed(() => {
+	if (!user.data) {
+		return false
+	}
 	return props.batch.data?.students?.includes(user.data?.name)
 })
 

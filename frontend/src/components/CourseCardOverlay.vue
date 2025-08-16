@@ -78,6 +78,10 @@ const video_link = computed(() => {
 })
 
 const is_instructor = () => {
+	if (!user.data) {
+		return false
+	}
+
 	let user_is_instructor = false
 	props.course.data.instructors.forEach((instructor) => {
 		if (!user_is_instructor && instructor.name == user.data?.name) {

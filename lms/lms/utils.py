@@ -213,12 +213,17 @@ def get_instructors(course):
 		"Course Instructor", {"parent": course}, order_by="idx", pluck="instructor"
 	)
 
+	fields = ["first_name", "full_name", "user_image"]
+
+	if frappe.session.user != "Guest":
+		fields.extend(["name", "username"])
+
 	for instructor in instructors:
 		instructor_details.append(
 			frappe.db.get_value(
 				"User",
 				instructor,
-				["name", "username", "full_name", "user_image", "first_name"],
+				fields,
 				as_dict=True,
 			)
 		)
@@ -1269,9 +1274,11 @@ def get_batch_details(batch):
 	batch_details.courses = frappe.get_all(
 		"Batch Course", filters={"parent": batch}, fields=["course", "title", "evaluator"]
 	)
-	batch_details.students = frappe.get_all(
-		"Batch Student", {"parent": batch}, pluck="student"
-	)
+
+	students = frappe.get_all("Batch Student", {"parent": batch}, pluck="student")
+	if frappe.session.user != "Guest":
+		batch_details.students = students
+
 	if batch_details.paid_batch:
 		batch_details.amount, batch_details.currency = check_multicurrency(
 			batch_details.amount, batch_details.currency, None, batch_details.amount_usd
@@ -1279,7 +1286,7 @@ def get_batch_details(batch):
 		batch_details.price = fmt_money(batch_details.amount, 0, batch_details.currency)
 
 	if batch_details.seat_count:
-		batch_details.seats_left = batch_details.seat_count - len(batch_details.students)
+		batch_details.seats_left = batch_details.seat_count - len(students)
 
 	return batch_details
 
