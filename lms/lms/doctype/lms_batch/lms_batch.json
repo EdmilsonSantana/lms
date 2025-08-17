@@ -330,7 +330,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-14 19:08:53.585959",
+ "modified": "2025-08-16 11:50:11.112668",
  "modified_by": "Administrator",
  "module": "LMS",
  "name": "LMS Batch",
@@ -372,6 +372,15 @@
    "role": "Batch Evaluator",
    "share": 1,
    "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales",
+   "share": 1
   }
  ],
  "show_title_field_in_link": 1,

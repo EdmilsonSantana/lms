@@ -311,7 +311,7 @@
   }
  ],
  "make_attachments_public": 1,
- "modified": "2025-08-14 19:08:24.862918",
+ "modified": "2025-08-16 11:50:58.211937",
  "modified_by": "Administrator",
  "module": "LMS",
  "name": "LMS Course",
@@ -340,6 +340,15 @@
    "role": "Course Creator",
    "share": 1,
    "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales",
+   "share": 1
   }
  ],
  "show_title_field_in_link": 1,
