@@ -30,33 +30,6 @@
 		</div>
 		<div class="flex flex-col flex-auto p-4">
 			<div class="flex items-center justify-between mb-2">
-				<div v-if="course.lessons">
-					<Tooltip :text="__('Lessons')">
-						<span class="flex items-center">
-							<GraduationCap class="h-4 w-4 stroke-1.5 text-gray-700 mr-1" />
-							{{ course.batches }}
-						</span>
-					</Tooltip>
-				</div>
-
-				<div v-if="course.enrollments">
-					<Tooltip :text="__('Enrolled Students')">
-						<span class="flex items-center">
-							<Users class="h-4 w-4 stroke-1.5 text-gray-700 mr-1" />
-							{{ course.enrollments }}
-						</span>
-					</Tooltip>
-				</div>
-
-				<div v-if="course.rating">
-					<Tooltip :text="__('Average Rating')">
-						<span class="flex items-center">
-							<Star class="h-4 w-4 stroke-1.5 text-gray-700 mr-1" />
-							{{ course.rating }}
-						</span>
-					</Tooltip>
-				</div>
-
 				<div v-if="course.status != 'Approved'">
 					<Badge
 						variant="subtle"
@@ -88,10 +61,6 @@
 						/>
 					</div>
 					<CourseInstructors :instructors="course.instructors" />
-				</div>
-
-				<div class="font-semibold">
-					{{ course.price }}
 				</div>
 			</div>
 		</div>

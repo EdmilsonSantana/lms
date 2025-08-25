@@ -5,6 +5,8 @@ import { createResource } from 'frappe-ui'
 export const useSettings = defineStore('settings', () => {
 	const isSettingsOpen = ref(false)
 	const activeTab = ref(null)
+	const whatsAppSocialMedia = ref(null)
+
 	const learningPaths = createResource({
 		url: 'frappe.client.get_single_value',
 		makeParams(values) {

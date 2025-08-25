@@ -804,6 +804,7 @@ msgstr ""
 
 #. Label of the city (Data) field in DocType 'User'
 #: frontend/src/pages/Billing.vue:86 lms/fixtures/custom_field.json
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
 msgid "City"
 msgstr ""
 
@@ -3176,7 +3177,7 @@ msgid "My calendar"
 msgstr ""
 
 #. Option for the 'Event' (Select) field in DocType 'LMS Badge'
-#: frontend/src/pages/Batches.vue:30 frontend/src/pages/Courses.vue:45
+#: frontend/src/pages/Batches.vue:30
 #: frontend/src/pages/Programs.vue:14 lms/lms/doctype/lms_badge/lms_badge.json
 msgid "New"
 msgstr ""
@@ -5908,7 +5909,7 @@ msgid "Archived"
 msgstr ""
 
 #: frontend/src/components/BatchOverlay.vue:120
-msgid "Hi, I want to enroll in the batch '{0}'."
+msgid "Hi, I would like more information about the '{0}' batch."
 msgstr ""
 
 #: frappe/www/login.html
@@ -5917,4 +5918,36 @@ msgstr ""
 
 #: frontend/src/components/CourseCardOverlay.vue:45
 msgid "Show Batches"
+msgstr ""
+
+#: frontend/src/pages/BatchDetail.vue:61
+msgid "Course Details"
+msgstr ""
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "LMS Pre-Enrollment""
+msgstr ""
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "Notes"
+msgstr ""
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "prospecting"
+msgstr ""
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "negotiation"
+msgstr ""
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "closed"
+msgstr ""
+
+#: frontend/src/pages/Courses.vue:45
+msgid "New Course"
+msgstr ""
+
+#: frontend/src/pages/CourseForm.vue:136
+msgid "Add a keyword and then press enter"
 msgstr ""

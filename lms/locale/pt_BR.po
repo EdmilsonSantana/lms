@@ -800,6 +800,7 @@ msgid "Choose one answer"
 msgstr "Escolha uma resposta"
 
 #: frontend/src/pages/Billing.vue:86 lms/fixtures/custom_field.json
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
 #. Label of the city (Data) field in DocType 'User'
 msgid "City"
 msgstr "Cidade"
@@ -2562,7 +2563,7 @@ msgstr "Atribuição de Insígnia LMS"
 #. Option for the 'Payment for Document Type' (Select) field in DocType 'LMS
 #. Payment'
 msgid "LMS Batch"
-msgstr "Turma LMS"
+msgstr "Turma"
 
 #: lms/lms/doctype/lms_batch_old/lms_batch_old.json
 #. Name of a DocType
@@ -2600,7 +2601,7 @@ msgstr "Solicitação de Certificado LMS"
 #. Option for the 'Payment for Document Type' (Select) field in DocType 'LMS
 #. Payment'
 msgid "LMS Course"
-msgstr "Curso LMS"
+msgstr "Curso"
 
 #: lms/lms/doctype/lms_course_interest/lms_course_interest.json
 #. Name of a DocType
@@ -2858,7 +2859,7 @@ msgstr "Lista de quizzes"
 #: lms/lms/doctype/cohort/cohort.json
 #. Option for the 'Status' (Select) field in DocType 'Cohort'
 msgid "Live"
-msgstr "Ao Vivo"
+msgstr "Disponível"
 
 #: frontend/src/components/LiveClass.vue:4
 #: lms/lms/doctype/lms_settings/lms_settings.json
@@ -3237,11 +3238,11 @@ msgstr "Minha disponibilidade"
 msgid "My calendar"
 msgstr "Meu calendário"
 
-#: frontend/src/pages/Batches.vue:30 frontend/src/pages/Courses.vue:45
+#: frontend/src/pages/Batches.vue:30
 #: frontend/src/pages/Programs.vue:14 lms/lms/doctype/lms_badge/lms_badge.json
 #. Option for the 'Event' (Select) field in DocType 'LMS Badge'
 msgid "New"
-msgstr "Novo Curso"
+msgstr "Novo"
 
 #: lms/lms/doctype/lms_assignment_submission/lms_assignment_submission.py:41
 msgid "New Assignment Submission"
@@ -5343,7 +5344,7 @@ msgstr "Papel Não Estruturado"
 #. Option for the 'Status' (Select) field in DocType 'Cohort'
 #. Label of the upcoming (Check) field in DocType 'LMS Course'
 msgid "Upcoming"
-msgstr "Disponível"
+msgstr "Em Breve"
 
 #: frontend/src/pages/Batch.vue:166
 msgid "Upcoming Batches"
@@ -5920,8 +5921,8 @@ msgid "Archived"
 msgstr "Arquivado"
 
 #: frontend/src/components/BatchOverlay.vue:120
-msgid "Hi, I want to enroll in the batch '{0}'."
-msgstr "Olá, quero me inscrever na turma '{0}'."
+msgid "Hi, I would like more information about the '{0}' batch."
+msgstr "Olá, gostaria de mais informações sobre a turma '{0}'."
 
 #: frappe/www/login.html
 msgid "Login to {0}"
@@ -5930,3 +5931,35 @@ msgstr "Entrar em {0}"
 #: frontend/src/components/CourseCardOverlay.vue:45
 msgid "Show Batches"
 msgstr "Ver Turmas"
+
+#: frontend/src/pages/BatchDetail.vue:61
+msgid "Course Details"
+msgstr "Detalhes do Curso"
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "LMS Pre-Enrollment"
+msgstr "Pré-inscrição"
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "Notes"
+msgstr "Observações"
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "prospecting"
+msgstr "Prospecção"
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "negotiation"
+msgstr "Negociação"
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "closed"
+msgstr "Fechado"
+
+#: frontend/src/pages/Courses.vue:45
+msgid "New Course"
+msgstr "Novo Curso"
+
+#: frontend/src/pages/CourseForm.vue:136
+msgid "Add a keyword and then press enter"
+msgstr "Adicione uma palavra-chave e depois pressione Enter."

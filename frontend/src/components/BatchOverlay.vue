@@ -1,8 +1,5 @@
 <template>
 	<div v-if="batch.data" class="shadow rounded-md p-5 lg:w-72">
-		<div v-if="batch.data.amount" class="text-lg font-semibold mb-3">
-			{{ formatNumberIntoCurrency(batch.data.amount, batch.data.currency) }}
-		</div>
 		<DateRange
 			:startDate="batch.data.start_date"
 			:endDate="batch.data.end_date"
@@ -72,13 +69,13 @@
 	</div>
 </template>
 <script setup>
-import { inject, computed, ref } from 'vue'
-import { Badge, Button, createResource } from 'frappe-ui'
-import { BookOpen, Clock } from 'lucide-vue-next'
-import { formatNumberIntoCurrency, formatTime } from '@/utils'
+import { inject, computed } from 'vue'
+import { Badge, Button } from 'frappe-ui'
+import { Clock } from 'lucide-vue-next'
+import { formatTime } from '@/utils'
 import DateRange from '@/components/Common/DateRange.vue'
+import { useEnrollmentInquiry } from '@/utils/enrollment'
 
-const whatsAppUrl = ref('');
 const user = inject('$user')
 
 const props = defineProps({
@@ -88,22 +85,7 @@ const props = defineProps({
 	},
 })
 
-createResource({
-	url: 'lms.lms.branding.get_social_media',
-	auto: true,
-	transform(data) {
-		whatsAppUrl.value = data.find((s) => s.name === 'WhatsApp').url;
-	},
-});
-
-const enrollInBatch = () => {
-	const url = new URL(whatsAppUrl.value);
-	const message = __("Hi, I want to enroll in the batch '{0}'.").format(props.batch.data.title);
-
-	url.searchParams.set('text', message);
-
-	window.open(url.href, '_blank');
-}
+const { enrollInBatch } = useEnrollmentInquiry()
 
 const seats_left = computed(() => {
 	if (props.batch.data?.seat_count) {

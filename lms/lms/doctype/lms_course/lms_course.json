@@ -71,7 +71,7 @@
    "reqd": 1
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "published",
    "fieldtype": "Check",
    "label": "Published"
@@ -92,7 +92,7 @@
    "reqd": 1
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "disable_self_learning",
    "fieldtype": "Check",
    "label": "Disable Self Learning"
@@ -311,7 +311,7 @@
   }
  ],
  "make_attachments_public": 1,
- "modified": "2025-08-16 11:50:58.211937",
+ "modified": "2025-08-24 00:00:22.262665",
  "modified_by": "Administrator",
  "module": "LMS",
  "name": "LMS Course",
@@ -351,6 +351,7 @@
    "share": 1
   }
  ],
+ "row_format": "Dynamic",
  "show_title_field_in_link": 1,
  "sort_field": "creation",
  "sort_order": "DESC",

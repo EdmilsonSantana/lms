@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class LMSBatchInterest(Document):
+class LMSPreEnrollment(Document):
 	pass

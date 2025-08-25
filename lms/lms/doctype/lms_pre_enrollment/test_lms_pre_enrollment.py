@@ -12,18 +12,18 @@ EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 
 
-class TestLMSBatchInterest(UnitTestCase):
+class TestLMSPreEnrollment(UnitTestCase):
 	"""
-	Unit tests for LMSBatchInterest.
+	Unit tests for LMSPreEnrollment.
 	Use this class for testing individual functions and methods.
 	"""
 
 	pass
 
 
-class TestLMSBatchInterest(IntegrationTestCase):
+class TestLMSPreEnrollment(IntegrationTestCase):
 	"""
-	Integration tests for LMSBatchInterest.
+	Integration tests for LMSPreEnrollment.
 	Use this class for testing interactions between multiple components.
 	"""
 

@@ -1292,7 +1292,7 @@ def get_batch_details(batch):
 
 
 def categorize_batches(batches):
-	upcoming, archived, private, enrolled = [], [], [], []
+	live, archived, private, enrolled = [], [], [], []
 
 	for batch in batches:
 		if not batch.published:
@@ -1304,7 +1304,7 @@ def categorize_batches(batches):
 		):
 			archived.append(batch)
 		else:
-			upcoming.append(batch)
+			live.append(batch)
 
 		if frappe.session.user != "Guest":
 			if frappe.db.exists(
@@ -1316,9 +1316,9 @@ def categorize_batches(batches):
 	for category in categories:
 		category.sort(key=lambda x: x.start_date, reverse=True)
 
-	upcoming.sort(key=lambda x: x.start_date)
+	live.sort(key=lambda x: x.start_date)
 	return {
-		"upcoming": upcoming,
+		"live": live,
 		"archived": archived,
 		"private": private,
 		"enrolled": enrolled,

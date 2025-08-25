@@ -199,7 +199,7 @@ let tabs
 
 const makeTabs = computed(() => {
 	tabs = []
-	addToTabs('Upcoming')
+	addToTabs('Live')
 
 	if (user.data?.is_moderator) {
 		addToTabs('Archived')

@@ -197,19 +197,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="">
-				<div class="text-lg font-semibold mb-4">
-					{{ __('Payment') }}
-				</div>
-				<div>
-					<FormControl
-						v-model="batch.amount"
-						:label="__('Amount')"
-						type="number"
-						class="my-4"
-					/>
-				</div>
-			</div>
 		</div>
 	</div>
 </template>

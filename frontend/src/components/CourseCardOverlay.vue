@@ -2,9 +2,14 @@
 	<div class="shadow rounded-md min-w-80">
 		<iframe v-if="course.data.video_link" :src="video_link" class="rounded-t-md min-h-56 w-full" />
 		<div class="p-5">
-			<Button @click="showBatches()" :disabled="course.data.batches === 0" variant="solid" class="w-full" size="md">
+			<Button v-if="course.data.batches > 0" @click="showBatches()" variant="solid" class="w-full" size="md">
 				<span>
 					{{ __('Show Batches') }}
+				</span>
+			</Button>
+			<Button v-else @click="enrollInCourse()" variant="solid" class="w-full" size="md">
+				<span>
+					{{ __('Enroll Now') }}
 				</span>
 			</Button>
 			<Button v-if="canGetCertificate" @click="fetchCertificate()" variant="subtle" class="w-full mt-2" size="md">
@@ -22,36 +27,15 @@
 					</span>
 				</Button>
 			</router-link>
-			<div class="mt-8 mb-4 font-medium">
-				{{ __('This course has:') }}
-			</div>
-			<div class="flex items-center mb-3">
-				<GraduationCap class="h-5 w-5 stroke-1.5 text-gray-600" />
-				<span class="ml-2">
-					{{ course.data.batches }}
-					{{ Number(course.data.batches) === 1 ? __('Batch') : __('Batches') }}
-				</span>
-			</div>
-			<div class="flex items-center mb-3">
-				<Users class="h-5 w-5 stroke-1.5 text-gray-600" />
-				<span class="ml-2">
-					{{ formatAmount(course.data.enrollments) }}
-					{{ Number(course.data.enrollments) === 1 ? __('Enrolled Student') : __('Enrolled Students') }}
-				</span>
-			</div>
-			<div class="flex items-center">
-				<Star class="h-5 w-5 stroke-1.5 fill-orange-500 text-gray-50" />
-				<span class="ml-2"> {{ course.data.rating }} {{ __('Rating') }} </span>
-			</div>
 		</div>
 	</div>
 </template>
 <script setup>
-import { Users, Star, GraduationCap } from 'lucide-vue-next'
+import { createResource } from 'frappe-ui'
 import { computed, inject } from 'vue'
-import { Button, createResource } from 'frappe-ui'
-import { formatAmount } from '@/utils/'
+import { Button } from 'frappe-ui'
 import { useRouter } from 'vue-router'
+import { useEnrollmentInquiry } from '@/utils/enrollment'
 
 const user = inject('$user')
 const router = useRouter()
@@ -117,6 +101,8 @@ const certificate = createResource({
 		)
 	},
 })
+
+const { enrollInCourse } = useEnrollmentInquiry()
 
 const fetchCertificate = () => {
 	certificate.submit({

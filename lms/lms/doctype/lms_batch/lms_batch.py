@@ -27,7 +27,7 @@ class LMSBatch(Document):
 		self.validate_batch_end_date()
 		self.validate_duplicate_courses()
 		self.validate_duplicate_students()
-		self.validate_amount()
+		#self.validate_amount()
 		#self.validate_payments_app()
 		self.validate_duplicate_assessments()
 		self.validate_membership()

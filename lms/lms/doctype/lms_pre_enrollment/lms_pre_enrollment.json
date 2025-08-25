@@ -7,16 +7,18 @@
  "field_order": [
   "customer_name",
   "customer_phone",
+  "city",
   "course",
   "batch",
-  "purchase_status"
+  "status",
+  "notes"
  ],
  "fields": [
   {
    "fieldname": "customer_phone",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Customer Phone",
+   "label": "Phone",
    "reqd": 1
   },
   {
@@ -34,26 +36,37 @@
    "options": "LMS Batch"
   },
   {
-   "default": "pending",
-   "fieldname": "purchase_status",
-   "fieldtype": "Select",
-   "label": "Purchase Status",
-   "options": "purchased\npending\ncanceled"
-  },
-  {
    "fieldname": "customer_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Customer Name",
+   "label": "Name",
+   "reqd": 1
+  },
+  {
+   "default": "prospecting",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "prospecting\nnegotiation\nclosed"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Text Editor",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City",
    "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-16 22:24:15.809418",
+ "modified": "2025-08-23 23:37:25.339114",
  "modified_by": "Administrator",
  "module": "LMS",
- "name": "LMS Batch Interest",
+ "name": "LMS Pre-Enrollment",
  "owner": "Administrator",
  "permissions": [
   {
@@ -69,6 +82,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "creation",
  "sort_order": "DESC",
  "states": []
