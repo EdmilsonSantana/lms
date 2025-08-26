@@ -5920,6 +5920,14 @@ msgstr ""
 msgid "Show Batches"
 msgstr ""
 
+#: frontend/src/components/CourseCardOverlay.vue
+msgid "Link copied to clipboard"
+msgstr ""
+
+#: frontend/src/components/CourseCardOverlay.vue
+msgid "Unable to copy link"
+msgstr ""
+
 #: frontend/src/pages/BatchDetail.vue:61
 msgid "Course Details"
 msgstr ""
@@ -5950,4 +5958,20 @@ msgstr ""
 
 #: frontend/src/pages/CourseForm.vue:136
 msgid "Add a keyword and then press enter"
+msgstr ""
+
+#: Site QR Code
+msgid "Site QR Code"
+msgstr ""
+
+#: WhatsApp QR Code
+msgid "WhatsApp QR Code"
+msgstr ""
+
+#: frontend/src/components/Modals/Settings.vue:163
+msgid "Contact"
+msgstr ""
+
+#: frontend/src/components/Modals/Settings.vue:163
+msgid "Download QR Codes"
 msgstr ""

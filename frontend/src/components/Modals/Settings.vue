@@ -45,13 +45,6 @@
 						:label="activeTab.label"
 						:description="activeTab.description"
 					/>
-					<PaymentSettings
-						v-else-if="activeTab.label === 'Payment Gateway'"
-						:label="activeTab.label"
-						:description="activeTab.description"
-						:data="data"
-						:fields="activeTab.fields"
-					/>
 					<BrandSettings
 						v-else-if="activeTab.label === 'Branding'"
 						:label="activeTab.label"
@@ -65,6 +58,7 @@
 						:label="activeTab.label"
 						:description="activeTab.description"
 						:data="data"
+						:hide-save-btn="activeTab?.hideSaveBtn ?? false"
 					/>
 				</div>
 			</div>
@@ -80,12 +74,13 @@ import SidebarLink from '@/components/SidebarLink.vue'
 import Members from '@/components/Members.vue'
 import Categories from '@/components/Categories.vue'
 import BrandSettings from '@/components/BrandSettings.vue'
-import PaymentSettings from '@/components/PaymentSettings.vue'
+import { showToast } from '@/utils'
 
 const show = defineModel()
 const doctype = ref('LMS Settings')
 const activeTab = ref(null)
 const settingsStore = useSettings()
+const whatsappUrl = ref(null)
 
 const data = createDocumentResource({
 	doctype: doctype.value,
@@ -93,6 +88,12 @@ const data = createDocumentResource({
 	fields: ['*'],
 	cache: doctype.value,
 	auto: true,
+	onSuccess(data) {
+		whatsappUrl.value = data['whatsapp_url'];
+	},
+	onError(err) {
+		showToast(__('Error'), err.messages?.[0] || err, 'x')
+	},
 })
 
 const branding = createResource({
@@ -104,78 +105,29 @@ const branding = createResource({
 const tabsStructure = computed(() => {
 	return [
 		{
-			label: 'Settings',
-			hideLabel: true,
+			label: 'Resources',
+			hideLabel: false,
 			items: [
 				{
-					label: 'General',
-					icon: 'Wrench',
+					label: 'QR Codes',
+					icon: 'QrCode',
+					description: 'Download QR Codes',
+					hideSaveBtn: true,
 					fields: [
 						{
-							label: 'Enable Learning Paths',
-							name: 'enable_learning_paths',
-							description:
-								'This will enforce students to go through programs assigned to them in the correct order.',
-							type: 'checkbox',
+							label: 'Site QR Code',
+							type: 'QRDownload',
+							qrText: window.location.origin
 						},
 						{
-							label: 'Send calendar invite for evaluations',
-							name: 'send_calendar_invite_for_evaluations',
-							description:
-								'If enabled, it sends google calendar invite to the student for evaluations.',
-							type: 'checkbox',
-						},
-						{
-							label: 'Unsplash Access Key',
-							name: 'unsplash_access_key',
-							description:
-								'Optional. If this is set, students can pick a cover image from the unsplash library for their profile page. https://unsplash.com/documentation#getting-started.',
-							type: 'text',
+							label: 'WhatsApp QR Code',
+							type: 'QRDownload',
+							qrText: whatsappUrl.value,
+							disabled: false,
 						},
 					],
 				},
-			],
-		},
-		{
-			label: 'Settings',
-			hideLabel: true,
-			items: [
-				{
-					label: 'Payment Gateway',
-					icon: 'DollarSign',
-					description:
-						'Configure the payment gateway and other payment related settings',
-					fields: [
-						{
-							label: 'Payment Gateway',
-							name: 'payment_gateway',
-							type: 'Link',
-							doctype: 'Payment Gateway',
-						},
-						{
-							label: 'Default Currency',
-							name: 'default_currency',
-							type: 'Link',
-							doctype: 'Currency',
-						},
-						{
-							label: 'Apply GST for India',
-							name: 'apply_gst',
-							type: 'checkbox',
-						},
-						{
-							label: 'Show USD equivalent amount',
-							name: 'show_usd_equivalent',
-							type: 'checkbox',
-						},
-						{
-							label: 'Apply rounding on equivalent',
-							name: 'apply_rounding',
-							type: 'checkbox',
-						},
-					],
-				},
-			],
+			]
 		},
 		{
 			label: 'Lists',
@@ -192,6 +144,52 @@ const tabsStructure = computed(() => {
 					icon: 'Network',
 				},
 			],
+		},
+		{
+			label: 'Social and Contact',
+			hideLabel: false,
+			items: [
+				{
+					label: 'Contact',
+					icon: 'Phone',
+					description: 'Configure contact channels',
+					fields: [
+						{
+							label: 'Email',
+							name: 'contact_email',
+							type: 'text',
+						},
+						{
+							label: 'WhatsApp',
+							name: 'whatsapp_url',
+							type: 'text',
+						},
+					],
+				},
+				{
+					label: 'Social',
+					icon: 'Share2',
+					description: 'Configure media links',
+					fields: [
+						{
+							label: 'Instagram',
+							name: 'instagram_url',
+							type: 'text',
+						},
+						{
+							label: 'Facebook',
+							name: 'facebook_url',
+							type: 'text',
+						},
+						{
+							label: 'YouTube',
+							name: 'youtube_url',
+							type: 'text	',
+						},
+					],
+				},
+				
+			]
 		},
 		{
 			label: 'Customise',
@@ -279,51 +277,7 @@ const tabsStructure = computed(() => {
 							type: 'checkbox',
 						},
 					],
-				},
-				{
-					label: 'Email Templates',
-					icon: 'MailPlus',
-					fields: [
-						{
-							label: 'Batch Confirmation Template',
-							name: 'batch_confirmation_template',
-							doctype: 'Email Template',
-							type: 'Link',
-						},
-						{
-							label: 'Certification Template',
-							name: 'certification_template',
-							doctype: 'Email Template',
-							type: 'Link',
-						},
-						{
-							label: 'Assignment Submission Template',
-							name: 'assignment_submission_template',
-							doctype: 'Email Template',
-							type: 'Link',
-						},
-					],
-				},
-				{
-					label: 'Signup',
-					icon: 'LogIn',
-					fields: [
-						{
-							label: 'Custom Content',
-							name: 'custom_signup_content',
-							type: 'Code',
-							mode: 'htmlmixed',
-							rows: 10,
-						},
-						{
-							label: 'Ask for Occupation',
-							name: 'user_category',
-							type: 'checkbox',
-							description:
-								'Enable this option to ask users to select their occupation during the signup process.',
-						},
-					],
-				},
+				}
 			],
 		},
 	]

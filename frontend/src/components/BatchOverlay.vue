@@ -1,5 +1,13 @@
 <template>
 	<div v-if="batch.data" class="shadow rounded-md p-5 lg:w-72">
+		<div class="flex justify-end mb-3">
+			<ShareActions
+				:slug="batch.data.name"
+				:kind="'batch'"
+				:title="batch.data.title || batch.data.name"
+				:showQr="false"
+			/>
+		</div>
 		<DateRange
 			:startDate="batch.data.start_date"
 			:endDate="batch.data.end_date"
@@ -72,6 +80,7 @@
 import { inject, computed } from 'vue'
 import { Badge, Button } from 'frappe-ui'
 import { Clock } from 'lucide-vue-next'
+import ShareActions from '@/components/Common/ShareActions.vue'
 import { formatTime } from '@/utils'
 import DateRange from '@/components/Common/DateRange.vue'
 import { useEnrollmentInquiry } from '@/utils/enrollment'

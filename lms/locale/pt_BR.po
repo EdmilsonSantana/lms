@@ -631,6 +631,14 @@ msgstr "Rótulo do Botão"
 msgid "Buy this course"
 msgstr "Comprar este curso"
 
+#: frontend/src/components/CourseCardOverlay.vue
+msgid "Link copied to clipboard"
+msgstr "Link copiado para a área de transferência"
+
+#: frontend/src/components/CourseCardOverlay.vue
+msgid "Unable to copy link"
+msgstr "Não foi possível copiar o link"
+
 #: lms/templates/emails/lms_message.html:11
 msgid "By"
 msgstr "Por"
@@ -5963,3 +5971,19 @@ msgstr "Novo Curso"
 #: frontend/src/pages/CourseForm.vue:136
 msgid "Add a keyword and then press enter"
 msgstr "Adicione uma palavra-chave e depois pressione Enter."
+
+#: frontend/src/components/Modals/Settings.vue:163
+msgid "Download QR Codes"
+msgstr "Baixar Códigos QR"
+
+#: Site QR Code
+msgid "Site QR Code"
+msgstr "Código QR do Site"
+
+#: WhatsApp QR Code
+msgid "WhatsApp QR Code"
+msgstr "Código QR do WhatsApp"
+
+#: frontend/src/components/Modals/Settings.vue:163
+msgid "Contact"
+msgstr "Contato"

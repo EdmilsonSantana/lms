@@ -1,46 +1,37 @@
-// Reusable WhatsApp enrollment / inquiry helper
-// Loads social media links once and exposes simple helpers
-import { ref } from 'vue'
-import { createResource } from 'frappe-ui'
-
-const whatsAppUrl = ref(null)
-let initialized = false
-
-function init() {
-  if (initialized) return
-  createResource({
-    url: 'lms.lms.branding.get_social_media',
-    auto: true,
-    transform(data) {
-      const w = data.find((s) => s.name === 'WhatsApp')
-      if (w) whatsAppUrl.value = w.url
-    },
-  })
-  initialized = true
-}
-
-function openWhatsAppWithMessage(message) {
-  if (!whatsAppUrl.value) return
-  try {
-    const url = new URL(whatsAppUrl.value)
-    url.searchParams.set('text', message)
-    window.open(url.href, '_blank')
-  } catch (e) {
-    // silently ignore malformed url
-  }
-}
+import { useSettings } from '@/stores/settings'
+import { storeToRefs } from 'pinia';
+import { showToast } from '@/utils'
 
 export function useEnrollmentInquiry() {
-  init()
+  const settings = useSettings();
 
-  function enrollInCourse(title) {
-    const message = __("Hi, I would like more information about the '{0}' course.").format(title)
-    openWhatsAppWithMessage(message)
+  const { socialSettings } = storeToRefs(settings);
+
+  const getWhatsAppUrl = async () => {
+    await socialSettings.value.reload();
+    return socialSettings.value?.data?.find(s => s.name === 'WhatsApp')?.url
   }
 
-  function enrollInBatch(title) {
+  async function openWhatsAppWithMessage(message) {
+    const whatsAppUrl = await getWhatsAppUrl();
+    if (!whatsAppUrl) return
+    try {
+      const url = new URL(whatsAppUrl)
+      url.searchParams.set('text', message)
+      window.open(url.href, '_blank')
+    } catch (e) {
+      showToast(__('Error'), e.messages?.[0] || e, 'x')
+    }
+  }
+
+  async function enrollInCourse(title) {
+    const message = __("Hi, I would like more information about the '{0}' course.").format(title)
+    await openWhatsAppWithMessage(message)
+  }
+
+  async function enrollInBatch(title) {
     const message = __("Hi, I would like more information about the '{0}' batch.").format(title)
-    openWhatsAppWithMessage(message)
+    await openWhatsAppWithMessage(message)
   }
 
   return { enrollInCourse, enrollInBatch }

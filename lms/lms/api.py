@@ -461,6 +461,25 @@ def get_sidebar_settings():
 
 	return sidebar_items
 
+@frappe.whitelist(allow_guest=True)
+def get_social_settings():
+    settings = frappe.get_single("LMS Settings")
+    socials = [
+		"whatsapp_url",
+		"instagram_url",
+		"facebook_url",
+		"youtube_url"
+	]
+    return [{
+                "name": settings.get_label_from_fieldname(social),
+                "url": settings.get(social, default='')
+            }
+            for social in socials]
+
+@frappe.whitelist(allow_guest=True)
+def get_contact_email():
+    settings = frappe.get_single("LMS Settings")
+    return {'contact_email': settings.get('contact_email', default='')}
 
 @frappe.whitelist()
 def update_sidebar_item(webpage, icon):

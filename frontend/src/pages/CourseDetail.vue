@@ -61,13 +61,14 @@
 	</div>
 </template>
 <script setup>
-import { createResource, Breadcrumbs, Badge, } from 'frappe-ui'
+import { createResource, Breadcrumbs, Badge } from 'frappe-ui'
 import { computed } from 'vue'
 import CourseCardOverlay from '@/components/CourseCardOverlay.vue'
 import CourseOutline from '@/components/CourseOutline.vue'
 import UserAvatar from '@/components/UserAvatar.vue'
 import { updateDocumentTitle } from '@/utils'
 import CourseInstructors from '@/components/CourseInstructors.vue'
+import { QrCode } from 'lucide-vue-next'
 
 const props = defineProps({
 	courseName: {

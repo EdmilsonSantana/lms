@@ -67,9 +67,8 @@
 	</div>
 </template>
 <script setup>
-import { GraduationCap, Users, Star } from 'lucide-vue-next'
 import UserAvatar from '@/components/UserAvatar.vue'
-import { Badge, Tooltip } from 'frappe-ui'
+import { Badge } from 'frappe-ui'
 import CourseInstructors from '@/components/CourseInstructors.vue'
 
 const props = defineProps({

@@ -124,11 +124,11 @@
 		</div>
 
 		<!-- Social Links (With Icons) -->
-		<div v-if="socials?.length" class="max-w-7xl mx-auto mt-6 flex space-x-4 justify-center md:justify-end">
-			<a v-for="social in socials" :key="social.name" :href="social.url"
+		<div v-if="socialSettings.data?.length" class="max-w-7xl mx-auto mt-6 flex space-x-4 justify-center md:justify-end">
+			<a v-for="social in socialSettings.data" :key="social.name" :href="social.url"
 				class="hover:text-white flex items-center space-x-1" target="_blank" rel="noopener noreferrer">
 				<!-- Icon Component -->
-				<FeatherIcon :icon="social.icon" :label="social.name" />
+				<FeatherIcon :icon="icons[social.name]" :label="social.name" />
 			</a>
 		</div>
 	</footer>
@@ -136,13 +136,14 @@
 
 <script setup>
 
-import { createResource } from 'frappe-ui'
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 import FeatherIcon from '@/components/Icons/FeatherIcon.vue'
 import { PlugZap, SquareActivity, Droplets } from 'lucide-vue-next';
 import { updateDocumentTitle } from '@/utils'
+import { useSettings } from '@/stores/settings';
 
-const socials = ref(false);
+const settings = useSettings();
+const socialSettings = settings.socialSettings;
 
 const icons = {
 	'Instagram': 'instagram',
@@ -150,18 +151,6 @@ const icons = {
 	'YouTube': 'youtube',
 	'WhatsApp': 'message-circle'
 };
-
-createResource({
-	url: 'lms.lms.branding.get_social_media',
-	auto: true,
-	transform(data) {
-		socials.value = data.map((d) => ({
-			name: d.name,
-			icon: icons[d.name],
-			url: d.url,
-		}));
-	},
-});
 
 const pageMeta = computed(() => {
 	return {

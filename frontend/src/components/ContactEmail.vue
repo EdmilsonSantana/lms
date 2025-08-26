@@ -12,7 +12,7 @@ import { ref } from 'vue';
 const contactEmail = ref('');
 
 createResource({
-    url: 'lms.lms.branding.get_contact_email',
+    url: 'lms.lms.api.get_contact_email',
     auto: true,
     cache: 'contact_email',
     transform(data) {

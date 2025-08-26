@@ -2,6 +2,14 @@
 	<div class="shadow rounded-md min-w-80">
 		<iframe v-if="course.data.video_link" :src="video_link" class="rounded-t-md min-h-56 w-full" />
 		<div class="p-5">
+			<ShareActions
+				v-if="showUtilityIcons"
+				class="mb-3"
+				:slug="course.data.name"
+				:kind="'course'"
+				:title="course.data.title"
+				@show-qr="emit('show-qr')"
+			/>
 			<Button v-if="course.data.batches > 0" @click="showBatches()" variant="solid" class="w-full" size="md">
 				<span>
 					{{ __('Show Batches') }}
@@ -36,6 +44,7 @@ import { computed, inject } from 'vue'
 import { Button } from 'frappe-ui'
 import { useRouter } from 'vue-router'
 import { useEnrollmentInquiry } from '@/utils/enrollment'
+import ShareActions from '@/components/Common/ShareActions.vue'
 
 const user = inject('$user')
 const router = useRouter()
@@ -46,6 +55,8 @@ const props = defineProps({
 		default: null,
 	},
 });
+
+const showUtilityIcons = computed(() => true)
 
 const showBatches = () => {
 	router.push({
