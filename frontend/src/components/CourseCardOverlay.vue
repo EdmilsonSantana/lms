@@ -15,7 +15,7 @@
 					{{ __('Show Batches') }}
 				</span>
 			</Button>
-			<Button v-else @click="enrollInCourse()" variant="solid" class="w-full" size="md">
+			<Button v-else @click="enrollInCourse(course.data.title)" variant="solid" class="w-full" size="md">
 				<span>
 					{{ __('Enroll Now') }}
 				</span>

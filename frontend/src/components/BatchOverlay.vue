@@ -55,7 +55,7 @@
 			variant="solid"
 			class="w-full mt-2"
 			v-else-if="batch.data.allow_self_enrollment && batch.data.seats_left"
-			@click="enrollInBatch()"
+			@click="enrollInBatch(batch.data.title)"
 		>
 			{{ __('Enroll Now') }}
 		</Button>
