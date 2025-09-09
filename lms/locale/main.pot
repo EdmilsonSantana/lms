@@ -5952,6 +5952,18 @@ msgstr ""
 msgid "closed"
 msgstr ""
 
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "Customer Name"
+msgstr ""
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "Customer Phone"
+msgstr ""
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "Customer Intent"
+msgstr ""
+
 #: frontend/src/pages/Courses.vue:45
 msgid "New Course"
 msgstr ""

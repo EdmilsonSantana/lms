@@ -5964,6 +5964,18 @@ msgstr "Negociação"
 msgid "closed"
 msgstr "Fechado"
 
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "Customer Name"
+msgstr "Nome do Cliente"
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "Customer Phone"
+msgstr "Telefone do Cliente"
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "Customer Intent"
+msgstr "Intenção do Cliente"
+
 #: frontend/src/pages/Courses.vue:45
 msgid "New Course"
 msgstr "Novo Curso"

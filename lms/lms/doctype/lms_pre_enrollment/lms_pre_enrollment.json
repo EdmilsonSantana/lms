@@ -7,6 +7,7 @@
  "field_order": [
   "customer_name",
   "customer_phone",
+  "customer_intent",
   "course",
   "batch",
   "status",
@@ -17,7 +18,7 @@
    "fieldname": "customer_phone",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Phone",
+   "label": "Customer Phone",
    "reqd": 1
   },
   {
@@ -25,8 +26,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "LMS Course",
-   "options": "LMS Course",
-   "reqd": 1
+   "options": "LMS Course"
   },
   {
    "fieldname": "batch",
@@ -38,7 +38,7 @@
    "fieldname": "customer_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Name",
+   "label": "Customer Name",
    "reqd": 1
   },
   {
@@ -52,11 +52,17 @@
    "fieldname": "notes",
    "fieldtype": "Text Editor",
    "label": "Notes"
+  },
+  {
+   "fieldname": "customer_intent",
+   "fieldtype": "Data",
+   "label": "Customer Intent",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-30 14:10:00.530905",
+ "modified": "2025-09-08 17:45:12.907295",
  "modified_by": "Administrator",
  "module": "LMS",
  "name": "LMS Pre-Enrollment",
