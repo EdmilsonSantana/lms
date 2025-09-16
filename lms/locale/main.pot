@@ -5908,8 +5908,12 @@ msgstr ""
 msgid "Archived"
 msgstr ""
 
-#: frontend/src/components/BatchOverlay.vue:120
+#: frontend/src/utils/enrollment.js:33
 msgid "Hi, I would like more information about the '{0}' batch."
+msgstr ""
+
+#: frontend/src/utils/enrollment.js:28
+msgid "Hi, I would like more information about the '{0}' course."
 msgstr ""
 
 #: frappe/www/login.html
