@@ -250,8 +250,6 @@ const batch = reactive({
 	category: '',
 	allow_self_enrollment: true,
 	image: null,
-	paid_batch: false,
-	currency: '',
 	amount: 0,
 })
 

@@ -30,33 +30,6 @@
 		</div>
 		<div class="flex flex-col flex-auto p-4">
 			<div class="flex items-center justify-between mb-2">
-				<div v-if="course.lessons">
-					<Tooltip :text="__('Lessons')">
-						<span class="flex items-center">
-							<BookOpen class="h-4 w-4 stroke-1.5 text-gray-700 mr-1" />
-							{{ course.lessons }}
-						</span>
-					</Tooltip>
-				</div>
-
-				<div v-if="course.enrollments">
-					<Tooltip :text="__('Enrolled Students')">
-						<span class="flex items-center">
-							<Users class="h-4 w-4 stroke-1.5 text-gray-700 mr-1" />
-							{{ course.enrollments }}
-						</span>
-					</Tooltip>
-				</div>
-
-				<div v-if="course.rating">
-					<Tooltip :text="__('Average Rating')">
-						<span class="flex items-center">
-							<Star class="h-4 w-4 stroke-1.5 text-gray-700 mr-1" />
-							{{ course.rating }}
-						</span>
-					</Tooltip>
-				</div>
-
 				<div v-if="course.status != 'Approved'">
 					<Badge
 						variant="subtle"
@@ -76,15 +49,6 @@
 				{{ course.short_introduction }}
 			</div>
 
-			<ProgressBar
-				v-if="user && course.membership"
-				:progress="course.membership.progress"
-			/>
-
-			<div v-if="user && course.membership" class="text-sm mb-4">
-				{{ Math.ceil(course.membership.progress) }}% completed
-			</div>
-
 			<div class="flex items-center justify-between mt-auto">
 				<div class="flex avatar-group overlap">
 					<div
@@ -98,23 +62,14 @@
 					</div>
 					<CourseInstructors :instructors="course.instructors" />
 				</div>
-
-				<div class="font-semibold">
-					{{ course.price }}
-				</div>
 			</div>
 		</div>
 	</div>
 </template>
 <script setup>
-import { BookOpen, Users, Star } from 'lucide-vue-next'
 import UserAvatar from '@/components/UserAvatar.vue'
-import { sessionStore } from '@/stores/session'
-import { Badge, Tooltip } from 'frappe-ui'
+import { Badge } from 'frappe-ui'
 import CourseInstructors from '@/components/CourseInstructors.vue'
-import ProgressBar from '@/components/ProgressBar.vue'
-
-const { user } = sessionStore()
 
 const props = defineProps({
 	course: {

@@ -94,16 +94,18 @@ const props = defineProps({
 		type: String,
 		required: true,
 	},
-})
+});
 
 const courses = createResource({
 	url: 'lms.lms.utils.get_batch_courses',
-	params: {
-		batch: props.batch,
+	makeParams() {
+		return {
+			batch: props.batch,
+		}
 	},
-	cache: ['batchCourses', props.batchName],
+	cache: ['batchCourses', props.batch],
 	auto: true,
-})
+});
 
 const openCourseModal = () => {
 	showCourseModal.value = true

@@ -1,7 +1,7 @@
 <template>
-	<div class="flex flex-col justify-between h-full">
+	<div :class="['flex flex-col justify-between', { 'h-full': !hideSaveBtn }]">
 		<div>
-			<div class="flex itemsc-center justify-between">
+			<div class="flex items-center justify-between">
 				<div class="text-xl font-semibold leading-none mb-1">
 					{{ __(label) }}
 				</div>
@@ -18,7 +18,7 @@
 		</div>
 
 		<SettingFields :fields="fields" :data="data.doc" />
-		<div class="flex flex-row-reverse mt-auto">
+		<div v-if="!hideSaveBtn" class="flex flex-row-reverse mt-auto">
 			<Button variant="solid" :loading="data.save.loading" @click="update">
 				{{ __('Update') }}
 			</Button>
@@ -47,6 +47,10 @@ const props = defineProps({
 	description: {
 		type: String,
 	},
+	hideSaveBtn: {
+		type: Boolean,
+		default: false
+	}
 })
 
 const update = () => {
@@ -55,14 +59,7 @@ const update = () => {
 			props.data.doc[f.name] = f.value
 		}
 	})
-	props.data.save.submit(
-		{},
-		{
-			onError(err) {
-				showToast(__('Error'), err.messages?.[0] || err, 'x')
-			},
-		}
-	)
+	props.data.save.submit()
 }
 </script>
 

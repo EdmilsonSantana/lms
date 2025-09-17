@@ -14,15 +14,6 @@
 				<div
 					class="flex flex-col gap-2 lg:gap-0 lg:flex-row lg:items-center justify-between lg:w-1/4"
 				>
-					<div v-if="batch.data?.courses?.length">
-						<div class="flex items-center">
-							<BookOpen class="h-4 w-4 text-gray-700 mr-2" />
-							<span> {{ batch.data?.courses?.length }} {{ __('Courses') }} </span>
-						</div>
-						<span class="hidden lg:block" v-if="batch.data.courses"
-							>&middot;</span
-						>
-					</div>
 					<DateRange
 						:startDate="batch.data.start_date"
 						:endDate="batch.data.end_date"
@@ -67,7 +58,7 @@
 			<div v-if="batch.data.courses.length">
 				<div class="flex items-center mt-10">
 					<div class="text-2xl font-semibold">
-						{{ __('Courses') }}
+						{{ __('Course Details') }}
 					</div>
 				</div>
 				<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-5">
@@ -99,9 +90,8 @@
 	</div>
 </template>
 <script setup>
-import { computed, inject } from 'vue'
-import { useRouter } from 'vue-router'
-import { BookOpen, Clock } from 'lucide-vue-next'
+import { computed } from 'vue'
+import { Clock } from 'lucide-vue-next'
 import { formatTime, updateDocumentTitle } from '@/utils'
 import { Breadcrumbs, createResource } from 'frappe-ui'
 import CourseCard from '@/components/CourseCard.vue'
@@ -109,9 +99,6 @@ import BatchOverlay from '@/components/BatchOverlay.vue'
 import DateRange from '../components/Common/DateRange.vue'
 import CourseInstructors from '@/components/CourseInstructors.vue'
 import UserAvatar from '@/components/UserAvatar.vue'
-
-const user = inject('$user')
-const router = useRouter()
 
 const props = defineProps({
 	batchName: {

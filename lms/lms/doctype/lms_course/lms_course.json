@@ -71,7 +71,7 @@
    "reqd": 1
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "published",
    "fieldtype": "Check",
    "label": "Published"
@@ -92,7 +92,7 @@
    "reqd": 1
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "disable_self_learning",
    "fieldtype": "Check",
    "label": "Disable Self Learning"
@@ -181,6 +181,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "default": "BRL",
    "depends_on": "paid_course",
    "fieldname": "currency",
    "fieldtype": "Link",
@@ -189,7 +190,7 @@
    "options": "Currency"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "paid_course",
    "fieldtype": "Check",
    "label": "Paid Course"
@@ -310,7 +311,7 @@
   }
  ],
  "make_attachments_public": 1,
- "modified": "2024-10-30 23:08:31.842860",
+ "modified": "2025-08-24 00:00:22.262665",
  "modified_by": "Administrator",
  "module": "LMS",
  "name": "LMS Course",
@@ -339,8 +340,18 @@
    "role": "Course Creator",
    "share": 1,
    "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales",
+   "share": 1
   }
  ],
+ "row_format": "Dynamic",
  "show_title_field_in_link": 1,
  "sort_field": "creation",
  "sort_order": "DESC",

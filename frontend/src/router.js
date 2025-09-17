@@ -57,6 +57,7 @@ const routes = [
 		component: () => import('@/pages/Batch.vue'),
 		props: true,
 	},
+	/*
 	{
 		path: '/billing/:type/:name',
 		name: 'Billing',
@@ -67,7 +68,7 @@ const routes = [
 		path: '/statistics',
 		name: 'Statistics',
 		component: () => import('@/pages/Statistics.vue'),
-	},
+	},*/
 	{
 		path: '/user/:username',
 		name: 'Profile',
@@ -138,6 +139,7 @@ const routes = [
 		component: () => import('@/pages/JobCreation.vue'),
 		props: true,
 	},
+	/*
 	{
 		path: '/assignment-submission/:assignmentName/:submissionName',
 		name: 'AssignmentSubmission',
@@ -149,11 +151,12 @@ const routes = [
 		name: 'CertifiedParticipants',
 		component: () => import('@/pages/CertifiedParticipants.vue'),
 	},
+	*/
 	{
 		path: '/notifications',
 		name: 'Notifications',
 		component: () => import('@/pages/Notifications.vue'),
-	},
+	},/*
 	{
 		path: '/badges/:badgeName/:email',
 		name: 'Badge',
@@ -189,6 +192,7 @@ const routes = [
 		component: () => import('@/pages/QuizSubmission.vue'),
 		props: true,
 	},
+	/*
 	{
 		path: '/programs/:programName',
 		name: 'ProgramForm',
@@ -199,7 +203,7 @@ const routes = [
 		path: '/programs',
 		name: 'Programs',
 		component: () => import('@/pages/Programs.vue'),
-	},
+	}, */
 	{
 		path: '/terms-and-conditions',
 		name: 'Terms',

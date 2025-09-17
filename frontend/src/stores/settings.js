@@ -5,6 +5,12 @@ import { createResource } from 'frappe-ui'
 export const useSettings = defineStore('settings', () => {
 	const isSettingsOpen = ref(false)
 	const activeTab = ref(null)
+
+	const socialSettings = createResource({
+		url: 'lms.lms.api.get_social_settings',
+		auto: true
+	});
+
 	const learningPaths = createResource({
 		url: 'frappe.client.get_single_value',
 		makeParams(values) {
@@ -15,7 +21,7 @@ export const useSettings = defineStore('settings', () => {
 		},
 		auto: true,
 		cache: ['learningPaths'],
-	})
+	});
 
 	const onboardingDetails = createResource({
 		url: 'lms.lms.utils.is_onboarding_complete',
@@ -27,6 +33,7 @@ export const useSettings = defineStore('settings', () => {
 		isSettingsOpen,
 		activeTab,
 		learningPaths,
+		socialSettings,
 		onboardingDetails,
 	}
 })

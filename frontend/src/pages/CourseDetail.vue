@@ -15,30 +15,6 @@
 						{{ course.data.short_introduction }}
 					</div>
 					<div class="flex items-center">
-						<Tooltip
-							v-if="course.data.rating"
-							:text="__('Average Rating')"
-							class="flex items-center"
-						>
-							<Star class="h-5 w-5 text-gray-100 fill-orange-500" />
-							<span class="ml-1">
-								{{ course.data.rating }}
-							</span>
-						</Tooltip>
-						<span v-if="course.data.rating" class="mx-3">&middot;</span>
-						<Tooltip
-							v-if="course.data.enrollment_count"
-							:text="__('Enrolled Students')"
-							class="flex items-center"
-						>
-							<Users class="h-4 w-4 text-gray-700" />
-							<span class="ml-1">
-								{{ course.data.enrollment_count_formatted }}
-							</span>
-						</Tooltip>
-						<span v-if="course.data.enrollment_count" class="mx-3"
-							>&middot;</span
-						>
 						<div class="flex items-center">
 							<span
 								class="h-6 mr-1"
@@ -76,11 +52,6 @@
 							:showOutline="true"
 						/>
 					</div>
-					<CourseReviews
-						:courseName="course.data.name"
-						:avg_rating="course.data.rating"
-						:membership="course.data.membership"
-					/>
 				</div>
 				<div class="hidden md:block">
 					<CourseCardOverlay :course="course" />
@@ -90,15 +61,14 @@
 	</div>
 </template>
 <script setup>
-import { createResource, Breadcrumbs, Badge, Tooltip } from 'frappe-ui'
+import { createResource, Breadcrumbs, Badge } from 'frappe-ui'
 import { computed } from 'vue'
-import { Users, Star } from 'lucide-vue-next'
 import CourseCardOverlay from '@/components/CourseCardOverlay.vue'
 import CourseOutline from '@/components/CourseOutline.vue'
-import CourseReviews from '@/components/CourseReviews.vue'
 import UserAvatar from '@/components/UserAvatar.vue'
 import { updateDocumentTitle } from '@/utils'
 import CourseInstructors from '@/components/CourseInstructors.vue'
+import { QrCode } from 'lucide-vue-next'
 
 const props = defineProps({
 	courseName: {

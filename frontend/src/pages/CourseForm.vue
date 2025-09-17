@@ -189,42 +189,7 @@
 									:label="__('Featured')"
 								/>
 							</div>
-							<div class="flex flex-col space-y-3">
-								<FormControl
-									type="checkbox"
-									v-model="course.disable_self_learning"
-									:label="__('Disable Self Enrollment')"
-								/>
-								<FormControl
-									type="checkbox"
-									v-model="course.enable_certification"
-									:label="__('Completion Certificate')"
-								/>
-							</div>
 						</div>
-					</div>
-					<div class="container border-t">
-						<div class="text-lg font-semibold mt-5 mb-4">
-							{{ __('Pricing') }}
-						</div>
-						<div class="mb-4">
-							<FormControl
-								type="checkbox"
-								v-model="course.paid_course"
-								:label="__('Paid Course')"
-							/>
-						</div>
-						<FormControl
-							v-model="course.course_price"
-							:label="__('Course Price')"
-							class="mb-4"
-						/>
-						<Link
-							doctype="Currency"
-							v-model="course.currency"
-							:filters="{ enabled: 1 }"
-							:label="__('Currency')"
-						/>
 					</div>
 				</div>
 			</div>
@@ -268,6 +233,7 @@ import { capture } from '@/telemetry'
 import { useSettings } from '@/stores/settings'
 
 const user = inject('$user')
+const dayjs = inject('$dayjs')
 const newTag = ref('')
 const router = useRouter()
 const instructors = ref([])
@@ -289,15 +255,10 @@ const course = reactive({
 	course_image: null,
 	tags: '',
 	category: '',
-	published: false,
-	published_on: '',
+	published: true,
+	published_on: dayjs().format('YYYY-MM-DD'),
 	featured: false,
-	upcoming: false,
-	disable_self_learning: false,
-	enable_certification: false,
-	paid_course: false,
-	course_price: '',
-	currency: '',
+	upcoming: false
 })
 
 onMounted(() => {

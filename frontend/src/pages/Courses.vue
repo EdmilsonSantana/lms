@@ -42,7 +42,7 @@
 						<template #prefix>
 							<Plus class="h-4 w-4" />
 						</template>
-						{{ __('New') }}
+						{{ __('New Course') }}
 					</Button>
 				</router-link>
 			</div>
@@ -104,7 +104,7 @@
 						</router-link>
 					</div>
 					<div v-else class="p-5 italic text-gray-500">
-						{{ __('No {0} courses').format(__(tab.label).toLowerCase()) }}
+						{{ __('No courses found') }}
 					</div>
 				</template>
 			</Tabs>

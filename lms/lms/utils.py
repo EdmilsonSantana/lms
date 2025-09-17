@@ -213,12 +213,17 @@ def get_instructors(course):
 		"Course Instructor", {"parent": course}, order_by="idx", pluck="instructor"
 	)
 
+	fields = ["first_name", "full_name", "user_image"]
+
+	if frappe.session.user != "Guest":
+		fields.extend(["name", "username"])
+
 	for instructor in instructors:
 		instructor_details.append(
 			frappe.db.get_value(
 				"User",
 				instructor,
-				["name", "username", "full_name", "user_image", "first_name"],
+				fields,
 				as_dict=True,
 			)
 		)
@@ -1030,6 +1035,8 @@ def get_course_details(course):
 	course_details.tags = course_details.tags.split(",") if course_details.tags else []
 
 	course_details.instructors = get_instructors(course_details.name)
+	course_details.batches = len(filter_batches(course_details.name))
+
 	if course_details.paid_course:
 		"""course_details.course_price, course_details.currency = check_multicurrency(
 		        course_details.course_price, course_details.currency, None, course_details.amount_usd
@@ -1209,21 +1216,29 @@ def get_neighbour_lesson(course, chapter, lesson):
 		"next": sorted_numbers[index + 1] if index + 1 < len(sorted_numbers) else None,
 	}
 
+def filter_batches(course_name: str|None):
+	filters = []
+	if frappe.session.user == "Guest":
+		filters += [
+            ["LMS Batch", "end_date", ">=", getdate()],
+            ["LMS Batch", "published", "=", 1],
+        ]
+
+	if (course_name):
+		filters.append(["Batch Course", "course", "in", [course_name]])
+
+	return frappe.get_all("LMS Batch", filters)
 
 @frappe.whitelist(allow_guest=True)
-def get_batches():
+def get_batches(course_name: str|None = None):
 	batches = []
-	filters = {}
-	if frappe.session.user == "Guest":
-		filters.update({"end_date": [">=", getdate()], "published": 1})
-	batch_list = frappe.get_all("LMS Batch", filters)
+	batch_list = filter_batches(course_name)
 
 	for batch in batch_list:
 		batches.append(get_batch_details(batch.name))
 
 	batches = categorize_batches(batches)
 	return batches
-
 
 @frappe.whitelist(allow_guest=True)
 def get_batch_details(batch):
@@ -1259,23 +1274,25 @@ def get_batch_details(batch):
 	batch_details.courses = frappe.get_all(
 		"Batch Course", filters={"parent": batch}, fields=["course", "title", "evaluator"]
 	)
-	batch_details.students = frappe.get_all(
-		"Batch Student", {"parent": batch}, pluck="student"
-	)
-	if batch_details.paid_batch and batch_details.start_date >= getdate():
+
+	students = frappe.get_all("Batch Student", {"parent": batch}, pluck="student")
+	if frappe.session.user != "Guest":
+		batch_details.students = students
+
+	if batch_details.paid_batch:
 		batch_details.amount, batch_details.currency = check_multicurrency(
 			batch_details.amount, batch_details.currency, None, batch_details.amount_usd
 		)
 		batch_details.price = fmt_money(batch_details.amount, 0, batch_details.currency)
 
 	if batch_details.seat_count:
-		batch_details.seats_left = batch_details.seat_count - len(batch_details.students)
+		batch_details.seats_left = batch_details.seat_count - len(students)
 
 	return batch_details
 
 
 def categorize_batches(batches):
-	upcoming, archived, private, enrolled = [], [], [], []
+	live, archived, private, enrolled = [], [], [], []
 
 	for batch in batches:
 		if not batch.published:
@@ -1287,7 +1304,7 @@ def categorize_batches(batches):
 		):
 			archived.append(batch)
 		else:
-			upcoming.append(batch)
+			live.append(batch)
 
 		if frappe.session.user != "Guest":
 			if frappe.db.exists(
@@ -1299,9 +1316,9 @@ def categorize_batches(batches):
 	for category in categories:
 		category.sort(key=lambda x: x.start_date, reverse=True)
 
-	upcoming.sort(key=lambda x: x.start_date)
+	live.sort(key=lambda x: x.start_date)
 	return {
-		"upcoming": upcoming,
+		"live": live,
 		"archived": archived,
 		"private": private,
 		"enrolled": enrolled,

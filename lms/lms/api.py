@@ -461,6 +461,25 @@ def get_sidebar_settings():
 
 	return sidebar_items
 
+@frappe.whitelist(allow_guest=True)
+def get_social_settings():
+    settings = frappe.get_single("LMS Settings")
+    socials = [
+		"whatsapp_url",
+		"instagram_url",
+		"facebook_url",
+		"youtube_url"
+	]
+    return [{
+                "name": settings.get_label_from_fieldname(social),
+                "url": settings.get(social, default='')
+            }
+            for social in socials]
+
+@frappe.whitelist(allow_guest=True)
+def get_contact_email():
+    settings = frappe.get_single("LMS Settings")
+    return {'contact_email': settings.get('contact_email', default='')}
 
 @frappe.whitelist()
 def update_sidebar_item(webpage, icon):
@@ -1026,3 +1045,9 @@ def delete_scorm_package(scorm_package_path):
 	scorm_package_path = frappe.get_site_path("public", scorm_package_path[1:])
 	if os.path.exists(scorm_package_path):
 		shutil.rmtree(scorm_package_path)
+
+
+@frappe.whitelist(allow_guest=True)
+def get_partner_products():
+    fields = ['name', 'partner.partner_name', 'partner.partner_contact', 'title', 'description', 'image']
+    return frappe.get_all("Partner Product", fields)

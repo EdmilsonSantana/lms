@@ -28,6 +28,7 @@
     "cypress-file-upload": "^5.0.8"
   },
   "dependencies": {
-    "pre-commit": "^1.2.2"
+    "pre-commit": "^1.2.2",
+    "qrcode.vue": "^3.6.0"
   }
 }

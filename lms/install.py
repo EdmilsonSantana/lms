@@ -8,9 +8,17 @@ def after_install():
 	create_batch_source()
 	give_dicussions_permission()
 
+def enable_default_currency():
+	try:
+		if frappe.db.exists("Currency", "BRL"):
+			frappe.db.set_value("Currency", "BRL", "enabled", 1)
+	except Exception:
+		frappe.log_error(frappe.get_traceback(), "Enable BRL Currency Failed")
+
 
 def after_sync():
 	create_lms_roles()
+	enable_default_currency()
 	set_default_certificate_print_format()
 	add_all_roles_to("Administrator")
 
@@ -56,10 +64,24 @@ def create_lms_roles():
 	create_moderator_role()
 	create_evaluator_role()
 	create_lms_student_role()
+	create_sales_role()
 
+def create_sales_role():
+	if frappe.db.exists("Role", "Sales"):
+		frappe.db.set_value("Role", "Sales", "desk_access", 0)
+	else:
+		role = frappe.get_doc(
+			{
+				"doctype": "Role",
+				"role_name": "Sales",
+				"home_page": "",
+				"desk_access": 0,
+			}
+		)
+		role.save()
 
 def delete_lms_roles():
-	roles = ["Course Creator", "Moderator"]
+	roles = ["Course Creator", "Moderator", 'Sales']
 	for role in roles:
 		if frappe.db.exists("Role", role):
 			frappe.db.delete("Role", role)

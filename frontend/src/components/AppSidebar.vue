@@ -251,7 +251,7 @@ const addModeratorAndInstructorLinks = () => {
 	if (userResource.data) {
 		isModerator.value = userResource.data.is_moderator;
 		isInstructor.value = userResource.data.is_instructor;
-		addQuizzes();
+		//addQuizzes();
 		//addPrograms()
 	}
 }

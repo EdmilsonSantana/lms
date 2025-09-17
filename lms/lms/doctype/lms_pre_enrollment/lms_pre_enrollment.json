@@ -1,0 +1,88 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-08-16 10:24:20.973610",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "customer_name",
+  "customer_phone",
+  "customer_intent",
+  "course",
+  "batch",
+  "status",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer_phone",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer Phone",
+   "reqd": 1
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "LMS Course",
+   "options": "LMS Course"
+  },
+  {
+   "fieldname": "batch",
+   "fieldtype": "Link",
+   "label": "LMS Batch",
+   "options": "LMS Batch"
+  },
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer Name",
+   "reqd": 1
+  },
+  {
+   "default": "prospecting",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "prospecting\nnegotiation\nclosed"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Text Editor",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "customer_intent",
+   "fieldtype": "Data",
+   "label": "Customer Intent",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-08 17:45:12.907295",
+ "modified_by": "Administrator",
+ "module": "LMS",
+ "name": "LMS Pre-Enrollment",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

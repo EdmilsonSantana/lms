@@ -41,14 +41,14 @@ export function formatTime(timeString) {
 }
 
 export function formatNumber(number) {
-	return number.toLocaleString('en-IN', {
+	return number.toLocaleString('pt-BR', {
 		maximumFractionDigits: 0,
 	})
 }
 
 export function formatNumberIntoCurrency(number, currency) {
 	if (number) {
-		return number.toLocaleString('en-IN', {
+		return number.toLocaleString('pt-BR', {
 			maximumFractionDigits: 0,
 			style: 'currency',
 			currency: currency,
@@ -449,7 +449,7 @@ export function getDefaultSidebarLinks() {
 		},
 		{
 			label: 'Batches',
-			icon: 'Users',
+			icon: 'GraduationCap',
 			to: 'Batches',
 			activeFor: ['Batches', 'BatchDetail', 'Batch', 'BatchForm'],
 		},

@@ -1,4 +1,4 @@
-# Copyright (c) 2024, Frappe and Contributors
+# Copyright (c) 2025, Frappe and Contributors
 # See license.txt
 
 # import frappe
@@ -12,18 +12,18 @@ EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 
 
-class TestLMSBranding(UnitTestCase):
+class TestSellerContact(UnitTestCase):
 	"""
-	Unit tests for LMSBranding.
+	Unit tests for SellerContact.
 	Use this class for testing individual functions and methods.
 	"""
 
 	pass
 
 
-class TestLMSBranding(IntegrationTestCase):
+class TestSellerContact(IntegrationTestCase):
 	"""
-	Integration tests for LMSBranding.
+	Integration tests for SellerContact.
 	Use this class for testing interactions between multiple components.
 	"""
 

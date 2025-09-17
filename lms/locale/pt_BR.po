@@ -631,6 +631,14 @@ msgstr "Rótulo do Botão"
 msgid "Buy this course"
 msgstr "Comprar este curso"
 
+#: frontend/src/components/CourseCardOverlay.vue
+msgid "Link copied to clipboard"
+msgstr "Link copiado para a área de transferência"
+
+#: frontend/src/components/CourseCardOverlay.vue
+msgid "Unable to copy link"
+msgstr "Não foi possível copiar o link"
+
 #: lms/templates/emails/lms_message.html:11
 msgid "By"
 msgstr "Por"
@@ -800,6 +808,7 @@ msgid "Choose one answer"
 msgstr "Escolha uma resposta"
 
 #: frontend/src/pages/Billing.vue:86 lms/fixtures/custom_field.json
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
 #. Label of the city (Data) field in DocType 'User'
 msgid "City"
 msgstr "Cidade"
@@ -1719,6 +1728,10 @@ msgstr "Matriculado"
 msgid "Enrolled Students"
 msgstr "Alunos Matriculados"
 
+#: frontend/src/components/CourseCardOverlay.vue:103
+msgid "Enrolled Student"
+msgstr "Aluno Matriculado"
+
 #: lms/public/js/common_functions.js:96
 msgid "Enrolled successfully"
 msgstr "Inscrito com sucesso"
@@ -2558,7 +2571,7 @@ msgstr "Atribuição de Insígnia LMS"
 #. Option for the 'Payment for Document Type' (Select) field in DocType 'LMS
 #. Payment'
 msgid "LMS Batch"
-msgstr "Turma LMS"
+msgstr "Turma"
 
 #: lms/lms/doctype/lms_batch_old/lms_batch_old.json
 #. Name of a DocType
@@ -2596,7 +2609,7 @@ msgstr "Solicitação de Certificado LMS"
 #. Option for the 'Payment for Document Type' (Select) field in DocType 'LMS
 #. Payment'
 msgid "LMS Course"
-msgstr "Curso LMS"
+msgstr "Curso"
 
 #: lms/lms/doctype/lms_course_interest/lms_course_interest.json
 #. Name of a DocType
@@ -2854,7 +2867,7 @@ msgstr "Lista de quizzes"
 #: lms/lms/doctype/cohort/cohort.json
 #. Option for the 'Status' (Select) field in DocType 'Cohort'
 msgid "Live"
-msgstr "Ao Vivo"
+msgstr "Disponível"
 
 #: frontend/src/components/LiveClass.vue:4
 #: lms/lms/doctype/lms_settings/lms_settings.json
@@ -3233,11 +3246,11 @@ msgstr "Minha disponibilidade"
 msgid "My calendar"
 msgstr "Meu calendário"
 
-#: frontend/src/pages/Batches.vue:30 frontend/src/pages/Courses.vue:45
+#: frontend/src/pages/Batches.vue:30
 #: frontend/src/pages/Programs.vue:14 lms/lms/doctype/lms_badge/lms_badge.json
 #. Option for the 'Event' (Select) field in DocType 'LMS Badge'
 msgid "New"
-msgstr "Novo Curso"
+msgstr "Novo"
 
 #: lms/lms/doctype/lms_assignment_submission/lms_assignment_submission.py:41
 msgid "New Assignment Submission"
@@ -4437,7 +4450,7 @@ msgstr "Contagem de Vagas"
 #: frontend/src/components/BatchCard.vue:16
 #: frontend/src/components/BatchOverlay.vue:9
 msgid "Seat Left"
-msgstr "Assento Restante"
+msgstr "Vaga Restante"
 
 #: frontend/src/components/BatchCard.vue:15
 #: frontend/src/components/BatchOverlay.vue:8
@@ -5339,7 +5352,7 @@ msgstr "Papel Não Estruturado"
 #. Option for the 'Status' (Select) field in DocType 'Cohort'
 #. Label of the upcoming (Check) field in DocType 'LMS Course'
 msgid "Upcoming"
-msgstr "Disponível"
+msgstr "Em Breve"
 
 #: frontend/src/pages/Batch.vue:166
 msgid "Upcoming Batches"
@@ -5915,10 +5928,78 @@ msgstr "Anúncios"
 msgid "Archived"
 msgstr "Arquivado"
 
-#: frontend/src/components/BatchOverlay.vue:120
-msgid "Hi, I want to enroll in the batch '{0}'."
-msgstr "Olá, quero me inscrever na turma '{0}'."
+#: frontend/src/utils/enrollment.js:33
+msgid "Hi, I would like more information about the '{0}' batch."
+msgstr "Olá, gostaria de mais informações sobre a turma '{0}'."
+
+#: frontend/src/utils/enrollment.js:28
+msgid "Hi, I would like more information about the '{0}' course."
+msgstr "Olá, gostaria de mais informações sobre o curso '{0}'."
 
 #: frappe/www/login.html
 msgid "Login to {0}"
 msgstr "Entrar em {0}"
+
+#: frontend/src/components/CourseCardOverlay.vue:45
+msgid "Show Batches"
+msgstr "Ver Turmas"
+
+#: frontend/src/pages/BatchDetail.vue:61
+msgid "Course Details"
+msgstr "Detalhes do Curso"
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "LMS Pre-Enrollment"
+msgstr "Pré-inscrição"
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "Notes"
+msgstr "Observações"
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "prospecting"
+msgstr "Prospecção"
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "negotiation"
+msgstr "Negociação"
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "closed"
+msgstr "Fechado"
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "Customer Name"
+msgstr "Nome do Cliente"
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "Customer Phone"
+msgstr "Telefone do Cliente"
+
+#: lms/lms/doctype/lms_pre_enrollment/lms_pre_enrollment.json
+msgid "Customer Intent"
+msgstr "Intenção do Cliente"
+
+#: frontend/src/pages/Courses.vue:45
+msgid "New Course"
+msgstr "Novo Curso"
+
+#: frontend/src/pages/CourseForm.vue:136
+msgid "Add a keyword and then press enter"
+msgstr "Adicione uma palavra-chave e depois pressione Enter."
+
+#: frontend/src/components/Modals/Settings.vue:163
+msgid "Download QR Codes"
+msgstr "Baixar Códigos QR"
+
+#: Site QR Code
+msgid "Site QR Code"
+msgstr "Código QR do Site"
+
+#: WhatsApp QR Code
+msgid "WhatsApp QR Code"
+msgstr "Código QR do WhatsApp"
+
+#: frontend/src/components/Modals/Settings.vue:163
+msgid "Contact"
+msgstr "Contato"
