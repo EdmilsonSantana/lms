@@ -151,9 +151,9 @@
 	<!-- Featured Products Section -->
 	<section id="products" class="py-12 px-4 bg-gray-50">
 		<div class="max-w-7xl mx-auto text-center">
-			<h2 class="text-3xl font-bold mb-6 text-gray-800">Produtos em Destaque</h2>
+			<h2 class="text-3xl font-bold mb-6 text-gray-800">Produtos dos Nossos Parceiros</h2>
 			<p class="text-gray-600 mb-10">
-				Ferramentas e equipamentos recomendados pelos nossos parceiros especializados
+				Ferramentas e equipamentos oferecidos pelos nossos parceiros especializados no setor automotivo
 			</p>
 
 			<!-- Products Carousel -->
@@ -179,16 +179,16 @@
 					@scroll="updateScrollButtons">
 					<!-- Dynamic Product Cards -->
 					<div v-for="product in products" :key="product.name"
-						class="flex-none w-72 bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
+						class="flex-none w-72 bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer flex flex-col"
 						@click="openProductModal(product)">
-						<div class="aspect-square bg-gray-100 flex items-center justify-center">
+						<div class="aspect-square bg-gray-100 flex items-center justify-center overflow-hidden">
 							<img :src="product.image || 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=300&fit=crop'"
 								:alt="product.title" class="w-full h-full object-cover">
 						</div>
-						<div class="p-4">
+						<div class="p-4 flex flex-col flex-grow">
 							<h3 class="font-semibold text-gray-800 mb-2">{{ product.title }}</h3>
-							<p class="text-sm text-gray-600 mb-2">{{ product.description }}</p>
-							<p class="text-xs text-blue-600 font-medium">Parceiro: {{ product.partner_name }}</p>
+							<p class="text-sm text-gray-600 mb-2 flex-grow">{{ product.description }}</p>
+							<p class="text-xs text-blue-600 font-medium mt-auto">Parceiro: {{ product.partner_name }}</p>
 						</div>
 					</div>
 
