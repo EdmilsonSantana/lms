@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class LMSPreEnrollment(Document):
+class Partner(Document):
 	pass
