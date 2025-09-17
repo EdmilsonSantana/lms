@@ -1045,3 +1045,9 @@ def delete_scorm_package(scorm_package_path):
 	scorm_package_path = frappe.get_site_path("public", scorm_package_path[1:])
 	if os.path.exists(scorm_package_path):
 		shutil.rmtree(scorm_package_path)
+
+
+@frappe.whitelist(allow_guest=True)
+def get_partner_products():
+    fields = ['name', 'partner.partner_name', 'partner.partner_contact', 'title', 'description', 'image']
+    return frappe.get_all("Partner Product", fields)

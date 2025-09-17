@@ -157,54 +157,102 @@
 			</p>
 
 			<!-- Products Carousel -->
-			<div class="relative">
-				<!-- Navigation Buttons -->
+			<div class="relative" @keydown="handleCarouselKeydown" tabindex="0">
+				<!-- Navigation Buttons with improved styling -->
 				<button v-if="products.length > visibleCards && canScrollLeft" 
 					@click="scrollLeft"
-					class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-50 shadow-lg rounded-full p-3 transition-all hover:scale-110"
+					class="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-50 shadow-xl rounded-full p-3 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500"
 					aria-label="Produto anterior">
-					<FeatherIcon icon="chevron-left" class="w-6 h-6 text-gray-600" />
+					<FeatherIcon icon="chevron-left" class="w-6 h-6 text-gray-700" />
 				</button>
 				
 				<button v-if="products.length > visibleCards && canScrollRight" 
 					@click="scrollRight"
-					class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-50 shadow-lg rounded-full p-3 transition-all hover:scale-110"
+					class="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-50 shadow-xl rounded-full p-3 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500"
 					aria-label="Próximo produto">
-					<FeatherIcon icon="chevron-right" class="w-6 h-6 text-gray-600" />
+					<FeatherIcon icon="chevron-right" class="w-6 h-6 text-gray-700" />
 				</button>
 
-				<!-- Products Container -->
+				<!-- Products Container with improved touch handling -->
 				<div ref="carousel" 
-					class="flex gap-6 overflow-x-auto scroll-smooth pb-4 scrollbar-hide"
-					@scroll="updateScrollButtons">
-					<!-- Dynamic Product Cards -->
+					class="flex gap-6 overflow-x-auto scroll-smooth pb-4 scrollbar-hide px-2"
+					@scroll="updateScrollButtons"
+					@touchstart="handleTouchStart"
+					@touchmove="handleTouchMove"
+					@touchend="handleTouchEnd">
+					
+					<!-- Enhanced Product Cards -->
 					<div v-for="product in products" :key="product.name"
-						class="flex-none w-72 bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer flex flex-col"
-						@click="openProductModal(product)">
-						<div class="aspect-square bg-gray-100 flex items-center justify-center overflow-hidden">
+						class="flex-none w-72 bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col group transform hover:-translate-y-1"
+						@click="openProductModal(product)"
+						@mouseenter="preloadImage(product.image)">
+						
+						<!-- Image container with loading state -->
+						<div class="relative aspect-square bg-gray-100 flex items-center justify-center overflow-hidden rounded-t-xl">
+							<!-- Loading skeleton -->
+							<div v-if="!product.imageLoaded" class="absolute inset-0 bg-gray-200 animate-pulse"></div>
+							
 							<img :src="product.image || 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=300&fit=crop'"
-								:alt="product.title" class="w-full h-full object-cover">
+								:alt="product.title" 
+								@load="product.imageLoaded = true"
+								@error="handleProductImageError(product)"
+								class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+								loading="lazy">
+							
+							<!-- Overlay on hover -->
+							<div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 rounded-t-xl"></div>
+							
+							<!-- Quick view icon -->
+							<div class="absolute top-3 right-3 bg-white bg-opacity-0 group-hover:bg-opacity-90 rounded-full p-2 transition-all duration-300 transform scale-0 group-hover:scale-100">
+								<svg class="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+								</svg>
+							</div>
 						</div>
-						<div class="p-4 flex flex-col flex-grow">
-							<h3 class="font-semibold text-gray-800 mb-2">{{ product.title }}</h3>
-							<p class="text-sm text-gray-600 mb-2 flex-grow">{{ product.description }}</p>
-							<p class="text-xs text-blue-600 font-medium mt-auto">Parceiro: {{ product.partner_name }}</p>
+						
+						<!-- Enhanced content section -->
+						<div class="p-5 flex flex-col flex-grow">
+							<h3 class="font-bold text-gray-900 mb-2 text-lg leading-tight group-hover:text-blue-600 transition-colors">
+								{{ product.title }}
+							</h3>
+							<p class="text-sm text-gray-600 mb-3 flex-grow leading-relaxed line-clamp-3">
+								{{ product.description }}
+							</p>
+							<div class="flex items-center justify-between mt-auto">
+								<div class="flex items-center gap-2">
+									<div class="w-2 h-2 bg-blue-600 rounded-full"></div>
+									<p class="text-xs text-blue-600 font-semibold">{{ product.partner_name }}</p>
+								</div>
+								<div class="text-gray-400 group-hover:text-blue-600 transition-colors">
+									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+									</svg>
+								</div>
+							</div>
 						</div>
 					</div>
 
-					<!-- Show message when no products are available -->
-					<div v-if="products.length === 0" class="flex-none w-full text-center py-8">
-						<p class="text-gray-500">Nenhum produto disponível no momento.</p>
+					<!-- Enhanced empty state -->
+					<div v-if="products.length === 0" class="flex-none w-full text-center py-12">
+						<div class="text-gray-400 mb-4">
+							<svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+							</svg>
+						</div>
+						<p class="text-gray-500 text-lg font-medium">Nenhum produto disponível no momento</p>
+						<p class="text-gray-400 text-sm mt-1">Novos produtos serão adicionados em breve</p>
 					</div>
 				</div>
 
-				<!-- Scroll Indicators -->
-				<div v-if="products.length > visibleCards" class="flex justify-center mt-4 space-x-2">
-					<div v-for="(dot, index) in Math.ceil(products.length / visibleCards)" :key="index"
-						class="w-2 h-2 rounded-full transition-colors cursor-pointer"
-						:class="currentPage === index ? 'bg-blue-600' : 'bg-gray-300'"
-						@click="scrollToPage(index)">
-					</div>
+				<!-- Enhanced scroll indicators -->
+				<div v-if="products.length > visibleCards" class="flex justify-center mt-6 space-x-2">
+					<button v-for="(dot, index) in Math.ceil(products.length / visibleCards)" :key="index"
+						class="w-3 h-3 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+						:class="currentPage === index ? 'bg-blue-600 scale-110' : 'bg-gray-300 hover:bg-gray-400'"
+						@click="scrollToPage(index)"
+						:aria-label="`Ir para página ${index + 1}`">
+					</button>
 				</div>
 			</div>
 		</div>
@@ -212,30 +260,72 @@
 		<!-- Product Modal -->
 		<div v-if="selectedProduct"
 			class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
-			@click="closeProductModal">
-			<div class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto" @click.stop>
-				<div class="relative">
+			@click="closeProductModal"
+			@keydown="handleModalKeydown"
+			tabindex="0"
+			ref="modalRef">
+			<div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transform transition-all duration-300" 
+				@click.stop
+				@keydown.stop>
+				<!-- Image Section with Loading State -->
+				<div class="relative bg-gray-50 overflow-hidden">
 					<button @click="closeProductModal"
-						class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 z-10">
-						<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						class="absolute top-4 right-4 bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-700 hover:text-gray-900 z-30 rounded-full p-2 transition-all duration-200 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+						aria-label="Fechar modal"
+						ref="closeButton">
+						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
 								d="M6 18L18 6M6 6l12 12"></path>
 						</svg>
 					</button>
-					<img :src="selectedProduct.image" :alt="selectedProduct.title"
-						class="w-full h-64 md:h-80 object-cover">
+					
+					<!-- Loading Spinner -->
+					<div v-if="imageLoading" 
+						class="absolute inset-0 flex items-center justify-center bg-gray-100 z-10">
+						<div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+					</div>
+					
+					<!-- Image container with original size display -->
+					<div class="relative w-full flex items-center justify-center bg-gray-50 p-4">
+						<!-- Image with original sizing -->
+						<img :src="selectedProduct.image" 
+							:alt="selectedProduct.title"
+							@load="imageLoading = false"
+							@error="handleImageError"
+							class="max-w-full h-auto select-none"
+							style="max-height: 40vh;"
+							draggable="false">
+					</div>
 				</div>
-				<div class="p-6">
-					<h3 class="text-2xl font-bold mb-2">{{ selectedProduct.title }}</h3>
-					<p class="text-blue-600 font-medium mb-4">{{ selectedProduct.partner_name }}</p>
-					<p class="text-gray-700 mb-4">{{ selectedProduct.description }}</p>
-					<div class="flex gap-4">
+				
+				<!-- Content Section with more space -->
+				<div class="p-6 md:p-8 flex-1">
+					<div class="flex flex-col gap-4 mb-6">
+						<div class="flex-grow">
+							<h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">{{ selectedProduct.title }}</h3>
+							<div class="flex items-center gap-2 mb-4">
+								<div class="w-3 h-3 bg-blue-600 rounded-full"></div>
+								<p class="text-blue-600 font-semibold">{{ selectedProduct.partner_name }}</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="prose prose-lg max-w-none">
+						<p class="text-gray-700 text-lg leading-relaxed mb-6">{{ selectedProduct.description }}</p>
+					</div>
+					
+					<!-- Enhanced Action Buttons -->
+					<div class="flex flex-col sm:flex-row gap-3">
 						<button @click="contactAboutProduct"
-							class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition-colors">
-							<span>Saiba Mais</span>
+							class="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+									d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+							</svg>
+							<span>Entrar em Contato</span>
 						</button>
 						<button @click="closeProductModal"
-							class="bg-gray-200 text-gray-700 px-6 py-2 rounded hover:bg-gray-300 transition-colors">
+							class="flex-1 sm:flex-none bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium px-6 py-3 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500">
 							Fechar
 						</button>
 					</div>
@@ -315,6 +405,13 @@ const icons = {
 const selectedProduct = ref(null);
 const isMobileMenuOpen = ref(false);
 const products = ref([]);
+const imageLoading = ref(true);
+const modalRef = ref(null);
+const closeButton = ref(null);
+
+// Touch handling for carousel
+const touchStartX = ref(0);
+const touchEndX = ref(0);
 
 // Carousel variables
 const carousel = ref(null);
@@ -344,14 +441,87 @@ onUnmounted(() => {
 // Modal and Menu Functions
 const openProductModal = (product) => {
 	selectedProduct.value = product;
+	imageLoading.value = true;
+	
 	// Prevent body scroll when modal is open
 	document.body.style.overflow = 'hidden';
+	
+	// Focus the modal for keyboard navigation
+	nextTick(() => {
+		if (modalRef.value) {
+			modalRef.value.focus();
+		}
+	});
 };
 
 const closeProductModal = () => {
 	selectedProduct.value = null;
+	imageLoading.value = true;
 	// Restore body scroll
 	document.body.style.overflow = 'auto';
+};
+
+// Enhanced modal keyboard navigation
+const handleModalKeydown = (event) => {
+	switch (event.key) {
+		case 'Escape':
+			event.preventDefault();
+			closeProductModal();
+			break;
+		case 'Tab':
+			// Handle tab navigation within modal
+			handleTabNavigation(event);
+			break;
+		default:
+			// Prevent other keyboard shortcuts from affecting the background
+			if (event.ctrlKey || event.metaKey) {
+				event.preventDefault();
+			}
+			break;
+	}
+};
+
+const handleTabNavigation = (event) => {
+	const modal = modalRef.value;
+	if (!modal) return;
+
+	const focusableElements = modal.querySelectorAll(
+		'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+	);
+	
+	const firstElement = focusableElements[0];
+	const lastElement = focusableElements[focusableElements.length - 1];
+
+	if (event.shiftKey) {
+		// Shift + Tab (backward)
+		if (document.activeElement === firstElement) {
+			event.preventDefault();
+			lastElement.focus();
+		}
+	} else {
+		// Tab (forward)
+		if (document.activeElement === lastElement) {
+			event.preventDefault();
+			firstElement.focus();
+		}
+	}
+};
+
+const handleImageError = (event) => {
+	// Fallback to a default image or hide the image
+	event.target.src = 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop';
+};
+
+const handleProductImageError = (product) => {
+	product.image = 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=300&fit=crop';
+	product.imageLoaded = true;
+};
+
+const preloadImage = (src) => {
+	if (src) {
+		const img = new Image();
+		img.src = src;
+	}
 };
 
 const contactAboutProduct = () => {
@@ -408,6 +578,58 @@ const scrollToPage = (page) => {
 	carousel.value.scrollTo({ left: page * cardWidth, behavior: 'smooth' });
 };
 
+// Enhanced keyboard navigation
+const handleCarouselKeydown = (event) => {
+	switch (event.key) {
+		case 'ArrowLeft':
+			event.preventDefault();
+			if (canScrollLeft.value) scrollLeft();
+			break;
+		case 'ArrowRight':
+			event.preventDefault();
+			if (canScrollRight.value) scrollRight();
+			break;
+		case 'Home':
+			event.preventDefault();
+			scrollToPage(0);
+			break;
+		case 'End':
+			event.preventDefault();
+			scrollToPage(Math.ceil(products.value.length / visibleCards.value) - 1);
+			break;
+	}
+};
+
+// Touch handling for mobile
+const handleTouchStart = (event) => {
+	touchStartX.value = event.touches[0].clientX;
+};
+
+const handleTouchMove = (event) => {
+	// Optional: prevent default scrolling behavior if needed
+	// event.preventDefault();
+};
+
+const handleTouchEnd = (event) => {
+	touchEndX.value = event.changedTouches[0].clientX;
+	handleSwipeGesture();
+};
+
+const handleSwipeGesture = () => {
+	const swipeThreshold = 50;
+	const diff = touchStartX.value - touchEndX.value;
+	
+	if (Math.abs(diff) > swipeThreshold) {
+		if (diff > 0 && canScrollRight.value) {
+			// Swipe left - scroll right
+			scrollRight();
+		} else if (diff < 0 && canScrollLeft.value) {
+			// Swipe right - scroll left
+			scrollLeft();
+		}
+	}
+};
+
 // Update visible cards based on screen size
 const updateVisibleCards = () => {
 	const width = window.innerWidth;
@@ -440,28 +662,23 @@ const watchProducts = () => {
 	});
 };
 
-const productFields = [
-	'name', 'partner.partner_name',
-	'partner.partner_contact', 'title', 'description', 'image'];
-
 createResource({
-	url: 'frappe.client.get_list',
-	makeParams(values) {
-		return {
-			doctype: 'Partner Product',
-			fields: productFields
-		}
-	},
+	url: 'lms.lms.api.get_partner_products',
 	onSuccess(data) {
 		console.log(data);
 		if (data && Array.isArray(data)) {
-			products.value = data;
+			// Add loading state to each product
+			products.value = data.map(product => ({
+				...product,
+				imageLoaded: false
+			}));
 			watchProducts();
 		} else {
 			products.value = [];
 		}
 	},
 	onError(error) {
+		console.error('Error loading products:', error);
 		products.value = [];
 	},
 	auto: true,
@@ -495,5 +712,35 @@ section {
 /* Smooth carousel transitions */
 .scroll-smooth {
 	scroll-behavior: smooth;
+}
+
+/* Line clamp utility for description text */
+.line-clamp-3 {
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+/* Enhanced focus styles */
+.focus\:ring-2:focus {
+	outline: 2px solid transparent;
+	outline-offset: 2px;
+	box-shadow: 0 0 0 2px var(--ring-color, #3b82f6);
+}
+
+/* Loading animation */
+@keyframes pulse {
+	0%, 100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.5;
+	}
+}
+
+.animate-pulse {
+	animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 </style>
